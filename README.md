@@ -135,7 +135,10 @@ VPN->代理->分流, 这三个功能如果同时设置, 您会在您手机的VPN
   ```shell
   # 安卓环境需要安装AndroidSDK, 并且安装platforms以及ndk, 配置 ANDROID_HOME
   # IOS需要安装xcode以及CocoaPods 
-  gem install cocoapods
+  # M1 MAC需要使用 Rosetta 方式运行终端：应用程序 -> 实用工具 -> 终端/terminal -> 右键 -> 显示简介 -> 勾选使用 Rosetta 打开
+  # 如遇到编译报错，尝试安装依赖：sudo gem install ffi 
+
+  sudo gem install cocoapods
   ```
 - [安装gomobile](https://github.com/golang/mobile)
   ```shell
