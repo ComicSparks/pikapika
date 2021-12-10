@@ -76,7 +76,7 @@ VPN->代理->分流, 这三个功能如果同时设置, 您会在您手机的VPN
 ### 开发环境准备
 
 - [golang](https://golang.org/) (1.16以上版本)
-- [flutter](https://flutter.dev/) (2.5.3)(flutter不同版本api差异较大,建议使用临近的版本)
+- [flutter](https://flutter.dev/) (stable-2.8.0)(flutter不同版本api差异较大,建议使用临近的版本)
 
 ### 环境配置
 
