@@ -1,0 +1,82 @@
+name: Build
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  init:
+    runs-on: ubuntu-20.04
+    outputs:
+      tag_name: ${{ steps.get_info.outputs.tag_name }}
+      package_prefix: ${{ steps.get_info.outputs.package_prefix }}
+      head_sha_short: ${{ steps.get_info.outputs.head_sha_short }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+      - name: Get information
+        id: get_info
+        run: |
+          app_name=pikapika
+          tag_name=$(git describe --abbrev=0 --tags)
+          head_sha_short=$(git rev-parse --short HEAD)
+          echo "::set-output name=tag_name::${tag_name}"
+          echo "::set-output name=package_prefix::${app_name}_${tag_name}"
+          echo "::set-output name=head_sha_short::${head_sha_short}"
+
+  ios_nosign:
+    runs-on: macos-11
+    needs: [init]
+    env:
+      go_version: '1.17.4'
+      flutter_channel: 'stable'
+      flutter_version: '2.5.3'
+      package_filename: ${{ needs.init.outputs.package_prefix }}-${{ needs.init.outputs.head_sha_short }}_ios11_nosign
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: 'recursive'
+          fetch-depth: '0'
+
+      - name: Setup environment
+        run: |
+          sudo xcode-select -s /Applications/Xcode_12.5.app/Contents/Developer
+          gem install cocoapods
+
+      - name: Setup go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ env.go_version }}
+
+      - name: Setup gomobile
+        run: |
+          go env -w GO111MODULE=auto
+          cd go/mobile
+          go install golang.org/x/mobile/cmd/gomobile@latest
+          go get -d golang.org/x/mobile/cmd/gomobile
+          go install golang.org/x/mobile/cmd/gobind@latest
+          go get -d golang.org/x/mobile/cmd/gobind
+          gomobile init
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@v1
+        with:
+          channel: ${{ env.flutter_channel }}
+          flutter-version: ${{ env.flutter_version }}
+
+      - name: Build release
+        run: |
+          cd go/mobile
+          sh bind-ios.sh
+          cd ../..
+          flutter build ios --release --no-codesign
+          mkdir -p Payload
+          mv build/ios/iphoneos/Runner.app Payload
+          zip -0 ${{ env.package_filename }}.ipa -r Payload
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: ${{ env.package_filename }}
+          path: ${{ env.package_filename }}.ipa
