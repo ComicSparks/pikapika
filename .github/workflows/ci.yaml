@@ -29,7 +29,7 @@ jobs:
     env:
       go_version: '1.17.4'
       flutter_channel: 'stable'
-      flutter_version: '2.5.3'
+      flutter_version: '2.8.0'
       package_filename: ${{ needs.init.outputs.package_prefix }}-${{ needs.init.outputs.head_sha_short }}_ios11_nosign
 
     steps:
@@ -41,7 +41,7 @@ jobs:
 
       - name: Setup environment
         run: |
-          sudo xcode-select -s /Applications/Xcode_12.5.app/Contents/Developer
+          sudo xcode-select -s /Applications/Xcode_13.0.0.app/Contents/Developer
           gem install cocoapods
 
       - name: Setup go
