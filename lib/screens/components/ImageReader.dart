@@ -1472,6 +1472,7 @@ class _GalleryReaderState extends _ImageReaderContentState {
           },
         );
       },
+      allowImplicitScrolling: true,
     );
     gallery = GestureDetector(
       child: gallery,
