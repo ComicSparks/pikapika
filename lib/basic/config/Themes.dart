@@ -101,6 +101,18 @@ class _PinkTheme extends _ThemePackage {
           unselectedItemColor: Colors.grey[500],
         ),
         dividerColor: Colors.grey.shade200,
+        primaryColor: Colors.pink.shade200,
+        highlightColor: Colors.pink.shade200,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.pink.shade200,
+          selectionColor: Colors.pink.shade300.withAlpha(150),
+          selectionHandleColor: Colors.pink.shade300.withAlpha(200),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.pink.shade200),
+          ),
+        ),
       );
 }
 
@@ -131,6 +143,18 @@ class _BlackTheme extends _ThemePackage {
           backgroundColor: Colors.grey.shade800,
         ),
         dividerColor: Colors.grey.shade200,
+        primaryColor: Colors.pink.shade200,
+        highlightColor: Colors.pink.shade200,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.pink.shade200,
+          selectionColor: Colors.pink.shade300.withAlpha(150),
+          selectionHandleColor: Colors.pink.shade300.withAlpha(200),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.pink.shade200),
+          ),
+        ),
       );
 }
 
@@ -160,10 +184,21 @@ class _DarkTheme extends _ThemePackage {
           unselectedItemColor: Colors.grey.shade300,
           backgroundColor: Colors.grey.shade900,
         ),
+        primaryColor: Colors.pink.shade200,
+        highlightColor: Colors.pink.shade200,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.pink.shade200,
+          selectionColor: Colors.pink.shade300.withAlpha(150),
+          selectionHandleColor: Colors.pink.shade300.withAlpha(200),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.pink.shade200),
+          ),
+        ),
       );
 }
 
-//
 class _DustyBlueTheme extends _ThemePackage {
   @override
   String code() => "dustyBlue";
@@ -194,6 +229,18 @@ class _DustyBlueTheme extends _ThemePackage {
           unselectedItemColor: Colors.grey.shade500,
         ),
         dividerColor: Colors.grey.shade800,
+        primaryColor: Colors.blue.shade200,
+        highlightColor: Colors.blue.shade200,
+        textSelectionTheme: TextSelectionThemeData(
+          cursorColor: Colors.blue.shade200,
+          selectionColor: Colors.blue.shade900,
+          selectionHandleColor: Colors.blue.shade800,
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: Colors.blue.shade500),
+          ),
+        ),
       );
 }
 
