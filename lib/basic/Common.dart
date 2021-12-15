@@ -148,7 +148,7 @@ Future<T?> chooseMapDialog<T>(
 var _controller = TextEditingController.fromValue(TextEditingValue(text: ''));
 
 Future<String?> displayTextInputDialog(BuildContext context,
-    {String? title, String src = "", String? hint, String? desc}) {
+    {String? title, String src = "", String? hint, String? desc, bool isPasswd = false}) {
   _controller.text = src;
   return showDialog(
     context: context,
@@ -161,6 +161,8 @@ Future<String?> displayTextInputDialog(BuildContext context,
               TextField(
                 controller: _controller,
                 decoration: InputDecoration(hintText: hint),
+                obscureText: isPasswd,
+                obscuringCharacter: '\u2022',
               ),
               ...(desc == null
                   ? []

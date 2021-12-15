@@ -99,7 +99,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 Text('您已经注册成功, 请返回登录'),
                 Text('账号 : $_email'),
                 Text('昵称 : $_name'),
-                Text('密码 : $_password'),
                 Expanded(child: Container()),
                 Expanded(child: Container()),
               ],
@@ -140,13 +139,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
           ListTile(
             title: Text("密码 (8位以上)"),
-            subtitle: Text(_password == "" ? "未设置" : _password),
+            subtitle: Text(_password == "" ? "未设置" : '\u2022' * 48),
             onTap: () async {
               String? input = await displayTextInputDialog(
                 context,
                 src: _password,
                 title: '密码',
                 hint: '请输入密码',
+                isPasswd: true,
               );
               if (input != null) {
                 setState(() {

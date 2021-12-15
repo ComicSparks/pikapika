@@ -95,13 +95,14 @@ class _AccountScreenState extends State<AccountScreen> {
           ),
           ListTile(
             title: Text("密码"),
-            subtitle: Text(_password == "" ? "未设置" : "******"),
+            subtitle: Text(_password == "" ? "未设置" : '\u2022' * 48),
             onTap: () async {
               String? input = await displayTextInputDialog(
                 context,
                 src: _password,
                 title: '密码',
                 hint: '请输入密码',
+                isPasswd: true,
               );
               if (input != null) {
                 await method.setPassword(input);
