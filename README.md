@@ -76,7 +76,8 @@ VPN->代理->分流, 这三个功能如果同时设置, 您会在您手机的VPN
 ### 开发环境准备
 
 - [golang](https://golang.org/) (1.16以上版本)
-- [flutter](https://flutter.dev/) (stable-2.8.0)(flutter不同版本api差异较大,建议使用临近的版本)
+- [flutter](https://flutter.dev/) (stable-2.10.0)
+  - flutter不同版本api差异较大,建议使用临近的beta版本
 
 ### 环境配置
 
@@ -93,6 +94,7 @@ VPN->代理->分流, 这三个功能如果同时设置, 您会在您手机的VPN
   # 或
   go install github.com/go-flutter-desktop/hover@latest
   ```
+  - 若您希望使用stable版本的flutter, 请使用github.com/niuhuan/hover
 - 安装gcc
   ```shell
   # Windows需要安装MSYS(mingw-w64-x86_64-gcc), 并将gcc路径设置到PATH环境变量内
