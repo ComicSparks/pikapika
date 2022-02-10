@@ -1465,6 +1465,7 @@ class _GalleryReaderState extends _ImageReaderContentState {
                 },
               );
             },
+            filterQuality: FilterQuality.high,
           );
         }
         return PhotoViewGalleryPageOptions(
