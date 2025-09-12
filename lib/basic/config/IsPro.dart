@@ -4,7 +4,7 @@ import 'package:pikapika/basic/Method.dart';
 import '../Entities.dart';
 
 bool get isPro {
-  return _proInfoAll.proInfoAf.isPro || _proInfoAll.proInfoPat.isPro;
+  return true;
 }
 
 ProInfoAf get proInfoAf => _proInfoAll.proInfoAf;
