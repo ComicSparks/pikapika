@@ -45,6 +45,7 @@ import 'package:pikapika/basic/config/ReaderType.dart';
 import 'package:pikapika/basic/config/RecommendLinks.dart';
 import 'package:pikapika/basic/config/ShadowCategories.dart';
 import 'package:pikapika/basic/config/ShowCommentAtDownload.dart';
+import 'package:pikapika/basic/config/TagFavorite.dart';
 import 'package:pikapika/basic/config/Themes.dart';
 import 'package:pikapika/basic/Method.dart';
 import 'package:pikapika/basic/config/ListLayout.dart';
@@ -188,6 +189,7 @@ class _InitScreenState extends State<InitScreen> {
     await initLockTimeOut();
     await initReaderTwoPageDirection();
     await initHiddenWords();
+    await initTagFavorite();
     await initReaderScrollByScreenPercentage();
     await initWebToonScrollMode();
     await initReaderZoomScale();

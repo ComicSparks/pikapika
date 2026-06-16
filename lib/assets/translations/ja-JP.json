@@ -249,6 +249,10 @@
       "title": "オンライン收藏を隠す",
       "desc": "オンライン收藏の入口と收藏ボタンを隠す"
     },
+    "tag_favorite": {
+      "title": "タグお気に入り",
+      "desc": "個人ページにタグお気に入りを表示し, 漫画詳細ページでタグを長押ししてお気に入りに追加できます"
+    },
     "hidden_words": {
       "title": "キーワードで非表示",
       "clear_all": "クリア確認",
@@ -504,6 +508,21 @@
     "select_comics_to_download": "ダウンロードする漫画を選択してください",
     "download_started": "ダウンロードを開始しました",
     "download_failed": "ダウンロードに失敗しました"
+  },
+  "tag_favorite": {
+    "title": "タグお気に入り",
+    "no_tags": "お気に入りのタグはまだありません",
+    "delete": "お気に入りを削除",
+    "delete_confirm": "このタグのお気に入りを削除しますか？",
+    "add_favorite": "タグをお気に入りに追加",
+    "remove_favorite": "タグのお気に入りを解除",
+    "added": "お気に入りに追加しました",
+    "removed": "お気に入りを解除しました",
+    "select_mode": "複数選択",
+    "cancel_select": "複数選択を終了",
+    "select_all": "すべて選択",
+    "delete_selected": "選択項目を削除",
+    "delete_selected_confirm": "選択したタグのお気に入りを削除しますか？"
   },
   "screen": {
     "about": {

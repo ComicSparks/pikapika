@@ -253,6 +253,10 @@
       "title": "Hide online favorites",
       "desc": "Hide online favorites entry and favorite button"
     },
+    "tag_favorite": {
+      "title": "Tag favorites",
+      "desc": "Show tag favorites on the profile page and allow favoriting tags by long-pressing them on the comic detail page"
+    },
     "hidden_words": {
       "title": "Hide by keyword",
       "clear_all": "Confirm clear",
@@ -504,6 +508,21 @@
     "select_comics_to_download": "Please select comics to download",
     "download_started": "Download started",
     "download_failed": "Download failed"
+  },
+  "tag_favorite": {
+    "title": "Tag favorites",
+    "no_tags": "No favorited tags yet",
+    "delete": "Remove favorite",
+    "delete_confirm": "Are you sure you want to remove this tag favorite?",
+    "add_favorite": "Favorite tag",
+    "remove_favorite": "Unfavorite tag",
+    "added": "Favorited",
+    "removed": "Removed from favorites",
+    "select_mode": "Multi-select",
+    "cancel_select": "Exit multi-select",
+    "select_all": "Select all",
+    "delete_selected": "Delete selected",
+    "delete_selected_confirm": "Are you sure you want to delete the selected tag favorites?"
   },
   "screen": {
     "about": {

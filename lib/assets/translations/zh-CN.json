@@ -253,6 +253,10 @@
       "title": "隐藏在线收藏",
       "desc": "隐藏在线收藏入口与收藏按钮"
     },
+    "tag_favorite": {
+      "title": "标签收藏",
+      "desc": "在个人页面显示标签收藏, 并可在漫画详情页长按标签进行收藏"
+    },
     "hidden_words": {
       "title": "根据关键词隐藏",
       "clear_all": "确认清空",
@@ -504,6 +508,21 @@
     "select_comics_to_download": "请选择要下载的漫画",
     "download_started": "开始下载",
     "download_failed": "下载失败"
+  },
+  "tag_favorite": {
+    "title": "标签收藏",
+    "no_tags": "暂无收藏的标签",
+    "delete": "删除收藏",
+    "delete_confirm": "确定要删除这个标签收藏吗？",
+    "add_favorite": "收藏标签",
+    "remove_favorite": "取消收藏标签",
+    "added": "已收藏",
+    "removed": "已取消收藏",
+    "select_mode": "多选",
+    "cancel_select": "退出多选",
+    "select_all": "全选",
+    "delete_selected": "删除选中",
+    "delete_selected_confirm": "确定要删除选中的标签收藏吗？"
   },
   "screen": {
     "about": {

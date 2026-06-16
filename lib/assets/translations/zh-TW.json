@@ -249,6 +249,10 @@
       "title": "隱藏線上收藏",
       "desc": "隱藏線上收藏入口與收藏按鈕"
     },
+    "tag_favorite": {
+      "title": "標籤收藏",
+      "desc": "在個人頁面顯示標籤收藏, 並可在漫畫詳情頁長按標籤進行收藏"
+    },
     "hidden_words": {
       "title": "根據關鍵詞隱藏",
       "clear_all": "確認清空",
@@ -504,6 +508,21 @@
     "select_comics_to_download": "請選擇要下載的漫畫",
     "download_started": "開始下載",
     "download_failed": "下載失敗"
+  },
+  "tag_favorite": {
+    "title": "標籤收藏",
+    "no_tags": "暫無收藏的標籤",
+    "delete": "刪除收藏",
+    "delete_confirm": "確定要刪除這個標籤收藏嗎？",
+    "add_favorite": "收藏標籤",
+    "remove_favorite": "取消收藏標籤",
+    "added": "已收藏",
+    "removed": "已取消收藏",
+    "select_mode": "多選",
+    "cancel_select": "退出多選",
+    "select_all": "全選",
+    "delete_selected": "刪除選中",
+    "delete_selected_confirm": "確定要刪除選中的標籤收藏嗎？"
   },
   "screen": {
     "about": {

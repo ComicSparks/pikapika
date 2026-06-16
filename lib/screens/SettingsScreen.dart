@@ -58,6 +58,7 @@ import '../basic/config/HiddenSubIcon.dart';
 import '../basic/config/HiddenViewed.dart';
 import '../basic/config/HiddenWords.dart';
 import '../basic/config/HideOnlineFavorite.dart';
+import '../basic/config/TagFavorite.dart';
 import '../basic/config/IgnoreInfoHistory.dart';
 import '../basic/config/ImageFilter.dart';
 import '../basic/config/ReaderScrollByScreenPercentage.dart';
@@ -256,6 +257,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 useLocalFavoriteSetting(),
                 const Divider(),
                 hideOnlineFavoriteSetting(),
+                const Divider(),
+                tagFavoriteSetting(),
               ],
             ),
             ExpansionTile(

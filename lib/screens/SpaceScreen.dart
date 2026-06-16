@@ -3,6 +3,8 @@ import 'package:pikapika/i18.dart';
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/config/HideOnlineFavorite.dart';
 import 'package:pikapika/basic/config/HiddenFdIcon.dart';
+import 'package:pikapika/basic/config/TagFavorite.dart';
+import 'package:pikapika/screens/TagFavoriteScreen.dart';
 import 'package:pikapika/basic/config/Version.dart';
 import 'package:pikapika/screens/AboutScreen.dart';
 import 'package:pikapika/screens/AccountScreen.dart';
@@ -37,6 +39,7 @@ class _SpaceScreenState extends State<SpaceScreen> {
     hiddenFdIconEvent.subscribe(_onEvent);
     useLocalFavoriteEvent.subscribe(_onEvent);
     hideOnlineFavoriteEvent.subscribe(_onEvent);
+    tagFavoriteEnableEvent.subscribe(_onEvent);
     super.initState();
   }
 
@@ -47,6 +50,7 @@ class _SpaceScreenState extends State<SpaceScreen> {
     hiddenFdIconEvent.unsubscribe(_onEvent);
     useLocalFavoriteEvent.unsubscribe(_onEvent);
     hideOnlineFavoriteEvent.unsubscribe(_onEvent);
+    tagFavoriteEnableEvent.unsubscribe(_onEvent);
     super.dispose();
   }
 
@@ -139,6 +143,18 @@ class _SpaceScreenState extends State<SpaceScreen> {
                 );
               },
               title: Text(tr('local_favorite.title')),
+            ),
+            const Divider(),
+          ],
+          if (tagFavoriteEnable) ...[
+            ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  mixRoute(builder: (context) => const TagFavoriteScreen()),
+                );
+              },
+              title: Text(tr('tag_favorite.title')),
             ),
             const Divider(),
           ],
