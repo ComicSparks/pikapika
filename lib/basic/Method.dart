@@ -1128,14 +1128,6 @@ class Method {
     return _flatInvoke("clearPat", "");
   }
 
-  Future<String> getProServerName() async {
-    return await _flatInvoke("getProServerName", "");
-  }
-
-  Future<dynamic> setProServerName(String serverName) {
-    return _flatInvoke("setProServerName", serverName);
-  }
-
   /// 加载已订阅
   Future<ComicSubscribe?> loadSubscribed(String comicId) async {
     String data = await _flatInvoke("loadSubscribed", comicId);

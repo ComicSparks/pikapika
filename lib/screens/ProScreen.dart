@@ -131,8 +131,6 @@ class _ProScreenState extends State<ProScreen> {
             },
           ),
           const Divider(),
-          const ProServerNameWidget(),
-          const Divider(),
           ...patPro(),
           const Divider(),
           const Divider(),
@@ -275,67 +273,5 @@ class _ProScreenState extends State<ProScreen> {
     await method.clearPat();
     await reloadIsPro();
     defaultToast(context, "Success");
-  }
-}
-
-class ProServerNameWidget extends StatefulWidget {
-  const ProServerNameWidget({Key? key}) : super(key: key);
-
-  @override
-  State<StatefulWidget> createState() => _ProServerNameWidgetState();
-}
-
-class _ProServerNameWidgetState extends State<ProServerNameWidget> {
-  String _serverName = "";
-
-  @override
-  void initState() {
-    method.getProServerName().then((value) {
-      setState(() {
-        _serverName = value;
-      });
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(tr('screen.pro.power_method')),
-      subtitle: Text(_loadServerName()),
-      onTap: () async {
-        final serverName = await chooseMapDialog(
-          context,
-          {
-            tr('screen.pro.wind_power'): "HK",
-            tr('screen.pro.hydro_power'): "US",
-            tr('screen.pro.solar_power'): "SIG",
-            tr('screen.pro.nuclear_power'): "JPOS",
-          },
-          tr('screen.pro.choose_power_method'),
-        );
-        if (serverName != null && serverName.isNotEmpty) {
-          await method.setProServerName(serverName);
-          setState(() {
-            _serverName = serverName;
-          });
-        }
-      },
-    );
-  }
-
-  String _loadServerName() {
-    switch (_serverName) {
-      case "HK":
-        return tr('screen.pro.wind_power');
-      case "US":
-        return tr('screen.pro.hydro_power');
-      case "SIG":
-        return tr('screen.pro.solar_power');
-      case "JPOS":
-        return tr('screen.pro.nuclear_power');
-      default:
-        return "";
-    }
   }
 }

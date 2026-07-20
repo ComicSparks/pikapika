@@ -2,7 +2,7 @@ name: pikapika
 description: A cross platform comic client.
 publish_to: 'none'
 
-version: 1.8.20+44
+version: 1.8.21+45
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
