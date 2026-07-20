@@ -137,6 +137,9 @@
     "categories_sort": {
       "title": "카테고리 정렬"
     },
+    "categories_hidden": {
+      "title": "카테고리 숨기기"
+    },
     "chooser_root": {
       "title": "폴더 선택기 루트 경로",
       "hint": "폴더 선택기 루트 경로를 입력하세요",
@@ -555,6 +558,9 @@
     },
     "categories": {
       "search_hint": "검색"
+    },
+    "categories_hidden": {
+      "title": "카테고리 숨기기"
     },
     "clean": {
       "title": "정리",

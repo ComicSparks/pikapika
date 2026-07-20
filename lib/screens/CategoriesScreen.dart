@@ -16,6 +16,7 @@ import 'package:pikapika/screens/components/ContentError.dart';
 import 'package:pikapika/basic/Method.dart';
 import '../basic/config/Address.dart';
 import '../basic/config/CategoriesColumnCount.dart';
+import '../basic/config/CategoriesHidden.dart';
 import '../basic/config/CategoriesSort.dart';
 import '../basic/config/IconLoading.dart';
 import 'ComicSubscribesScreen.dart';
@@ -88,6 +89,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     shadowCategoriesEvent.subscribe(_onShadowChange);
     categoriesColumnCountEvent.subscribe(_setState);
     categoriesSortEvent.subscribe(_onShadowChange);
+    categoriesHiddenEvent.subscribe(_onShadowChange);
     hiddenSubIconEvent.subscribe(_setState);
     super.initState();
   }
@@ -97,6 +99,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     shadowCategoriesEvent.unsubscribe(_onShadowChange);
     categoriesColumnCountEvent.unsubscribe(_setState);
     categoriesSortEvent.unsubscribe(_onShadowChange);
+    categoriesHiddenEvent.unsubscribe(_onShadowChange);
     hiddenSubIconEvent.unsubscribe(_setState);
     super.dispose();
   }
@@ -158,6 +161,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             //
             items.addAll(_buildChannels(imageSize));
             items.addAll(_buildCategories(snapshot.data!, imageSize));
+            var hidden = getCategoriesHidden();
+            items.removeWhere((e) => hidden.contains(e.title));
             var names = items.map((e) => e.title).toList();
             var sort = getCategoriesSort();
             items.sort((a, b) {

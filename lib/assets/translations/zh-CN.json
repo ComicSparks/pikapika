@@ -141,6 +141,9 @@
     "categories_sort": {
       "title": "首页分类排序"
     },
+    "categories_hidden": {
+      "title": "隐藏首页分类"
+    },
     "chooser_root": {
       "title": "文件夹选择器根路径",
       "hint": "请输入文件夹选择器根路径",
@@ -555,6 +558,9 @@
     },
     "categories": {
       "search_hint": "搜索"
+    },
+    "categories_hidden": {
+      "title": "隐藏首页分类"
     },
     "clean": {
       "title": "清理",

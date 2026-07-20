@@ -141,6 +141,9 @@
     "categories_sort": {
       "title": "Categories sort"
     },
+    "categories_hidden": {
+      "title": "Hide categories"
+    },
     "chooser_root": {
       "title": "Chooser root",
       "hint": "Enter the folder selector root path",
@@ -555,6 +558,9 @@
     },
     "categories": {
       "search_hint": "Search"
+    },
+    "categories_hidden": {
+      "title": "Hide categories"
     },
     "clean": {
       "title": "Clean",

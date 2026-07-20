@@ -137,6 +137,9 @@
     "categories_sort": {
       "title": "首頁分類排序"
     },
+    "categories_hidden": {
+      "title": "隱藏首頁分類"
+    },
     "chooser_root": {
       "title": "文件夾選擇器根路徑",
       "hint": "請輸入文件夾選擇器根路徑",
@@ -555,6 +558,9 @@
     },
     "categories": {
       "search_hint": "搜索"
+    },
+    "categories_hidden": {
+      "title": "隱藏首頁分類"
     },
     "clean": {
       "title": "清理",

@@ -48,6 +48,7 @@ import 'package:pikapika/screens/components/RightClickPop.dart';
 import '../basic/config/AppOrientation.dart';
 import '../basic/config/Authentication.dart';
 import '../basic/config/CategoriesColumnCount.dart';
+import '../basic/config/CategoriesHidden.dart';
 import '../basic/config/CategoriesSort.dart';
 import '../basic/config/CopyFullName.dart';
 import '../basic/config/CopyFullNameTemplate.dart';
@@ -120,6 +121,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 willPopNoticeSetting(),
                 categoriesColumnCountSetting(),
                 categoriesSortSetting(),
+                categoriesHiddenSetting(),
                 const Divider(),
                 setStartupPicTile(context),
                 clearStartupPicTile(context),

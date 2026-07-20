@@ -9,6 +9,7 @@ import 'package:pikapika/screens/components/ComicInfoCard.dart';
 import 'package:pikapika/screens/components/ContentLoading.dart';
 import 'package:pikapika/screens/components/ListView.dart';
 import 'package:pikapika/screens/components/RightClickPop.dart';
+import 'components/DownloadComicsScreen.dart';
 
 class LocalFavoriteScreen extends StatefulWidget {
   const LocalFavoriteScreen({Key? key}) : super(key: key);
@@ -597,20 +598,16 @@ class _LocalFavoriteScreenState extends State<LocalFavoriteScreen>
       return;
     }
 
-    try {
-      await method.downloadAll(_selectedComicIds.toList());
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(tr('local_favorite.download_started'))),
-        );
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(tr('local_favorite.download_failed'))),
-        );
-      }
-    }
+    final list = _selectedComicIds.toList();
+    setState(() {
+      _selecting = false;
+      _selectedComicIds.clear();
+    });
+    Navigator.of(context).push(MaterialPageRoute(
+      builder: (BuildContext context) {
+        return DownloadComicsScreen(list);
+      },
+    ));
   }
 
   Future<void> _moveToFolder() async {

@@ -65,6 +65,7 @@ import 'package:pikapika/screens/calculator_screen.dart';
 import 'package:pikapika/screens/components/ContentLoading.dart';
 import 'package:uni_links/uni_links.dart';
 import 'package:uri_to_file/uri_to_file.dart';
+import '../basic/config/CategoriesHidden.dart';
 import '../basic/config/CategoriesSort.dart';
 import '../basic/config/CopyFullName.dart';
 import '../basic/config/CopyFullNameTemplate.dart';
@@ -181,6 +182,7 @@ class _InitScreenState extends State<InitScreen> {
     await initCopySkipConfirm();
     await initCopyFullName();
     await initCategoriesSort();
+    await initCategoriesHidden();
     await initLocalHistorySync();
     await initHideOnlineFavorite();
     await initHiddenViewed();

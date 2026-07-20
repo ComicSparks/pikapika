@@ -137,6 +137,9 @@
     "categories_sort": {
       "title": "カテゴリソート"
     },
+    "categories_hidden": {
+      "title": "カテゴリを非表示"
+    },
     "chooser_root": {
       "title": "フォルダセレクタルートパス",
       "hint": "フォルダセレクタルートパスを入力してください",
@@ -555,6 +558,9 @@
     },
     "categories": {
       "search_hint": "検索"
+    },
+    "categories_hidden": {
+      "title": "カテゴリを非表示"
     },
     "clean": {
       "title": "クリーン",
