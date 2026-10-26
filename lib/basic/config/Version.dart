@@ -73,7 +73,15 @@ Future _versionCheck() async {
         _latestVersion = latestVersion;
         _latestVersionInfo = config["changeLog"] ?? "";
         _downloadUrl = config["downloadUrl"];
+      } else {
+        _latestVersion = null;
+        _latestVersionInfo = null;
+        _downloadUrl = null;
       }
+    } else {
+      _latestVersion = null;
+      _latestVersionInfo = null;
+      _downloadUrl = null;
     }
   } // else dirtyVersion
   versionEvent.broadcast();

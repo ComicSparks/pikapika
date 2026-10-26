@@ -200,41 +200,22 @@ class _AboutScreenState extends State<AboutScreen> {
   }
 
   Widget _buildNewVersionInfo(String? latestVersionInfo) {
-    // if (!isPro) {
-    //   return const Text("");
-    // }
-    if (latestVersionInfo != null) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Divider(),
-          Text(tr("screen.about.update_content") + ":"),
-          Container(
-            padding: const EdgeInsets.all(15),
-            child: Text(
-              latestVersionInfo,
-              style: const TextStyle(),
-            ),
-          ),
-        ],
-      );
+    if (latestVersion() == null) {
+      return const SizedBox.shrink();
+    }
+    if (latestVersionInfo == null || latestVersionInfo.isEmpty) {
+      return const SizedBox.shrink();
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Divider(),
+        Text(tr("screen.about.update_content") + ":"),
         Container(
           padding: const EdgeInsets.all(15),
-          child: Text.rich(
-            TextSpan(
-              text: tr("screen.about.go_to_release_repository"),
-              style: TextStyle(
-                height: 1.3,
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              recognizer: TapGestureRecognizer()
-                ..onTap = _openRelease,
-            ),
+          child: Text(
+            latestVersionInfo,
+            style: const TextStyle(),
           ),
         ),
       ],
