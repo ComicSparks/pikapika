@@ -913,7 +913,10 @@
       "clear_one_desc": "読書の進捗も削除されます！",
       "clear_selected": "選択した閲覧履歴をクリアしますか？",
       "clear_selected_desc": "読書の進捗も削除されます！",
-      "categories": "カテゴリ"
+      "categories": "カテゴリ",
+      "pin": "ピン留め",
+      "unpin": "ピン留め解除",
+      "delete": "削除"
     },
     "web_server": {
       "title": "ダウンロード - Webサーバー",

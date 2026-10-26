@@ -913,7 +913,10 @@
       "clear_one_desc": "将会同时删除浏览进度!",
       "clear_selected": "您要清除选中的浏览记录吗? ",
       "clear_selected_desc": "将会同时删除浏览进度!",
-      "categories": "分类"
+      "categories": "分类",
+      "pin": "置顶",
+      "unpin": "取消置顶",
+      "delete": "删除"
     },
     "web_server": {
       "title": "下载 - Web服务器",

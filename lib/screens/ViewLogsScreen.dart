@@ -91,22 +91,64 @@ class _ViewLogsScreenState extends State<ViewLogsScreen> {
     _loadPage();
   }
 
-  Future _clearOnce(String id) async {
-    if (await confirmDialog(
-      context,
-      tr('screen.view_logs.clear_one'),
-      tr('screen.view_logs.clear_one_desc'),
-    )) {
-      await method.deleteViewLog(id);
-      setState(() {
-        for (var i = 0; i < _comicList.length; i++) {
-          if (_comicList[i].id == id) {
-            _comicList.removeAt(i);
-            _offset--;
-            break;
-          }
-        }
-      });
+  Future<void> _reloadList() async {
+    setState(() {
+      _comicList.clear();
+      _offset = 0;
+      _scrollOvered = false;
+    });
+    await _loadPage();
+  }
+
+  Future<void> _onItemLongPress(ViewLog item) async {
+    final action = await showDialog<String>(
+      context: context,
+      builder: (context) {
+        return SimpleDialog(
+          title: Text(item.title),
+          children: [
+            if (item.pinnedAt > 0)
+              SimpleDialogOption(
+                onPressed: () => Navigator.pop(context, 'unpin'),
+                child: ListTile(
+                  leading: const Icon(Icons.push_pin_outlined),
+                  title: Text(tr('screen.view_logs.unpin')),
+                ),
+              )
+            else
+              SimpleDialogOption(
+                onPressed: () => Navigator.pop(context, 'pin'),
+                child: ListTile(
+                  leading: const Icon(Icons.push_pin),
+                  title: Text(tr('screen.view_logs.pin')),
+                ),
+              ),
+            SimpleDialogOption(
+              onPressed: () => Navigator.pop(context, 'delete'),
+              child: ListTile(
+                leading: const Icon(Icons.delete),
+                title: Text(tr('screen.view_logs.delete')),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+    if (action == 'pin') {
+      await method.setViewLogPinned(item.id, true);
+      await _reloadList();
+    } else if (action == 'unpin') {
+      await method.setViewLogPinned(item.id, false);
+      await _reloadList();
+    } else if (action == 'delete') {
+      if (await confirmDialog(
+        context,
+        tr('screen.view_logs.clear_one'),
+        tr('screen.view_logs.clear_one_desc'),
+      )) {
+        await method.deleteViewLog(item.id);
+        await _reloadList();
+      }
     }
   }
 
@@ -177,7 +219,7 @@ class _ViewLogsScreenState extends State<ViewLogsScreen> {
               _selectedList.add(e.id);
             }
           } else {
-            _clearOnce(e.id);
+            _onItemLongPress(e);
           }
           setState(() {});
         },
@@ -187,6 +229,7 @@ class _ViewLogsScreenState extends State<ViewLogsScreen> {
           categories: _decodeCate(e.categories),
           path: e.thumbPath,
           title: e.title,
+          pinned: e.pinnedAt > 0,
         ),
       );
       if (_inSelection) {
@@ -314,6 +357,7 @@ class ViewInfoCard extends StatelessWidget {
   final String title;
   final String author;
   final List<String> categories;
+  final bool pinned;
 
   const ViewInfoCard({
     Key? key,
@@ -322,6 +366,7 @@ class ViewInfoCard extends StatelessWidget {
     required this.title,
     required this.author,
     required this.categories,
+    this.pinned = false,
   }) : super(key: key);
 
   @override
@@ -351,6 +396,15 @@ class ViewInfoCard extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
+                if (pinned)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 6),
+                    child: Icon(
+                      Icons.push_pin,
+                      size: 18,
+                      color: theme.colorScheme.primary,
+                    ),
+                  ),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

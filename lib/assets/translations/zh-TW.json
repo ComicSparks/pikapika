@@ -913,7 +913,10 @@
       "clear_one_desc": "將會同時刪除瀏覽進度!",
       "clear_selected": "您要清除選中的瀏覽記錄嗎? ",
       "clear_selected_desc": "將會同時刪除瀏覽進度!",
-      "categories": "分類"
+      "categories": "分類",
+      "pin": "置頂",
+      "unpin": "取消置頂",
+      "delete": "刪除"
     },
     "web_server": {
       "title": "下載 - Web服務器",

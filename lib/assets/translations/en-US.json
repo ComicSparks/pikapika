@@ -913,7 +913,10 @@
       "clear_one_desc": "Reading progress will also be deleted!",
       "clear_selected": "Do you want to clear selected view history?",
       "clear_selected_desc": "Reading progress will also be deleted!",
-      "categories": "Categories"
+      "categories": "Categories",
+      "pin": "Pin",
+      "unpin": "Unpin",
+      "delete": "Delete"
     },
     "web_server": {
       "title": "Download - Web Server",

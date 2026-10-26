@@ -361,6 +361,7 @@ class ViewLog {
   late int lastViewEpOrder;
   late String lastViewEpTitle;
   late int lastViewPictureRank;
+  late int pinnedAt;
 
   ViewLog.fromJson(Map<String, dynamic> json) {
     this.id = json["id"];
@@ -380,6 +381,7 @@ class ViewLog {
     this.lastViewEpOrder = json["lastViewEpOrder"];
     this.lastViewEpTitle = json["lastViewEpTitle"];
     this.lastViewPictureRank = json["lastViewPictureRank"];
+    this.pinnedAt = json["pinnedAt"] ?? 0;
   }
 }
 

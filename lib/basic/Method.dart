@@ -396,6 +396,13 @@ class Method {
     return _flatInvoke("deleteViewLog", id);
   }
 
+  Future<dynamic> setViewLogPinned(String comicId, bool pinned) {
+    return _flatInvoke("setViewLogPinned", {
+      "comicId": comicId,
+      "pinned": pinned,
+    });
+  }
+
   /// 删除一个漫画的浏览记录
   Future<dynamic> viewComic(String id) {
     return _flatInvoke("viewComic", id);

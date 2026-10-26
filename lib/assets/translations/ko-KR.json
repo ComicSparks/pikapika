@@ -913,7 +913,10 @@
       "clear_one_desc": "읽기 진행 상황도 삭제됩니다!",
       "clear_selected": "선택한 조회 기록을 지우시겠습니까?",
       "clear_selected_desc": "읽기 진행 상황도 삭제됩니다!",
-      "categories": "카테고리"
+      "categories": "카테고리",
+      "pin": "고정",
+      "unpin": "고정 해제",
+      "delete": "삭제"
     },
     "web_server": {
       "title": "다운로드 - 웹 서버",
