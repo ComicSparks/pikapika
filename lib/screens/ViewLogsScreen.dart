@@ -91,6 +91,22 @@ class _ViewLogsScreenState extends State<ViewLogsScreen> {
     _loadPage();
   }
 
+  Future _pinSelected(bool pinned) async {
+    if (_selectedList.isEmpty) {
+      return;
+    }
+    await method.setViewLogPinned(_selectedList.join(','), pinned);
+    setState(() {
+      _inSelection = false;
+      _selectedList.clear();
+      _comicList.clear();
+      _isLoading = false;
+      _scrollOvered = false;
+      _offset = 0;
+    });
+    _loadPage();
+  }
+
   Future<void> _reloadList() async {
     setState(() {
       _comicList.clear();
@@ -269,6 +285,40 @@ class _ViewLogsScreenState extends State<ViewLogsScreen> {
                         });
                       },
                       icon: Icon(Icons.cancel),
+                    ),
+                    PopupMenuButton<String>(
+                      enabled: _selectedList.isNotEmpty,
+                      tooltip: tr('screen.view_logs.pin_actions'),
+                      icon: const Icon(Icons.push_pin),
+                      onSelected: (value) {
+                        if (value == 'pin') {
+                          _pinSelected(true);
+                        } else if (value == 'unpin') {
+                          _pinSelected(false);
+                        }
+                      },
+                      itemBuilder: (context) => [
+                        PopupMenuItem(
+                          value: 'pin',
+                          child: Row(
+                            children: [
+                              const Icon(Icons.push_pin),
+                              const SizedBox(width: 12),
+                              Text(tr('screen.view_logs.pin')),
+                            ],
+                          ),
+                        ),
+                        PopupMenuItem(
+                          value: 'unpin',
+                          child: Row(
+                            children: [
+                              const Icon(Icons.push_pin_outlined),
+                              const SizedBox(width: 12),
+                              Text(tr('screen.view_logs.unpin')),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                     IconButton(
                       onPressed: _viewSelected,

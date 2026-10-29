@@ -827,7 +827,7 @@
       "bind_account_time": "Bind account time",
       "rebind_time": "Rebind available time",
       "power_features": "Power features: Multi-thread download / Batch import/export download",
-      "power_guide": "Go to \"About\" page to find maintenance address for power guide\n\n  \"I have powered before\" can sync corresponding power status\n  \"I just powered\" exchange mysterious code\n  \"PAT membership\" is independent power method"
+      "power_guide": "Go to \"About\" page to find maintenance address for power guide\n\n  \"I have powered before\" can sync corresponding power status\n  \"I just powered\" exchange mysterious code\n  \"PAT membership\" is independent power method\n  Switching \"Power Method\" may fix FAIL"
     },
     "rankings": {
       "title": "Rankings",
@@ -916,6 +916,7 @@
       "categories": "Categories",
       "pin": "Pin",
       "unpin": "Unpin",
+      "pin_actions": "Pin actions",
       "delete": "Delete"
     },
     "web_server": {

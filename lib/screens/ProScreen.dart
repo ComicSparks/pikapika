@@ -131,6 +131,8 @@ class _ProScreenState extends State<ProScreen> {
             },
           ),
           const Divider(),
+          const ProServerNameWidget(),
+          const Divider(),
           ...patPro(),
           const Divider(),
           const Divider(),
@@ -273,5 +275,85 @@ class _ProScreenState extends State<ProScreen> {
     await method.clearPat();
     await reloadIsPro();
     defaultToast(context, "Success");
+  }
+}
+
+const _defaultProServerId = "ORI";
+
+const _proServerIds = <String>[
+  "ORI",
+  "jdtvmstd22deytdzenvydyil3e0jkxfu",
+  "mek5hrs65poai2eqjjofqr7ynu0nxkqx",
+  "6h2odtaft7fuvssx6v5b73pwie0dfgvm",
+  "ilsfsfkt75kp2nnfievnqcjmza0ooksc",
+  "wuwjgjgautzqf6ybwmma6e2pw40iilcy",
+  "phuto27lxoqo4skduakcs4siwu0ffwoh",
+  "4sfkal33ch44fle6u6smhwufri0cmgnv",
+];
+
+final _proServerIdPattern = RegExp(r'^[a-z0-9]+$');
+final _proServerRegionPattern = RegExp(r'^[a-z0-9]+(?:-[a-z0-9]+)+$');
+
+class ProServerNameWidget extends StatefulWidget {
+  const ProServerNameWidget({Key? key}) : super(key: key);
+
+  @override
+  State<StatefulWidget> createState() => _ProServerNameWidgetState();
+}
+
+class _ProServerNameWidgetState extends State<ProServerNameWidget> {
+  String _serverName = "";
+
+  @override
+  void initState() {
+    method.getProServerName().then((value) {
+      if (!mounted) {
+        return;
+      }
+      setState(() {
+        _serverName = value;
+      });
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(tr('screen.pro.power_method')),
+      subtitle: Text(_loadServerName()),
+      onTap: () async {
+        var serverName = await chooseMapDialog<String>(
+          context,
+          {
+            for (final id in _proServerIds) id: id,
+          },
+          tr('screen.pro.choose_power_method'),
+        );
+        if (serverName != null && serverName.isNotEmpty) {
+          final name = serverName;
+          await method.setProServerName(name);
+          if (!mounted) {
+            return;
+          }
+          setState(() {
+            _serverName = name;
+          });
+        }
+      },
+    );
+  }
+
+  String _loadServerName() {
+    if (_proServerIds.contains(_serverName)) {
+      return _serverName;
+    }
+    final parts = _serverName.split('|');
+    if (parts.length == 2 &&
+        _proServerIdPattern.hasMatch(parts[0]) &&
+        _proServerRegionPattern.hasMatch(parts[1])) {
+      return parts[0];
+    }
+    return _defaultProServerId;
   }
 }

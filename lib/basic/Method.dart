@@ -396,6 +396,7 @@ class Method {
     return _flatInvoke("deleteViewLog", id);
   }
 
+  /// comicId 可以是单个 id，也可以是逗号分隔的多个 id
   Future<dynamic> setViewLogPinned(String comicId, bool pinned) {
     return _flatInvoke("setViewLogPinned", {
       "comicId": comicId,
@@ -1015,6 +1016,14 @@ class Method {
 
   Future reloadPro() {
     return _flatInvoke("reloadPro", "");
+  }
+
+  Future<String> getProServerName() async {
+    return await _flatInvoke("getProServerName", "");
+  }
+
+  Future setProServerName(String serverName) {
+    return _flatInvoke("setProServerName", serverName);
   }
 
   Future inputCdKey(String cdKey) {
