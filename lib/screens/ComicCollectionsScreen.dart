@@ -68,15 +68,18 @@ class _ComicCollectionsScreenState extends State<ComicCollectionsScreen> {
               },
             );
           }
-          final ThemeData theme = Theme.of(context);
-          final AppBarTheme appBarTheme = AppBarTheme.of(context);
+          final AppBarThemeData appBarTheme = AppBarTheme.of(context);
+          final Color titleColor = appBarTheme.foregroundColor ?? Colors.white;
           return DefaultTabController(
             length: collection.length,
             child: Scaffold(
               appBar: PreferredSizeContainer(
                 color: appBarTheme.backgroundColor,
                 child: TabBar(
-                  indicatorColor: theme.dividerColor,
+                  indicatorColor: titleColor.withValues(alpha: 0.85),
+                  labelColor: titleColor,
+                  unselectedLabelColor: titleColor.withValues(alpha: 0.7),
+                  dividerHeight: 0,
                   tabs: collection
                       .map((e) => Tab(
                           text: e.title.indexOf("推薦") > 0

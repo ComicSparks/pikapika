@@ -126,6 +126,13 @@
     },
     "authentication": "进入APP时验证身份(如果系统已经录入密码或指纹)",
     "set_password": "设置应用程序密码",
+    "always_enter_browser": "每次进入都是浏览器",
+    "always_enter_browser_on": "已开启",
+    "always_enter_browser_off": "已关闭",
+    "reset_browser": "重置浏览器",
+    "reset_browser_confirm": "确定删除浏览器启动标记吗? 下次启动将重新进入浏览器。",
+    "reset_browser_success": "重置浏览器成功",
+    "reset_browser_failed": "重置浏览器失败",
     "auto_clean": {
       "title": "自动清理缓存",
       "one_month_ago": "一个月前",

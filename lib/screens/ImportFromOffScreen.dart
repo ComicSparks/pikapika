@@ -33,10 +33,10 @@ class _ImportFromOffScreenState extends State<ImportFromOffScreen> {
     super.dispose();
   }
 
-  void _onMessageChange(event) {
-    if (event is String) {
+  void _onMessageChange(AppEvent event) {
+    if (event case AppEvent_Export(:final message)) {
       setState(() {
-        _importMessage = event;
+        _importMessage = message;
       });
     }
   }

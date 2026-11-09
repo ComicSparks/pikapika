@@ -2,7 +2,6 @@ import 'package:pikapika/i18.dart';
 import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Entities.dart';
-import 'package:pikapika/basic/Entities.dart' as e;
 import 'package:pikapika/basic/Method.dart';
 import 'package:pikapika/screens/components/CommentItem.dart';
 import 'package:pikapika/screens/components/CommentMainType.dart';
@@ -12,20 +11,26 @@ import 'components/BottomSheetInput.dart';
 import 'components/ListView.dart';
 import 'components/RightClickPop.dart';
 
-class _CommentChildPage extends e.Page {
-  late List<ChildOfComment> docs;
+class _CommentChildPage {
+  final int total;
+  final int limit;
+  final int page;
+  final int pages;
+  final List<ChildOfComment> docs;
 
   _CommentChildPage.ofComic(CommentChildrenPage commentPage)
-      : super.of(commentPage.total, commentPage.limit, commentPage.page,
-            commentPage.pages) {
-    this.docs = commentPage.docs;
-  }
+      : total = commentPage.total,
+        limit = commentPage.limit,
+        page = commentPage.page,
+        pages = commentPage.pages,
+        docs = commentPage.docs;
 
   _CommentChildPage.ofGame(GameCommentChildrenPage commentPage)
-      : super.of(commentPage.total, commentPage.limit, commentPage.page,
-            commentPage.pages) {
-    this.docs = commentPage.docs;
-  }
+      : total = commentPage.total,
+        limit = commentPage.limit,
+        page = commentPage.page,
+        pages = commentPage.pages,
+        docs = commentPage.docs;
 }
 
 class CommentScreen extends StatefulWidget {
@@ -42,8 +47,11 @@ class CommentScreen extends StatefulWidget {
 
 class _CommentScreenState extends State<CommentScreen> {
   late int _currentPage = 1;
+  int? _commentsCount;
   late Future<_CommentChildPage> _future = _loadPage();
   late Key _key = UniqueKey();
+
+  int get _shownComments => _commentsCount ?? widget.comment.commentsCount;
 
   Future<_CommentChildPage> _loadPage() async {
     switch (widget.mainType) {
@@ -104,11 +112,16 @@ class _CommentScreenState extends State<CommentScreen> {
       ),
       body: Column(
         children: [
-          ComicCommentItem(widget.mainType, widget.mainId, widget.comment),
+          ComicCommentItem(
+            widget.mainType,
+            widget.mainId,
+            widget.comment,
+            commentsCount: _shownComments,
+          ),
           Container(
             height: 3,
             color:
-                (Theme.of(context).textTheme.bodyText1?.color ?? Colors.black)
+                (Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black)
                     .withOpacity(.05),
           ),
           Expanded(child: _buildChildrenPager())
@@ -136,7 +149,7 @@ class _CommentScreenState extends State<CommentScreen> {
         setState(() {
           _future = _loadPage();
           _key = UniqueKey();
-          widget.comment.commentsCount++;
+          _commentsCount = _shownComments + 1;
         });
         defaultToast(context, tr('screen.comment.success'));
       },

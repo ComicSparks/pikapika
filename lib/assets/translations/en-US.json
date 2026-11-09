@@ -126,6 +126,13 @@
     },
     "authentication": "Authentication when entering the app (if the system has already entered the password or fingerprint)",
     "set_password": "Set application password",
+    "always_enter_browser": "Open the browser on every launch",
+    "always_enter_browser_on": "On",
+    "always_enter_browser_off": "Off",
+    "reset_browser": "Reset browser",
+    "reset_browser_confirm": "Delete the browser launch mark? The next launch will open the browser again.",
+    "reset_browser_success": "Browser reset",
+    "reset_browser_failed": "Failed to reset the browser",
     "auto_clean": {
       "title": "Auto clean cache",
       "one_month_ago": "One month ago",

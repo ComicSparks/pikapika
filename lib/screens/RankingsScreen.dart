@@ -145,9 +145,9 @@ class _KnightLeaderBoardState extends State<_KnightLeaderBoard> {
     var levelStyle = TextStyle(
         fontSize: 12, color: theme.colorScheme.secondary.withOpacity(.8));
     var connectStyle =
-        TextStyle(color: theme.textTheme.bodyText1?.color?.withOpacity(.8));
+        TextStyle(color: theme.textTheme.bodyLarge?.color?.withOpacity(.8));
     var datetimeStyle = TextStyle(
-        color: theme.textTheme.bodyText1?.color?.withOpacity(.6), fontSize: 12);
+        color: theme.textTheme.bodyLarge?.color?.withOpacity(.6), fontSize: 12);
 
     final card = Container(
       padding: const EdgeInsets.all(5),

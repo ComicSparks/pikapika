@@ -29,7 +29,7 @@ class _DownloadOnlyImportScreenState extends State<DownloadOnlyImportScreen> {
   bool importFail = false;
   dynamic e;
   String importMessage = tr('screen.download_import.importing');
-  StreamSubscription<String?>? _linkSubscription;
+  StreamSubscription<Uri>? _linkSubscription;
 
   @override
   void initState() {
@@ -47,10 +47,12 @@ class _DownloadOnlyImportScreenState extends State<DownloadOnlyImportScreen> {
     super.dispose();
   }
 
-  void _onMessageChange(event) {
-    setState(() {
-      importMessage = event;
-    });
+  void _onMessageChange(AppEvent event) {
+    if (event case AppEvent_Export(:final message)) {
+      setState(() {
+        importMessage = message;
+      });
+    }
   }
 
   Widget _body() {

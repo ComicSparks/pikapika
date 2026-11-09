@@ -45,6 +45,7 @@ import 'package:pikapika/basic/config/VolumeNextChapter.dart';
 import 'package:pikapika/screens/components/NetworkSetting.dart';
 import 'package:pikapika/screens/components/RightClickPop.dart';
 
+import '../basic/config/always_enter_browser.dart';
 import '../basic/config/AppOrientation.dart';
 import '../basic/config/Authentication.dart';
 import '../basic/config/CategoriesColumnCount.dart';
@@ -125,6 +126,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 const Divider(),
                 setStartupPicTile(context),
                 clearStartupPicTile(context),
+                const Divider(),
+                alwaysEnterBrowserSetting(),
+                resetBrowserTile(context),
                 const Divider(),
                 languageListTile(),
                 timeZoneSetting(),

@@ -67,12 +67,12 @@ bool dirtyVersion() {
 Future _versionCheck() async {
   if (!dirtyVersion()) {
     var config = await method.appConfig();
-    if (config["latestVersion"] != null) {
-      String latestVersion = config["latestVersion"];
+    if (config.latestVersion.isNotEmpty) {
+      String latestVersion = config.latestVersion;
       if (latestVersion != _version && _isServerNewer(_version, latestVersion)) {
         _latestVersion = latestVersion;
-        _latestVersionInfo = config["changeLog"] ?? "";
-        _downloadUrl = config["downloadUrl"];
+        _latestVersionInfo = config.changeLog;
+        _downloadUrl = config.downloadUrl;
       } else {
         _latestVersion = null;
         _latestVersionInfo = null;

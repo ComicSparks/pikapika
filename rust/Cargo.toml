@@ -1,0 +1,44 @@
+[package]
+name = "rust_lib_pikapika"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "staticlib"]
+
+[dependencies]
+flutter_rust_bridge = "=2.12.0"
+tokio = { version = "1", features = ["rt-multi-thread", "macros", "net", "io-util", "time", "sync", "fs"] }
+hyper = { version = "1", features = ["client", "server", "http1"] }
+hyper-util = { version = "0.1", features = ["client", "client-legacy", "http1", "tokio"] }
+http-body-util = "0.1"
+http = "1"
+bytes = "1"
+tower-service = "0.3"
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+tokio-rustls = { version = "0.26", default-features = false, features = ["ring", "tls12"] }
+webpki-roots = "0.26"
+tokio-socks = "0.5"
+hmac = "0.12"
+sha2 = "0.10"
+hex = "0.4"
+md-5 = "0.10"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+rusqlite = { version = "0.32", features = ["bundled"] }
+url = "2"
+base64 = "0.22"
+chrono = "0.4"
+uuid = { version = "1", features = ["v4"] }
+image = { version = "0.25", default-features = false, features = ["jpeg", "png", "gif", "webp"] }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+flate2 = "1"
+percent-encoding = "2"
+regex = "1"
+rsa = { version = "0.9", features = ["sha2"] }
+rand = "0.8"
+pin-project-lite = "0.2"
+if-addrs = "0.13"
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(frb_expand)'] }

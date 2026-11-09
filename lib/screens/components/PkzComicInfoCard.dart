@@ -122,7 +122,7 @@ class _ComicInfoCard extends State<PkzComicInfoCard> {
                           fontSize: 13,
                           color: Theme.of(context)
                               .textTheme
-                              .bodyText1!
+                              .bodyLarge!
                               .color!
                               .withAlpha(0xCC),
                         ),

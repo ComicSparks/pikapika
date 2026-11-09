@@ -1,6 +1,7 @@
 import 'package:pikapika/i18.dart';
 import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Entities.dart';
+import 'package:pikapika/basic/entity_convert.dart';
 import 'package:pikapika/basic/Method.dart';
 import 'package:pikapika/screens/components/ComicList.dart';
 import 'package:pikapika/screens/components/CommonData.dart';
@@ -108,7 +109,7 @@ class _ComicSubscribesScreenState extends State<ComicSubscribesScreen> {
     final subs = allSubscribed.values.toList();
     List<ComicSimple> comicList = [];
     for (var comicSubscribe in subs) {
-      comicList.add(ComicSimple.fromJson(comicSubscribe.toSimpleJson()));
+      comicList.add(comicSimpleFromSubscribe(comicSubscribe));
     }
     return ComicList(comicList);
   }

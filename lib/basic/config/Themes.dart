@@ -36,6 +36,9 @@ Future initFont() async {
 
 ThemeData _fontThemeData(bool dark) {
   return ThemeData(
+    // 这些主题按 Material 2 配色。Material 3 会把分割线改成近黑的 outlineVariant，
+    // 并把彩色顶栏上的标题改成 onSurface。
+    useMaterial3: false,
     brightness: dark ? Brightness.dark : Brightness.light,
     fontFamily: _fontFamily.isEmpty ? null : _fontFamily.first,
     ////fontFamilyFallback: _fontFamily.length > 1 ? _fontFamily.sublist(1) : null,
@@ -218,6 +221,8 @@ class _PinkTheme extends _ThemePackage {
         colorScheme: ColorScheme.light(
           primary: Colors.pink.shade200,
           secondary: Colors.pink.shade200,
+          outline: Colors.grey.shade200,
+          outlineVariant: Colors.grey.shade200,
         ),
         appBarTheme: AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
@@ -225,6 +230,7 @@ class _PinkTheme extends _ThemePackage {
                 _enableStatusBarColor ? Colors.pink.shade200 : null,
           ),
           color: Colors.pink.shade200,
+          foregroundColor: Colors.white,
           iconTheme: const IconThemeData(
             color: Colors.white,
           ),
@@ -234,6 +240,7 @@ class _PinkTheme extends _ThemePackage {
           unselectedItemColor: Colors.grey[500],
         ),
         dividerColor: Colors.grey.shade200,
+        dividerTheme: DividerThemeData(color: Colors.grey.shade200),
         primaryColor: Colors.pink.shade200,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Colors.pink.shade200,
@@ -264,6 +271,8 @@ class _BlackTheme extends _ThemePackage {
         colorScheme: ColorScheme.light(
           primary: Colors.pink.shade200,
           secondary: Colors.pink.shade200,
+          outline: Colors.grey.shade200,
+          outlineVariant: Colors.grey.shade200,
         ),
         appBarTheme: AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
@@ -271,6 +280,7 @@ class _BlackTheme extends _ThemePackage {
                 _enableStatusBarColor ? Colors.grey.shade800 : null,
           ),
           color: Colors.grey.shade800,
+          foregroundColor: Colors.white,
           iconTheme: const IconThemeData(
             color: Colors.white,
           ),
@@ -281,6 +291,7 @@ class _BlackTheme extends _ThemePackage {
           backgroundColor: Colors.grey.shade800,
         ),
         dividerColor: Colors.grey.shade200,
+        dividerTheme: DividerThemeData(color: Colors.grey.shade200),
         primaryColor: Colors.pink.shade200,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Colors.pink.shade200,
@@ -311,6 +322,8 @@ class _DarkTheme extends _ThemePackage {
         colorScheme: ColorScheme.light(
           primary: Colors.pink.shade200,
           secondary: Colors.pink.shade200,
+          outline: Colors.grey.shade500.withAlpha(70),
+          outlineVariant: Colors.grey.shade500.withAlpha(70),
         ),
         appBarTheme: AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
@@ -329,6 +342,9 @@ class _DarkTheme extends _ThemePackage {
           backgroundColor: Colors.grey.shade900,
         ),
         dividerColor: Colors.grey.shade500.withAlpha(70),
+        dividerTheme: DividerThemeData(
+          color: Colors.grey.shade500.withAlpha(70),
+        ),
         primaryColor: Colors.pink.shade200,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Colors.pink.shade200,
@@ -374,6 +390,8 @@ class _DustyBlueTheme extends _ThemePackage {
         colorScheme: ColorScheme.light(
           primary: Colors.blue.shade200,
           secondary: Colors.blue.shade200,
+          outline: Colors.grey.shade800,
+          outlineVariant: Colors.grey.shade800,
         ),
         appBarTheme: AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle.light.copyWith(
@@ -386,7 +404,7 @@ class _DustyBlueTheme extends _ThemePackage {
             color: Colors.white,
           ),
         ),
-        dialogTheme: const DialogTheme(
+        dialogTheme: const DialogThemeData(
           backgroundColor: Color(0xff20253b),
         ),
         bottomNavigationBarTheme: BottomNavigationBarThemeData(
@@ -395,6 +413,7 @@ class _DustyBlueTheme extends _ThemePackage {
           unselectedItemColor: Colors.grey.shade500,
         ),
         dividerColor: Colors.grey.shade800,
+        dividerTheme: DividerThemeData(color: Colors.grey.shade800),
         primaryColor: Colors.blue.shade200,
         textSelectionTheme: TextSelectionThemeData(
           cursorColor: Colors.blue.shade200,
@@ -432,6 +451,8 @@ class _DarkBlackTheme extends _ThemePackage {
         colorScheme: ColorScheme.light(
           primary: Colors.pink.shade200,
           secondary: Colors.pink.shade200,
+          outline: const Color.fromARGB(0xff, 64, 64, 64),
+          outlineVariant: const Color.fromARGB(0xff, 64, 64, 64),
         ),
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: AppBarTheme(
@@ -463,6 +484,9 @@ class _DarkBlackTheme extends _ThemePackage {
           ),
         ),
         dividerColor: const Color.fromARGB(0xff, 64, 64, 64),
+        dividerTheme: const DividerThemeData(
+          color: Color.fromARGB(0xff, 64, 64, 64),
+        ),
       );
 
   @override

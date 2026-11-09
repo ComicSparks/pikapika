@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Cross.dart';
 import 'package:pikapika/basic/Entities.dart';
+import 'package:pikapika/basic/entity_convert.dart';
 import 'package:pikapika/basic/Method.dart';
 import 'package:pikapika/basic/Navigator.dart';
 import 'package:pikapika/basic/config/IgnoreInfoHistory.dart';
@@ -48,7 +49,7 @@ class _ComicInfoScreenState extends State<ComicInfoScreen> with RouteAware {
   late Future<ViewLog?> _viewFuture = _loadViewLog();
   late Future<ComicSubscribe?> _subscribedFuture = _loadSubscribed();
   late Future<List<Ep>> _epListFuture = _loadEps();
-  StreamSubscription<String?>? _linkSubscription;
+  StreamSubscription<Uri>? _linkSubscription;
 
   Future<ComicInfo> _loadComic() async {
     return await method
@@ -171,7 +172,13 @@ class _ComicInfoScreenState extends State<ComicInfoScreen> with RouteAware {
             ),
             body: PikaListView(
               children: [
-                ComicInfoCard(_comicInfo, linkItem: true),
+                ComicInfoCard(
+                  comicSimpleFromInfo(_comicInfo),
+                  linkItem: true,
+                  viewsCount: _comicInfo.viewsCount,
+                  liked: _comicInfo.isLiked,
+                  favourite: _comicInfo.isFavourite,
+                ),
                 ComicTagsCard(_comicInfo.tags),
                 ComicDescriptionCard(description: _comicInfo.description),
                 Container(

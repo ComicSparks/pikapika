@@ -44,7 +44,11 @@ class _DownloadInfoScreenState extends State<DownloadInfoScreen>
   late Future _future = _load();
 
   Future _load() async {
-    _task = (await method.loadDownloadComic(widget.comicId))!;
+    final task = await method.loadDownloadComic(widget.comicId);
+    if (task == null) {
+      throw StateError("找不到下载记录");
+    }
+    _task = task;
     _epList = await method.downloadEpList(widget.comicId);
   }
 

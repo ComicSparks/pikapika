@@ -22,8 +22,18 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>$(PRODUCT_COPYRIGHT)</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>zh_TW</string>
+		<string>zh_CN</string>
+		<string>en_US</string>
+		<string>ja_JP</string>
+		<string>ko_KR</string>
+	</array>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

@@ -122,6 +122,13 @@
     },
     "authentication": "進入APP時驗證身份(如果系統已經錄入密碼或指紋)",
     "set_password": "設置應用程序密碼",
+    "always_enter_browser": "每次進入都是瀏覽器",
+    "always_enter_browser_on": "已開啟",
+    "always_enter_browser_off": "已關閉",
+    "reset_browser": "重置瀏覽器",
+    "reset_browser_confirm": "確定刪除瀏覽器啟動標記嗎? 下次啟動將重新進入瀏覽器。",
+    "reset_browser_success": "重置瀏覽器成功",
+    "reset_browser_failed": "重置瀏覽器失敗",
     "auto_clean": {
       "title": "自動清理快取",
       "one_month_ago": "一個月前",

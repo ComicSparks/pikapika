@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:pikapika/i18.dart';
@@ -123,17 +122,17 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
   });
 
   List<DownloadComic> _data = [];
+  final Set<String> _deletingIds = {};
 
-  void _onMessageChange(String event) {
-    print("EVENT");
-    print(event);
-    try {
+  bool _isDeleting(DownloadComic comic) {
+    return comic.deleting || _deletingIds.contains(comic.id);
+  }
+
+  void _onMessageChange(AppEvent event) {
+    if (event case AppEvent_Download(:final comic)) {
       setState(() {
-        _downloading = DownloadComic.fromJson(json.decode(event));
+        _downloading = comic;
       });
-    } catch (e, s) {
-      print(e);
-      print(s);
     }
   }
 
@@ -195,18 +194,13 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
             return Center(child: Text(tr('app.loading_failed')));
           }
 
-          var data = snapshot.data!;
+          var data = List<DownloadComic>.of(snapshot.data!);
           _data = data;
           if (_downloading != null) {
-            try {
-              for (var i = 0; i < data.length; i++) {
-                if (_downloading!.id == data[i].id) {
-                  data[i].copy(_downloading!);
-                }
+            for (var i = 0; i < data.length; i++) {
+              if (_downloading!.id == data[i].id) {
+                data[i] = _downloading!;
               }
-            } catch (e, s) {
-              print(e);
-              print(s);
             }
           }
 
@@ -298,7 +292,7 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
   Widget downloadWidget(DownloadComic e) {
     return InkWell(
       onTap: () {
-        if (e.deleting) {
+        if (_isDeleting(e)) {
           return;
         }
         Navigator.push(
@@ -316,7 +310,7 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
             await chooseListDialog(context, e.title, [tr('app.delete')]);
         if (action == tr('app.delete')) {
           await method.deleteDownloadComic(e.id);
-          setState(() => e.deleting = true);
+          setState(() => _deletingIds.add(e.id));
         }
       },
       child: DownloadInfoCard(
@@ -329,7 +323,7 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
   Widget selectingWidget(DownloadComic e) {
     return InkWell(
       onTap: () {
-        if (e.deleting) {
+        if (_isDeleting(e)) {
           defaultToast(context,
               tr('screen.download_list.download_already_in_delete_queue'));
           return;
@@ -624,7 +618,7 @@ class _DownloadListScreenState extends State<DownloadListScreen> {
             }
             for (var i = 0; i < _data.length; i++) {
               if (tmp.contains(_data[i].id)) {
-                _data[i].deleting = true;
+                _deletingIds.add(_data[i].id);
               }
             }
             _selecting = false;

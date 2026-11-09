@@ -57,14 +57,15 @@ import 'package:pikapika/basic/config/Version.dart';
 import 'package:pikapika/basic/config/VolumeController.dart';
 import 'package:pikapika/basic/config/ShadowCategoriesMode.dart';
 import 'package:pikapika/basic/config/WillPopNotice.dart';
+import 'package:pikapika/basic/config/always_enter_browser.dart';
 import 'package:pikapika/basic/config/passed.dart';
 import 'package:pikapika/screens/AccessKeyReplaceScreen.dart';
 import 'package:pikapika/screens/ComicInfoScreen.dart';
 import 'package:pikapika/screens/PkzArchiveScreen.dart';
-import 'package:pikapika/screens/calculator_screen.dart';
+import 'package:pikapika/screens/unlock_browser_screen.dart';
 import 'package:pikapika/screens/components/ContentLoading.dart';
-import 'package:uni_links/uni_links.dart';
-import 'package:uri_to_file/uri_to_file.dart';
+import 'package:app_links/app_links.dart';
+import '../basic/uri_file.dart';
 import '../basic/config/CategoriesHidden.dart';
 import '../basic/config/CategoriesSort.dart';
 import '../basic/config/CopyFullName.dart';
@@ -201,21 +202,23 @@ class _InitScreenState extends State<InitScreen> {
     await initAutoDownloadOnFavorite();
     await initDisableAutoDownloadOnMobile();
     await initAutoDeleteDownloadOnUnfavorite();
+    await initAlwaysEnterBrowser();
     await initPassed();
     await initRecommendLinks();
+    if (!mounted) return;
     if (!currentPassed()) {
-      Navigator.pushReplacement(context, MaterialPageRoute(
-        builder: (BuildContext context) {
-          return const CalculatorScreen();
-        },
-      ));
-      return;
+      final entered = await Navigator.of(context).push<bool>(
+        MaterialPageRoute(builder: (context) => const UnlockBrowserScreen()),
+      );
+      if (entered != true || !mounted) {
+        return;
+      }
     }
     autoCheckNewVersion();
     String? initUrl;
     if (Platform.isAndroid || Platform.isIOS) {
       try {
-        initUrl = (await getInitialUri())?.toString();
+        initUrl = (await AppLinks().getInitialLink())?.toString();
         // Use the uri and warn the user, if it is not correct,
         // but keep in mind it could be `null`.
       } on FormatException {

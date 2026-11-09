@@ -2,7 +2,6 @@ import 'package:pikapika/i18.dart';
 import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Entities.dart';
-import 'package:pikapika/basic/Entities.dart' as e;
 import 'package:pikapika/screens/CommentScreen.dart';
 import 'package:pikapika/screens/components/BottomSheetInput.dart';
 import 'package:pikapika/screens/components/ItemBuilder.dart';
@@ -11,20 +10,26 @@ import '../../basic/config/IconLoading.dart';
 import 'CommentItem.dart';
 import 'CommentMainType.dart';
 
-class _CommentBasePage extends e.Page {
-  late List<CommentBase> docs;
+class _CommentBasePage {
+  final int total;
+  final int limit;
+  final int page;
+  final int pages;
+  final List<CommentBase> docs;
 
   _CommentBasePage.ofComic(CommentPage commentPage)
-      : super.of(commentPage.total, commentPage.limit, commentPage.page,
-            commentPage.pages) {
-    this.docs = commentPage.docs;
-  }
+      : total = commentPage.total,
+        limit = commentPage.limit,
+        page = commentPage.page,
+        pages = commentPage.pages,
+        docs = commentPage.docs;
 
   _CommentBasePage.ofGame(GameCommentPage commentPage)
-      : super.of(commentPage.total, commentPage.limit, commentPage.page,
-            commentPage.pages) {
-    this.docs = commentPage.docs;
-  }
+      : total = commentPage.total,
+        limit = commentPage.limit,
+        page = commentPage.page,
+        pages = commentPage.pages,
+        docs = commentPage.docs;
 }
 
 // 漫画的评论列表

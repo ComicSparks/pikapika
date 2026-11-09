@@ -1,4 +1,8 @@
 PODS:
+  - app_links (6.4.1):
+    - Flutter
+  - connectivity_plus (0.0.1):
+    - Flutter
   - DKImagePickerController/Core (4.3.9):
     - DKImagePickerController/ImageDataManager
     - DKImagePickerController/Resource
@@ -34,83 +38,119 @@ PODS:
     - DKImagePickerController/PhotoGallery
     - Flutter
   - Flutter (1.0.0)
+  - flutter_inappwebview_ios (0.0.1):
+    - Flutter
+    - flutter_inappwebview_ios/Core (= 0.0.1)
+    - OrderedSet (~> 6.0.3)
+  - flutter_inappwebview_ios/Core (0.0.1):
+    - Flutter
+    - OrderedSet (~> 6.0.3)
+  - gal (1.0.0):
+    - Flutter
+    - FlutterMacOS
   - image_cropper (0.0.4):
     - Flutter
-    - TOCropViewController (~> 2.6.1)
+    - TOCropViewController (~> 2.7.4)
   - image_picker_ios (0.0.1):
     - Flutter
-  - permission_handler_apple (9.1.1):
+  - integration_test (0.0.1):
     - Flutter
-  - SDWebImage (5.21.0):
-    - SDWebImage/Core (= 5.21.0)
-  - SDWebImage/Core (5.21.0)
+  - local_auth_darwin (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - OrderedSet (6.0.3)
+  - permission_handler_apple (9.4.8):
+    - Flutter
+  - rust_lib_pikapika (0.0.1):
+    - Flutter
+  - SDWebImage (5.21.7):
+    - SDWebImage/Core (= 5.21.7)
+  - SDWebImage/Core (5.21.7)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
   - SwiftyGif (5.4.5)
-  - TOCropViewController (2.6.1)
-  - uni_links (0.0.1):
-    - Flutter
-  - uri_to_file (0.0.1):
-    - Flutter
+  - TOCropViewController (2.7.4)
   - url_launcher_ios (0.0.1):
     - Flutter
 
 DEPENDENCIES:
+  - app_links (from `.symlinks/plugins/app_links/ios`)
+  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
+  - flutter_inappwebview_ios (from `.symlinks/plugins/flutter_inappwebview_ios/ios`)
+  - gal (from `.symlinks/plugins/gal/darwin`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - local_auth_darwin (from `.symlinks/plugins/local_auth_darwin/darwin`)
   - permission_handler_apple (from `.symlinks/plugins/permission_handler_apple/ios`)
-  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/ios`)
-  - uni_links (from `.symlinks/plugins/uni_links/ios`)
-  - uri_to_file (from `.symlinks/plugins/uri_to_file/ios`)
+  - rust_lib_pikapika (from `.symlinks/plugins/rust_lib_pikapika/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
     - DKImagePickerController
     - DKPhotoGallery
+    - OrderedSet
     - SDWebImage
     - SwiftyGif
     - TOCropViewController
 
 EXTERNAL SOURCES:
+  app_links:
+    :path: ".symlinks/plugins/app_links/ios"
+  connectivity_plus:
+    :path: ".symlinks/plugins/connectivity_plus/ios"
   file_picker:
     :path: ".symlinks/plugins/file_picker/ios"
   Flutter:
     :path: Flutter
+  flutter_inappwebview_ios:
+    :path: ".symlinks/plugins/flutter_inappwebview_ios/ios"
+  gal:
+    :path: ".symlinks/plugins/gal/darwin"
   image_cropper:
     :path: ".symlinks/plugins/image_cropper/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+  local_auth_darwin:
+    :path: ".symlinks/plugins/local_auth_darwin/darwin"
   permission_handler_apple:
     :path: ".symlinks/plugins/permission_handler_apple/ios"
+  rust_lib_pikapika:
+    :path: ".symlinks/plugins/rust_lib_pikapika/ios"
   shared_preferences_foundation:
-    :path: ".symlinks/plugins/shared_preferences_foundation/ios"
-  uni_links:
-    :path: ".symlinks/plugins/uni_links/ios"
-  uri_to_file:
-    :path: ".symlinks/plugins/uri_to_file/ios"
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
+  app_links: 3dbc685f76b1693c66a6d9dd1e9ab6f73d97dc0a
+  connectivity_plus: cb623214f4e1f6ef8fe7403d580fdad517d2f7dd
   DKImagePickerController: 946cec48c7873164274ecc4624d19e3da4c1ef3c
   DKPhotoGallery: b3834fecb755ee09a593d7c9e389d8b5d6deed60
-  file_picker: 5f42b9d5580e30b57b4863f9d94b448016b702e5
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  image_cropper: d3d1f7f32abe91c163c14d34c26bad156b0c781a
-  image_picker_ios: 05df248afc810dcc125e2174c441a9a379ec65c2
-  permission_handler_apple: 3787117e48f80715ff04a3830ca039283d6a4f29
-  SDWebImage: f84b0feeb08d2d11e6a9b843cb06d75ebf5b8868
-  shared_preferences_foundation: 17bd1832386c26451addc681d67ed66b81aeb73c
+  file_picker: a0560bc09d61de87f12d246fc47d2119e6ef37be
+  Flutter: cabc95a1d2626b1b06e7179b784ebcf0c0cde467
+  flutter_inappwebview_ios: b89ba3482b96fb25e00c967aae065701b66e9b99
+  gal: baecd024ebfd13c441269ca7404792a7152fde89
+  image_cropper: c4326ea50132b1e1564499e5d32a84f01fb03537
+  image_picker_ios: e0ece4aa2a75771a7de3fa735d26d90817041326
+  integration_test: 4a889634ef21a45d28d50d622cf412dc6d9f586e
+  local_auth_darwin: c3ee6cce0a8d56be34c8ccb66ba31f7f180aaebb
+  OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
+  permission_handler_apple: 92d754bbaa7361d436db2d6c3c1c2a0fdcec462e
+  rust_lib_pikapika: 6111259ceea4262ce52f1df4fc95327d55f22629
+  SDWebImage: e9fc87c1aab89a8ab1bbd74eba378c6f53be8abf
+  shared_preferences_foundation: 7036424c3d8ec98dfe75ff1667cb0cd531ec82bb
   SwiftyGif: 706c60cf65fa2bc5ee0313beece843c8eb8194d4
-  TOCropViewController: edfd4f25713d56905ad1e0b9f5be3fbe0f59c863
-  uni_links: ed8c961e47ed9ce42b6d91e1de8049e38a4b3152
-  uri_to_file: 9b49120346eb6afc2a6885559de0c6ef331e3d3f
-  url_launcher_ios: 11b43d60fcf5780032024bc078747c5086d8c084
+  TOCropViewController: 80b8985ad794298fb69d3341de183f33d1853654
+  url_launcher_ios: 7a95fa5b60cc718a708b8f2966718e93db0cef1b
 
-PODFILE CHECKSUM: 26f3a71429db60d7838b004f86bc111d86ce3a60
+PODFILE CHECKSUM: 3c63482e143d1b91d2d2560aee9fb04ecc74ac7e
 
 COCOAPODS: 1.16.2

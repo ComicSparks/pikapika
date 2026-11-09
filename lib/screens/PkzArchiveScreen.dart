@@ -8,9 +8,6 @@ import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/basic/Method.dart';
 import 'package:pikapika/screens/components/ContentBuilder.dart';
 import 'package:pikapika/screens/components/PkzComicInfoCard.dart';
-import 'package:uni_links/uni_links.dart';
-import 'package:uri_to_file/uri_to_file.dart';
-
 import '../basic/Common.dart';
 import '../basic/Navigator.dart';
 import '../basic/config/IconLoading.dart';
@@ -38,7 +35,7 @@ class _PkzArchiveScreenState extends State<PkzArchiveScreen> with RouteAware {
   late Future _future;
   late Key _key;
   late PkzArchive _info;
-  StreamSubscription<String?>? _linkSubscription;
+  StreamSubscription<Uri>? _linkSubscription;
 
   @override
   void initState() {

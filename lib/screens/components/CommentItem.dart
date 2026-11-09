@@ -12,9 +12,15 @@ class ComicCommentItem extends StatefulWidget {
   final CommentMainType mainType;
   final String mainId;
   final CommentBase comment;
+  final int? commentsCount;
 
-  const ComicCommentItem(this.mainType, this.mainId, this.comment, {Key? key})
-      : super(key: key);
+  const ComicCommentItem(
+    this.mainType,
+    this.mainId,
+    this.comment, {
+    Key? key,
+    this.commentsCount,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _ComicCommentItemState();
@@ -22,6 +28,15 @@ class ComicCommentItem extends StatefulWidget {
 
 class _ComicCommentItemState extends State<ComicCommentItem> {
   var likeLoading = false;
+  late bool _liked;
+  late int _likes;
+
+  @override
+  void initState() {
+    _liked = widget.comment.isLiked;
+    _likes = widget.comment.likesCount;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +46,9 @@ class _ComicCommentItemState extends State<ComicCommentItem> {
     var levelStyle = TextStyle(
         fontSize: 12, color: theme.colorScheme.secondary.withOpacity(.8));
     var connectStyle =
-        TextStyle(color: theme.textTheme.bodyText1?.color?.withOpacity(.8));
+        TextStyle(color: theme.textTheme.bodyLarge?.color?.withOpacity(.8));
     var datetimeStyle = TextStyle(
-        color: theme.textTheme.bodyText1?.color?.withOpacity(.6), fontSize: 12);
+        color: theme.textTheme.bodyLarge?.color?.withOpacity(.6), fontSize: 12);
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -92,7 +107,7 @@ class _ComicCommentItemState extends State<ComicCommentItem> {
                           Text.rich(TextSpan(
                             style: levelStyle,
                             children: [
-                              comment.commentsCount > 0
+                              (widget.commentsCount ?? comment.commentsCount) > 0
                                   ? TextSpan(children: [
                                       WidgetSpan(
                                         alignment: PlaceholderAlignment.middle,
@@ -103,7 +118,7 @@ class _ComicCommentItemState extends State<ComicCommentItem> {
                                       ),
                                       WidgetSpan(child: Container(width: 5)),
                                       TextSpan(
-                                        text: '${comment.commentsCount}',
+                                        text: '${widget.commentsCount ?? comment.commentsCount}',
                                       ),
                                     ])
                                   : const TextSpan(),
@@ -130,12 +145,12 @@ class _ComicCommentItemState extends State<ComicCommentItem> {
                                         break;
                                     }
                                     setState(() {
-                                      if (comment.isLiked) {
-                                        comment.isLiked = false;
-                                        comment.likesCount--;
+                                      if (_liked) {
+                                        _liked = false;
+                                        _likes--;
                                       } else {
-                                        comment.isLiked = true;
-                                        comment.likesCount++;
+                                        _liked = true;
+                                        _likes++;
                                       }
                                     });
                                   } catch (e, s) {
@@ -154,7 +169,7 @@ class _ComicCommentItemState extends State<ComicCommentItem> {
                                       child: Icon(
                                           likeLoading
                                               ? Icons.refresh
-                                              : comment.isLiked
+                                              : _liked
                                                   ? Icons.favorite
                                                   : Icons.favorite_border,
                                           size: 13,
@@ -163,7 +178,7 @@ class _ComicCommentItemState extends State<ComicCommentItem> {
                                     ),
                                     WidgetSpan(child: Container(width: 5)),
                                     TextSpan(
-                                      text: '${comment.likesCount}',
+                                      text: '$_likes',
                                     ),
                                   ]),
                                 ),

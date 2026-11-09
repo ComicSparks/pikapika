@@ -26,12 +26,18 @@ class ComicInfoCard extends StatefulWidget {
   final bool linkItem;
   final ComicSimple info;
   final bool viewed;
+  final int? viewsCount;
+  final bool? liked;
+  final bool? favourite;
 
   const ComicInfoCard(
     this.info, {
     Key? key,
     this.linkItem = false,
     this.viewed = false,
+    this.viewsCount,
+    this.liked,
+    this.favourite,
   }) : super(key: key);
 
   @override
@@ -42,6 +48,8 @@ class _ComicInfoCard extends State<ComicInfoCard> {
   bool _favouriteLoading = false;
   bool _likeLoading = false;
   bool _localFavoriteLoading = false;
+  bool? _liked;
+  bool? _favourite;
   LocalFavoriteComic? _localFavoriteComic;
 
   @override
@@ -85,9 +93,9 @@ class _ComicInfoCard extends State<ComicInfoCard> {
   Widget build(BuildContext context) {
     var info = widget.info;
     var theme = Theme.of(context);
-    var view = info is ComicInfo ? info.viewsCount : 0;
-    bool? like = info is ComicInfo ? info.isLiked : null;
-    bool? favourite = (hideOnlineFavorite || info is! ComicInfo) ? null : info.isFavourite;
+    var view = widget.viewsCount ?? 0;
+    bool? like = _liked ?? widget.liked;
+    bool? favourite = hideOnlineFavorite ? null : (_favourite ?? widget.favourite);
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -185,7 +193,7 @@ class _ComicInfoCard extends State<ComicInfoCard> {
                           fontSize: 13,
                           color: Theme.of(context)
                               .textTheme
-                              .bodyText1!
+                              .bodyLarge!
                               .color!
                               .withAlpha(0xCC),
                         ),
@@ -351,7 +359,7 @@ class _ComicInfoCard extends State<ComicInfoCard> {
       var rst = await method.switchFavourite(widget.info.id);
       final isNowFavourite = !rst.startsWith("un");
       setState(() {
-        (widget.info as ComicInfo).isFavourite = isNowFavourite;
+        _favourite = isNowFavourite;
       });
       if (isNowFavourite) {
         await _maybeAutoDownloadOnFavorite();
@@ -409,7 +417,7 @@ class _ComicInfoCard extends State<ComicInfoCard> {
     try {
       var rst = await method.switchLike(widget.info.id);
       setState(() {
-        (widget.info as ComicInfo).isLiked = !rst.startsWith("un");
+        _liked = !rst.startsWith("un");
       });
     } finally {
       setState(() {

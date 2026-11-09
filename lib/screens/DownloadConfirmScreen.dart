@@ -1,9 +1,8 @@
-import 'dart:convert';
-
 import 'package:pikapika/i18.dart';
 import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Entities.dart';
+import 'package:pikapika/basic/entity_convert.dart';
 import 'package:pikapika/screens/components/ContentLoading.dart';
 import 'package:pikapika/basic/Method.dart';
 
@@ -58,44 +57,14 @@ class _DownloadConfirmScreenState extends State<DownloadConfirmScreen> {
       defaultToast(context, tr('screen.download_confirm.please_select_ep'));
       return;
     }
-    // 下载对象
-    Map<String, dynamic> create = {
-      "id": widget.comicInfo.id,
-      "createdAt": widget.comicInfo.createdAt,
-      "updatedAt": widget.comicInfo.updatedAt,
-      "title": widget.comicInfo.title,
-      "author": widget.comicInfo.author,
-      "pagesCount": widget.comicInfo.pagesCount,
-      "epsCount": widget.comicInfo.epsCount,
-      "finished": widget.comicInfo.finished,
-      "categories": json.encode(widget.comicInfo.categories),
-      "thumbOriginalName": widget.comicInfo.thumb.originalName,
-      "thumbFileServer": widget.comicInfo.thumb.fileServer,
-      "thumbPath": widget.comicInfo.thumb.path,
-      "description": widget.comicInfo.description,
-      "chineseTeam": widget.comicInfo.chineseTeam,
-      "tags": json.encode(widget.comicInfo.tags),
-    };
-    // 下载EP列表
-    List<Map<String, dynamic>> list = [];
-    for (var element in widget.epList) {
-      if (_selectedEps.contains(element.order)) {
-        list.add({
-          "comicId": widget.comicInfo.id,
-          "id": element.id,
-          "updatedAt": element.updatedAt,
-          "epOrder": element.order,
-          "title": element.title,
-        });
-      }
-    }
+    final episodes = widget.epList
+        .where((element) => _selectedEps.contains(element.order))
+        .toList();
     try {
-      // 如果之前下载过就将EP加入下载
-      // 如果之前没有下载过就创建下载
       if (_task != null) {
-        await method.addDownload(create, list);
+        await method.addDownload(widget.comicInfo, episodes);
       } else {
-        await method.createDownload(create, list);
+        await method.createDownload(widget.comicInfo, episodes);
       }
       // 退出
       defaultToast(context, tr('screen.download_confirm.already_added_to_download_list'));
@@ -132,7 +101,12 @@ class _DownloadConfirmScreenState extends State<DownloadConfirmScreen> {
           }
           return PikaListView(
             children: [
-              ComicInfoCard(widget.comicInfo),
+              ComicInfoCard(
+                comicSimpleFromInfo(widget.comicInfo),
+                viewsCount: widget.comicInfo.viewsCount,
+                liked: widget.comicInfo.isLiked,
+                favourite: widget.comicInfo.isFavourite,
+              ),
               _buildButtons(),
               Wrap(
                 alignment: WrapAlignment.spaceAround,

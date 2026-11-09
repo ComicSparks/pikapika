@@ -1,35 +1,98 @@
 PODS:
+  - app_links (6.4.1):
+    - FlutterMacOS
+  - connectivity_plus (0.0.1):
+    - FlutterMacOS
+  - file_picker (0.0.1):
+    - FlutterMacOS
   - file_selector_macos (0.0.1):
     - FlutterMacOS
+  - flutter_inappwebview_macos (0.0.1):
+    - FlutterMacOS
+    - OrderedSet (~> 6.0.3)
   - FlutterMacOS (1.0.0)
+  - gal (1.0.0):
+    - Flutter
+    - FlutterMacOS
+  - local_auth_darwin (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - OrderedSet (6.0.3)
+  - rust_lib_pikapika (0.0.1):
+    - FlutterMacOS
+  - screen_retriever_macos (0.0.1):
+    - FlutterMacOS
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
   - url_launcher_macos (0.0.1):
     - FlutterMacOS
+  - window_manager (0.2.0):
+    - FlutterMacOS
 
 DEPENDENCIES:
+  - app_links (from `Flutter/ephemeral/.symlinks/plugins/app_links/macos`)
+  - connectivity_plus (from `Flutter/ephemeral/.symlinks/plugins/connectivity_plus/macos`)
+  - file_picker (from `Flutter/ephemeral/.symlinks/plugins/file_picker/macos`)
   - file_selector_macos (from `Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos`)
+  - flutter_inappwebview_macos (from `Flutter/ephemeral/.symlinks/plugins/flutter_inappwebview_macos/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
+  - gal (from `Flutter/ephemeral/.symlinks/plugins/gal/darwin`)
+  - local_auth_darwin (from `Flutter/ephemeral/.symlinks/plugins/local_auth_darwin/darwin`)
+  - rust_lib_pikapika (from `Flutter/ephemeral/.symlinks/plugins/rust_lib_pikapika/macos`)
+  - screen_retriever_macos (from `Flutter/ephemeral/.symlinks/plugins/screen_retriever_macos/macos`)
   - shared_preferences_foundation (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin`)
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
+  - window_manager (from `Flutter/ephemeral/.symlinks/plugins/window_manager/macos`)
+
+SPEC REPOS:
+  trunk:
+    - OrderedSet
 
 EXTERNAL SOURCES:
+  app_links:
+    :path: Flutter/ephemeral/.symlinks/plugins/app_links/macos
+  connectivity_plus:
+    :path: Flutter/ephemeral/.symlinks/plugins/connectivity_plus/macos
+  file_picker:
+    :path: Flutter/ephemeral/.symlinks/plugins/file_picker/macos
   file_selector_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos
+  flutter_inappwebview_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_inappwebview_macos/macos
   FlutterMacOS:
     :path: Flutter/ephemeral
+  gal:
+    :path: Flutter/ephemeral/.symlinks/plugins/gal/darwin
+  local_auth_darwin:
+    :path: Flutter/ephemeral/.symlinks/plugins/local_auth_darwin/darwin
+  rust_lib_pikapika:
+    :path: Flutter/ephemeral/.symlinks/plugins/rust_lib_pikapika/macos
+  screen_retriever_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/screen_retriever_macos/macos
   shared_preferences_foundation:
     :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_foundation/darwin
   url_launcher_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
+  window_manager:
+    :path: Flutter/ephemeral/.symlinks/plugins/window_manager/macos
 
 SPEC CHECKSUMS:
-  file_selector_macos: 660f7672ee62dad6df1bb0cbdb90a10ce3f946df
-  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
-  shared_preferences_foundation: 0b09b969fb36da5551c0bc4a2dbd9d0ff9387478
-  url_launcher_macos: c83b920a14ed6c0ec4d6069c3ec3e19222607405
+  app_links: 05a6ec2341985eb05e9f97dc63f5837c39895c3f
+  connectivity_plus: 4adf20a405e25b42b9c9f87feff8f4b6fde18a4e
+  file_picker: 7584aae6fa07a041af2b36a2655122d42f578c1a
+  file_selector_macos: 9e9e068e90ebee155097d00e89ae91edb2374db7
+  flutter_inappwebview_macos: c2d68649f9f8f1831bfcd98d73fd6256366d9d1d
+  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
+  gal: baecd024ebfd13c441269ca7404792a7152fde89
+  local_auth_darwin: c3ee6cce0a8d56be34c8ccb66ba31f7f180aaebb
+  OrderedSet: e539b66b644ff081c73a262d24ad552a69be3a94
+  rust_lib_pikapika: 80d2fee98b77d6c961f5f61dd935a57769ad0421
+  screen_retriever_macos: c5508cc3c66ff0d4db650480cf0ab691e220d933
+  shared_preferences_foundation: 7036424c3d8ec98dfe75ff1667cb0cd531ec82bb
+  url_launcher_macos: f87a979182d112f911de6820aefddaf56ee9fbfd
+  window_manager: 1d01fa7ac65a6e6f83b965471b1a7fdd3f06166c
 
-PODFILE CHECKSUM: 353c8bcc5d5b0994e508d035b5431cfe18c1dea7
+PODFILE CHECKSUM: 346bfb2deb41d4a6ebd6f6799f92188bde2d246f
 
 COCOAPODS: 1.16.2

@@ -33,10 +33,12 @@ class _CleanScreenState extends State<CleanScreen> {
     super.dispose();
   }
 
-  void _onMessageChange(String event) {
-    setState(() {
-      _cleaningMessage = event;
-    });
+  void _onMessageChange(AppEvent event) {
+    if (event case AppEvent_Export(:final message)) {
+      setState(() {
+        _cleaningMessage = message;
+      });
+    }
   }
 
   @override

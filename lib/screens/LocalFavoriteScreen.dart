@@ -2,6 +2,7 @@ import 'package:pikapika/i18.dart';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Entities.dart';
+import 'package:pikapika/basic/entity_convert.dart';
 import 'package:pikapika/basic/Method.dart';
 import 'package:pikapika/basic/config/IsPro.dart';
 import 'package:pikapika/screens/ComicInfoScreen.dart';
@@ -20,27 +21,7 @@ class LocalFavoriteScreen extends StatefulWidget {
 
 // 将ViewLog转换为ComicSimple
 ComicSimple _viewLogToComicSimple(ViewLog view) {
-  List<dynamic> categories = [];
-  try {
-    categories = jsonDecode(view.categories);
-  } catch (_) {
-    categories = [];
-  }
-  return ComicSimple.fromJson({
-    "_id": view.id,
-    "title": view.title,
-    "author": view.author,
-    "pagesCount": view.pagesCount,
-    "epsCount": view.epsCount,
-    "finished": view.finished,
-    "categories": categories,
-    "likesCount": 0,
-    "thumb": {
-      "originalName": view.thumbOriginalName,
-      "fileServer": view.thumbFileServer,
-      "path": view.thumbPath,
-    },
-  });
+  return comicSimpleFromView(view);
 }
 
 class _LocalFavoriteScreenState extends State<LocalFavoriteScreen>
@@ -123,7 +104,7 @@ class _LocalFavoriteScreenState extends State<LocalFavoriteScreen>
       for (var fav in localFavorites) {
         if (fav.info != null && fav.info!.isNotEmpty) {
           try {
-            comics.add(ComicSimple.fromJson(
+            comics.add(comicSimpleFromStored(
               Map<String, dynamic>.from(jsonDecode(fav.info!)),
             ));
             continue;

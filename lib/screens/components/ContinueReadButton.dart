@@ -55,7 +55,7 @@ class _ContinueReadButtonState extends State<ContinueReadButton> {
                       child: Container(
                         color: Theme.of(context)
                             .textTheme
-                            .bodyText1!
+                            .bodyLarge!
                             .color!
                             .withOpacity(.05),
                         padding: const EdgeInsets.all(10),

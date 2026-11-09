@@ -11,7 +11,7 @@ Widget importNotice(BuildContext context) {
       color: (Theme
           .of(context)
           .textTheme
-          .bodyText1
+          .bodyLarge
           ?.color ?? Colors.black)
           .withOpacity(.01),
       child: Text(

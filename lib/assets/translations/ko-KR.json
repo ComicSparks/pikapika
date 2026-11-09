@@ -122,6 +122,13 @@
     },
     "authentication": "앱에 들어갈 때 인증 (시스템이 이미 비밀번호나 지문을 입력한 경우)",
     "set_password": "애플리케이션 비밀번호 설정",
+    "always_enter_browser": "실행할 때마다 브라우저 표시",
+    "always_enter_browser_on": "켜짐",
+    "always_enter_browser_off": "꺼짐",
+    "reset_browser": "브라우저 초기화",
+    "reset_browser_confirm": "브라우저 시작 표시를 삭제할까요? 다음 실행 때 브라우저가 다시 열립니다.",
+    "reset_browser_success": "브라우저를 초기화했습니다",
+    "reset_browser_failed": "브라우저 초기화에 실패했습니다",
     "auto_clean": {
       "title": "자동 캐시 정리",
       "one_month_ago": "한 달 전",

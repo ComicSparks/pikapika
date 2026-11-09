@@ -206,7 +206,7 @@ class GameCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var textColor = theme.textTheme.bodyText1!.color!;
+    var textColor = theme.textTheme.bodyLarge!.color!;
     var categoriesStyle = TextStyle(
       fontSize: 13,
       color: textColor.withAlpha(0xCC),

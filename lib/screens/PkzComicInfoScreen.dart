@@ -31,7 +31,7 @@ class PkzComicInfoScreen extends StatefulWidget {
 class _PkzComicInfoScreenState extends State<PkzComicInfoScreen>
     with RouteAware {
   PkzComicViewLog? _log;
-  StreamSubscription<String?>? _linkSubscription;
+  StreamSubscription<Uri>? _linkSubscription;
 
   @override
   void initState() {
@@ -232,7 +232,7 @@ class _PkzComicInfoScreenState extends State<PkzComicInfoScreen>
                       child: Container(
                         color: Theme.of(context)
                             .textTheme
-                            .bodyText1!
+                            .bodyLarge!
                             .color!
                             .withOpacity(.05),
                         padding: const EdgeInsets.all(10),

@@ -79,7 +79,7 @@ class _MigrateScreenState extends State<MigrateScreen> {
                         child: MaterialButton(
                           color: Theme.of(context).colorScheme.secondary,
                           textColor:
-                              Theme.of(context).textTheme.bodyText1?.color,
+                              Theme.of(context).textTheme.bodyLarge?.color,
                           padding: const EdgeInsets.all(10),
                           onPressed: () async {
                             if (!await confirmDialog(context, "文件迁移",

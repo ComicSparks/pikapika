@@ -2,6 +2,9 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:another_xlider/another_xlider.dart';
+import 'package:another_xlider/models/slider_step.dart';
+import 'package:another_xlider/models/tooltip/tooltip.dart';
+import 'package:another_xlider/models/trackbar.dart';
 import 'package:pikapika/i18.dart';
 import 'package:event/event.dart';
 import 'package:flutter/material.dart';
@@ -704,11 +707,17 @@ abstract class _ImageReaderContentState extends State<_ImageReaderContent> {
         );
 
   Widget _buildSliderWidget(Axis axis) {
+    final pages = widget.struct.images.length;
+    // another_xlider 3 要求 min <= max。没有图片或只有一页时不能用 length - 1。
+    if (pages < 2) {
+      return const SizedBox.shrink();
+    }
+    final last = pages - 1;
     return FlutterSlider(
       axis: axis,
-      values: [_slider.toDouble()],
+      values: [_slider.clamp(0, last).toDouble()],
       min: 0,
-      max: (widget.struct.images.length - 1).toDouble(),
+      max: last.toDouble(),
       onDragStarted: (handlerIndex, lowerValue, upperValue) {
         setState(() {
           _sliderDragging = true;
@@ -1656,12 +1665,12 @@ class _WebToonDownloadImage extends _WebToonReaderImage {
       return method.remoteImageData(fileServer, path);
     }
     var finalPath = await method.downloadImagePath(localPath);
-    return RemoteImageData.forData(
-      fileSize,
-      format,
-      width,
-      height,
-      finalPath,
+    return RemoteImageData(
+      fileSize: fileSize,
+      format: format,
+      width: width,
+      height: height,
+      finalPath: finalPath,
     );
   }
 }

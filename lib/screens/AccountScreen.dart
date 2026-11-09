@@ -31,7 +31,7 @@ class _AccountScreenState extends State<AccountScreen> {
   late bool _logging = false;
   late String _username = "";
   late String _password = "";
-  late StreamSubscription<String?> _linkSubscription;
+  late StreamSubscription<Uri> _linkSubscription;
   late int _versionClick = 0;
 
   @override

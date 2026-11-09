@@ -1,15 +1,13 @@
 import 'dart:io';
 
-import 'package:flutter/services.dart';
-
-const MethodChannel _networkChannel = MethodChannel('network');
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 Future<bool> isMobileNetwork() async {
   if (!Platform.isAndroid && !Platform.isIOS) {
     return false;
   }
-  final result = await _networkChannel.invokeMethod<bool>('getIsMobile');
-  return result ?? false;
+  final result = await Connectivity().checkConnectivity();
+  return result.contains(ConnectivityResult.mobile);
 }
 
 Future<void> checkConnectivity() async {

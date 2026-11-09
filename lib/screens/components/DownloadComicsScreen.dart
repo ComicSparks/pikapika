@@ -33,10 +33,12 @@ class _DownloadComicsScreenState extends State<DownloadComicsScreen> {
     super.dispose();
   }
 
-  void _onMessageChange(event) {
-    setState(() {
-      exportMessage = event;
-    });
+  void _onMessageChange(AppEvent event) {
+    if (event case AppEvent_Export(:final message)) {
+      setState(() {
+        exportMessage = message;
+      });
+    }
   }
 
   @override
@@ -112,7 +114,7 @@ class _DownloadComicsScreenState extends State<DownloadComicsScreen> {
         return Container(
           width: constraints.maxWidth,
           padding: const EdgeInsets.all(15),
-          color: (Theme.of(context).textTheme.bodyText1?.color ?? Colors.black)
+          color: (Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black)
               .withOpacity(.05),
           child: Text(
             text,

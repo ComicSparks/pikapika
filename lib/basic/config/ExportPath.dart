@@ -76,7 +76,7 @@ Widget displayExportPathInfo() {
         return Container(
           margin: const EdgeInsets.all(15),
           padding: const EdgeInsets.all(15),
-          color: (Theme.of(context).textTheme.bodyText1?.color ?? Colors.black)
+          color: (Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black)
               .withOpacity(.01),
           child: Text(tr("settings.export_path.ios_desc2")),
         );
@@ -95,7 +95,7 @@ Widget displayExportPathInfo() {
               return Container(
                 width: constraints.maxWidth,
                 padding: const EdgeInsets.only(top: 15, bottom: 15),
-                color: (Theme.of(context).textTheme.bodyText1?.color ??
+                color: (Theme.of(context).textTheme.bodyLarge?.color ??
                         Colors.black)
                     .withOpacity(.05),
                 child: Text(
@@ -113,7 +113,7 @@ Widget displayExportPathInfo() {
                 Container(
                   margin: const EdgeInsets.all(15),
                   padding: const EdgeInsets.all(15),
-                  color: (Theme.of(context).textTheme.bodyText1?.color ??
+                  color: (Theme.of(context).textTheme.bodyLarge?.color ??
                           Colors.black)
                       .withOpacity(.01),
                   child: Text(

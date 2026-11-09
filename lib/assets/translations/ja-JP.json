@@ -122,6 +122,13 @@
     },
     "authentication": "アプリに入る際の認証（システムが既にパスワードまたは指紋を入力している場合）",
     "set_password": "アプリケーションパスワードを設定",
+    "always_enter_browser": "起動するたびにブラウザを表示",
+    "always_enter_browser_on": "オン",
+    "always_enter_browser_off": "オフ",
+    "reset_browser": "ブラウザをリセット",
+    "reset_browser_confirm": "ブラウザ起動マークを削除しますか? 次回起動時にブラウザが開きます。",
+    "reset_browser_success": "ブラウザをリセットしました",
+    "reset_browser_failed": "ブラウザのリセットに失敗しました",
     "auto_clean": {
       "title": "自動キャッシュクリア",
       "one_month_ago": "1ヶ月前",

@@ -19,7 +19,7 @@ class AppScreen extends StatefulWidget {
 }
 
 class _AppScreenState extends State<AppScreen> {
-  late StreamSubscription<String?> _linkSubscription;
+  late StreamSubscription<Uri> _linkSubscription;
 
   @override
   void initState() {

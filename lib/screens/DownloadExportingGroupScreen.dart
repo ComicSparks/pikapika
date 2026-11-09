@@ -39,10 +39,12 @@ class _DownloadExportingGroupScreenState
     super.dispose();
   }
 
-  void _onMessageChange(event) {
-    setState(() {
-      exportMessage = event;
-    });
+  void _onMessageChange(AppEvent event) {
+    if (event case AppEvent_Export(:final message)) {
+      setState(() {
+        exportMessage = message;
+      });
+    }
   }
 
   Widget _body() {
@@ -455,7 +457,7 @@ class _DownloadExportingGroupScreenState
         return Container(
           width: constraints.maxWidth,
           padding: const EdgeInsets.all(15),
-          color: (Theme.of(context).textTheme.bodyText1?.color ?? Colors.black)
+          color: (Theme.of(context).textTheme.bodyLarge?.color ?? Colors.black)
               .withOpacity(.05),
           child: Text(
             text,

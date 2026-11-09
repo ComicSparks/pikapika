@@ -151,7 +151,7 @@ class SearchBar {
               hintStyle: inBar
                   ? null
                   : TextStyle(
-                      color: theme.textTheme.headline4!.color,
+                      color: theme.textTheme.headlineMedium!.color,
                     ),
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,

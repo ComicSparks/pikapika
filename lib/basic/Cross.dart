@@ -1,7 +1,7 @@
 /// 与平台交互的操作
 import 'dart:io';
 
-import 'package:clipboard/clipboard.dart';
+import 'package:flutter/services.dart';
 import 'package:pikapika/i18.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +16,7 @@ import 'config/ChooserRoot.dart';
 
 /// 复制内容到剪切板
 void copyToClipBoard(BuildContext context, String string) {
-  FlutterClipboard.copy(string);
+  Clipboard.setData(ClipboardData(text: string));
   defaultToast(
     context,
     tr('app.copied_to_clipboard'),
@@ -24,17 +24,15 @@ void copyToClipBoard(BuildContext context, String string) {
 }
 
 void copyToClipBoardTips(BuildContext context, String string) {
-  FlutterClipboard.copy(string);
+  Clipboard.setData(ClipboardData(text: string));
   defaultToast(context, tr('app.copied_to_clipboard') + " :\n$string");
 }
 
 /// 打开web页面
 Future<dynamic> openUrl(String url) async {
-  if (await canLaunch(url)) {
-    await launch(
-      url,
-      forceSafariVC: false,
-    );
+  final parsed = Uri.parse(url);
+  if (await canLaunchUrl(parsed)) {
+    await launchUrl(parsed, mode: LaunchMode.externalApplication);
   }
 }
 

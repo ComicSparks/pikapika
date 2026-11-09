@@ -5,8 +5,8 @@ import 'package:pikapika/i18.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:pikapika/screens/AccessKeyReplaceScreen.dart';
-import 'package:uni_links/uni_links.dart';
-import 'package:uri_to_file/uri_to_file.dart';
+import 'package:app_links/app_links.dart';
+import 'uri_file.dart';
 
 import '../screens/ComicInfoScreen.dart';
 import '../screens/DownloadOnlyImportScreen.dart';
@@ -191,7 +191,7 @@ Future<String?> displayTextInputDialog(BuildContext context,
                               fontSize: 12,
                               color: Theme.of(context)
                                   .textTheme
-                                  .bodyText1
+                                  .bodyLarge
                                   ?.color
                                   ?.withOpacity(.5)),
                         ),
@@ -298,13 +298,13 @@ Future<String?> inputString(BuildContext context, String title,
   );
 }
 
-StreamSubscription<String?> linkSubscript(BuildContext context) {
-  return linkStream.listen((uri) async {
-    if (uri == null) return;
-    var parsed = Uri.parse(uri);
-    if (RegExp(r"^pika://access_key/([0-9A-z:\-]+)/$").allMatches(uri).isNotEmpty) {
+StreamSubscription<Uri> linkSubscript(BuildContext context) {
+  return AppLinks().uriLinkStream.listen((uri) async {
+    final raw = uri.toString();
+    var parsed = uri;
+    if (RegExp(r"^pika://access_key/([0-9A-z:\-]+)/$").allMatches(raw).isNotEmpty) {
       String accessKey = RegExp(r"^pika://access_key/([0-9A-z:\-]+)/$")
-          .allMatches(uri)
+          .allMatches(raw)
           .first
           .group(1)!;
       Navigator.of(context).push(
@@ -312,9 +312,9 @@ StreamSubscription<String?> linkSubscript(BuildContext context) {
           builder: (BuildContext context) => AccessKeyReplaceScreen(accessKey: accessKey),
         ),
       );
-    } else if (RegExp(r"^pika://comic/([0-9A-z]+)/$").allMatches(uri).isNotEmpty) {
+    } else if (RegExp(r"^pika://comic/([0-9A-z]+)/$").allMatches(raw).isNotEmpty) {
       String comicId = RegExp(r"^pika://comic/([0-9A-z]+)/$")
-          .allMatches(uri)
+          .allMatches(raw)
           .first
           .group(1)!;
       Navigator.of(context).push(
@@ -322,9 +322,9 @@ StreamSubscription<String?> linkSubscript(BuildContext context) {
           builder: (BuildContext context) => ComicInfoScreen(comicId: comicId),
         ),
       );
-    } else if (RegExp(r"^https?://pika/comic/([0-9A-z]+)/$").allMatches(uri).isNotEmpty) {
+    } else if (RegExp(r"^https?://pika/comic/([0-9A-z]+)/$").allMatches(raw).isNotEmpty) {
       String comicId = RegExp(r"^https?://pika/comic/([0-9A-z]+)/$")
-          .allMatches(uri)
+          .allMatches(raw)
           .first
           .group(1)!;
       Navigator.of(context).push(
@@ -333,7 +333,7 @@ StreamSubscription<String?> linkSubscript(BuildContext context) {
         ),
       );
     } else if (RegExp(r"^.*\.pkz$").allMatches(parsed.path).isNotEmpty) {
-      File file = await toFile(uri);
+      File file = await toFile(raw);
       Navigator.of(context).push(
         mixRoute(
           builder: (BuildContext context) =>
@@ -341,7 +341,7 @@ StreamSubscription<String?> linkSubscript(BuildContext context) {
         ),
       );
     } else if (RegExp(r"^.*\.((pki)|(zip))$").allMatches(parsed.path).isNotEmpty) {
-      File file = await toFile(uri);
+      File file = await toFile(raw);
       Navigator.of(context).push(
         mixRoute(
           builder: (BuildContext context) =>

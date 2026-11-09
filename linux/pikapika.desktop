@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Categories=Network;
+Comment=A cross platform comic client.
+Name=pikapika
+Icon=pikapika
+Exec=pikapika
+StartupWMClass=pikapika

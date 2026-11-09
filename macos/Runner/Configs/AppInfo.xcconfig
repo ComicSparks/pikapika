@@ -8,7 +8,7 @@
 PRODUCT_NAME = pikapika
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = opensource
+PRODUCT_BUNDLE_IDENTIFIER = opensource.pikapika
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2021 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2026 opensource. All rights reserved.

@@ -5,9 +5,12 @@
 *.swp
 .DS_Store
 .atom/
+.build/
 .buildlog/
 .history
 .svn/
+.swiftpm/
+migrate_working_dir/
 
 # IntelliJ related
 *.iml
@@ -24,15 +27,11 @@
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
-.flutter-plugins
 .flutter-plugins-dependencies
-.packages
 .pub-cache/
 .pub/
 /build/
-
-# Web related
-lib/generated_plugin_registrant.dart
+/coverage/
 
 # Symbolication related
 app.*.symbols
@@ -45,25 +44,7 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# PROJECT
-/go/mobile/lib/*.aar
-/go/mobile/lib/*.jar
-/go/mobile/lib/*.framework/
-/go/mobile/lib/*.xcframework/
-/go/vendor/
-
-ios/build/
-
-# IDE
-*.iml
-.vscode/
-
-# APP
-/lib/assets/version.txt
-go.work
-
 # FVM Version Cache
 .fvm/
-
+# proj
 tmp/
-.tmp/

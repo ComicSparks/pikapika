@@ -5,406 +5,136 @@ permissions:
 
 on:
   workflow_dispatch:
-    inputs:
-      skip_community_notification:
-        description: 'skip_community_notification'
-        type: boolean
-        required: false
-        default: false
 
 env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  ANDROID_NDK_VERSION: "23.1.7779620"
-  GO_MOBILE_VERSION: v0.0.0-20241213221354-a87c1cf6cf46
+  FLUTTER_VERSION: "3.38.4"
 
 jobs:
-
   ci-pass:
     name: CI is green
+    if: always()
     runs-on: ubuntu-latest
     needs:
       - check_release
-      - build_release_assets
-      - send_to_community
+      - build
     steps:
-      - run: exit 0
+      - name: Require successful builds
+        run: |
+          test "${{ needs.check_release.result }}" = "success"
+          test "${{ needs.build.result }}" = "success"
 
   check_release:
     name: Check release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.inputs.repo }}
-          ref: 'master'
-      - uses: actions/setup-go@v2
-        with:
-          go-version: ${{ env.go_version }}
-      - name: Cache go modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ubuntu-latest-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ubuntu-latest-go-
-      - name: Check release
-        run: |
-          cd ci
-          go run ./cmd/check_release
+      - uses: actions/checkout@v4
+      - name: Create release when the tag is missing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash ci/ensure_release.sh
 
-  build_release_assets:
-    name: Build release assets
+  build:
+    name: Build ${{ matrix.target }}
     needs:
       - check_release
+    runs-on: ${{ matrix.host }}
+    timeout-minutes: 120
+    defaults:
+      run:
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
-        sources:
-          - branch: master
-        config:
+        include:
           - target: windows
             host: windows-latest
-            flutter_version: '2.10.3'
-            go_version: '1.23'
+            rust_targets: ""
+            script: build-windows.sh
           - target: macos
             host: macos-latest
-            flutter_version: '2.10.3'
-            go_version: '1.23'
+            rust_targets: aarch64-apple-darwin
+            script: build-macos-dmg.sh
           - target: linux
             host: ubuntu-latest
-            flutter_version: '2.10.3'
-            go_version: '1.23'
+            rust_targets: ""
+            script: build-linux-appimage.sh
           - target: ios
-            host: macos-14
-            flutter_version: '3.13.9'
-            go_version: '1.24'
-          - target: android-arm32
+            host: macos-latest
+            rust_targets: aarch64-apple-ios
+            script: build-ipa.sh
+          - target: android
             host: ubuntu-latest
-            flutter_version: '3.13.9'
-            go_version: '1.24'
-            java: '11'
-          - target: android-arm64
-            host: ubuntu-latest
-            flutter_version: '3.13.9'
-            go_version: '1.24'
-            java: '11'
-          - target: android-x86_64
-            host: ubuntu-latest
-            flutter_version: '3.13.9'
-            go_version: '1.24'
-            java: '11'
-
-
-    runs-on: ${{ matrix.config.host }}
-
-    env:
-      TARGET: ${{ matrix.config.target }}
-      FLUTTER_VERSION: ${{ matrix.config.flutter_version }}
-      BRANCH: ${{ matrix.sources.branch }}
-      go_version: ${{ matrix.config.go_version }}
-
+            rust_targets: aarch64-linux-android,armv7-linux-androideabi,x86_64-linux-android
+            script: build-android.sh
     steps:
-
-      # Setup golang env and cache go module
-
-      - name: Setup golang
-        uses: actions/setup-go@v2
-        with:
-          go-version: ${{ env.go_version }}
-
-      - name: Cache go modules (Windows)
-        if: matrix.config.host == 'windows-latest'
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~\AppData\Local\go-build
-            ~\go\pkg\mod
-          key: ${{ matrix.config.host }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ matrix.config.host }}-go-
-
-      - name: Cache go modules (Linux)
-        if: matrix.config.host == 'ubuntu-latest'
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ${{ matrix.config.host }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ matrix.config.host }}-go-
-
-      - name: Cache go modules (macOS)
-        if: startsWith(matrix.config.host, 'macos-')
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/Library/Caches/go-build
-            ~/go/pkg/mod
-          key: ${{ matrix.config.host }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ matrix.config.host }}-go-
-
-      # checkout
-
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Check asset
+        id: check_asset
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET: ${{ matrix.target }}
+        run: bash ci/check_asset.sh
+
+      - name: Setup Rust
+        if: steps.check_asset.outputs.skip_build != 'true' && matrix.rust_targets == ''
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Setup Rust
+        if: steps.check_asset.outputs.skip_build != 'true' && matrix.rust_targets != ''
+        uses: dtolnay/rust-toolchain@stable
         with:
-          ref: ${{ env.BRANCH }}
+          targets: ${{ matrix.rust_targets }}
 
-      # check_access
-
-      - id: check_asset
-        name: Check asset
-        run: |
-          cd ci
-          go run ./cmd/check_asset
-
-      # 
-      - name: Check core
+      - name: Cache Rust
         if: steps.check_asset.outputs.skip_build != 'true'
-        uses: actions/checkout@v3
+        uses: Swatinem/rust-cache@v2
         with:
-          repository: 'niuhuan/pikapika-go-core'
-          token: ${{ secrets.CORE_TOKEN }}
-          path: 'go'
+          workspaces: rust
 
-      - name: Setup flutter
+      - name: Setup Flutter
         if: steps.check_asset.outputs.skip_build != 'true'
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
-          architecture: x64
+          cache: true
 
-      - name: Check core
-        if: steps.check_asset.outputs.skip_build != 'true'
-        uses: actions/checkout@v3
-        with:
-          repository: 'niuhuan/pikapika-go-core'
-          token: ${{ secrets.CORE_TOKEN }}
-          path: 'go'
-
-      - name: Cache Flutter dependencies (Linux/Android)
-        if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'android-arm32' || matrix.config.target == 'android-arm64' || matrix.config.target == 'android-x86_64' || matrix.config.target == 'linux' )
-        uses: actions/cache@v3
-        with:
-          path: /opt/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter
-
-      - name: Cache Flutter dependencies (Mac host)
-        if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'ios' || matrix.config.target == 'macos' )
-        uses: actions/cache@v3
-        with:
-          path: /Users/runner/hostedtoolcache/flutter
-          key: ${{ runner.os }}-flutter
-
-      - name: Cache Gradle dependencies (Android)
-        if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'android-arm32' || matrix.config.target == 'android-arm64' || matrix.config.target == 'android-x86_64' )
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            ${{ runner.os }}-gradle-
-
-      - name: Setup java (Android)
-        if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'android-arm32' || matrix.config.target == 'android-arm64' || matrix.config.target == 'android-x86_64' ) && startsWith(matrix.config.flutter_version, '3.24.2') == false
-        uses: actions/setup-java@v3
-        with:
-          java-version: ${{ matrix.config.java }}
-          distribution: 'temurin'
-
-      - name: Setup java (Android)
-        if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'android-arm32' || matrix.config.target == 'android-arm64' || matrix.config.target == 'android-x86_64' ) && startsWith(matrix.config.flutter_version, '3.24.2')
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      - name: Setup android tools (Android)
-        if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'android-arm32' || matrix.config.target == 'android-arm64' || matrix.config.target == 'android-x86_64' )
-        uses: android-actions/setup-android@v3
-        with:
-          cmdline-tools-version: 8512546
-          packages: 'platform-tools platforms;android-32 build-tools;30.0.2 ndk;${{ env.ANDROID_NDK_VERSION }}'
-
-      - name: Setup msys2 (Windows)
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'windows'
-        uses: msys2/setup-msys2@v2
-        with:
-          install: gcc make
-
-      - name: Install dependencies (Linux)
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'linux'
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
+      - name: Linux packages
+        if: steps.check_asset.outputs.skip_build != 'true' && matrix.target == 'linux'
         run: |
-          curl -JOL https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
-          chmod a+x appimagetool-x86_64.AppImage
-          mkdir -p ${GITHUB_WORKSPACE}/bin
-          mv appimagetool-x86_64.AppImage ${GITHUB_WORKSPACE}/bin/appimagetool
-          echo ::add-path::${GITHUB_WORKSPACE}/bin
           sudo apt-get update
-          sudo apt-get install -y libgl1-mesa-dev xorg-dev libfuse2 locate
+          sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev libfuse2
 
-      - name: Install hover (desktop)
-        if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'linux' || matrix.config.target == 'windows' || matrix.config.target == 'macos')
-        run: |
-          go install github.com/go-flutter-desktop/hover@latest
+      - name: Setup Java
+        if: steps.check_asset.outputs.skip_build != 'true' && matrix.target == 'android'
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
 
-      - name: Install go mobile (mobile)
-        if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'ios' || matrix.config.target == 'android-arm64' || matrix.config.target == 'android-arm32' || matrix.config.target == 'android-x86_64' )
-        run: |
-          go install golang.org/x/mobile/cmd/gomobile@${{ env.GO_MOBILE_VERSION }}
+      - name: Setup Android SDK
+        if: steps.check_asset.outputs.skip_build != 'true' && matrix.target == 'android'
+        uses: android-actions/setup-android@v3
 
-      - name: Set-Version (All)
+      - name: Accept Android licenses
+        if: steps.check_asset.outputs.skip_build != 'true' && matrix.target == 'android'
+        run: yes | sdkmanager --licenses || true
+
+      - name: Build
         if: steps.check_asset.outputs.skip_build != 'true'
-        run: |
-          cd ci
-          cp version.code.txt ../lib/assets/version.txt
+        run: bash "scripts/${{ matrix.script }}"
 
-      - name: Upgrade deps version (flutter2 non-mac)
-        if: steps.check_asset.outputs.skip_build != 'true' && startsWith(matrix.config.host, 'macos-') == false && startsWith(matrix.config.flutter_version, '2')
-        run: |
-          sed -i "s/another_xlider: ^1.0.1+2/another_xlider: 1.0.1+2/g" pubspec.yaml
-          sed -i "s/flutter_styled_toast: ^2.0.0/flutter_styled_toast: 2.0.0/g" pubspec.yaml
-          sed -i "s/filesystem_picker: ^3.0.0-beta.1/filesystem_picker: 2.0.0/g" pubspec.yaml
-          sed -i "s/file_picker: 5.2.5/file_picker: 4.6.1/g" pubspec.yaml
-          sed -i "s/multi_select_flutter: ^4.0.0/multi_select_flutter: 4.1.2/g" pubspec.yaml
-          sed -i "s/modal_bottom_sheet: ^3.0.0-pre/modal_bottom_sheet: 2.0.1/g" pubspec.yaml
-          sed -i "s/Icons.energy_savings_leaf/Icons.ad_units/g" lib/screens/SettingsScreen.dart
-          sed -i "s/gradle-7.5-bin.zip/gradle-6.7.1-all.zip/g" android/gradle/wrapper/gradle-wrapper.properties
-          sed -i "s/com.android.tools.build:gradle:7.2.0/com.android.tools.build:gradle:4.1.0/g" android/build.gradle
-          sed -i "s/1.7.10/1.3.50/g" android/app/build.gradle
-          sed -i "s/fontFamilyFallback/\/\/fontFamilyFallback/g" lib/basic/config/Themes.dart
-          sed -i "s/easy_localization: ^3.0.7+1/easy_localization: ^3.0.0/g" pubspec.yaml
-          sed -i "s/thumbVisibility: true/isAlwaysShown: true/g" lib/basic/config/ShadowCategories.dart
-          flutter pub get
-
-      - name: Upgrade deps version (flutter2 mac)
-        if: steps.check_asset.outputs.skip_build != 'true' && startsWith(matrix.config.host, 'macos-') && startsWith(matrix.config.flutter_version, '2')
-        run: |
-          brew install gnu-sed
-          gsed -i "s/another_xlider: ^1.0.1+2/another_xlider: 1.0.1+2/g" pubspec.yaml
-          gsed -i "s/flutter_styled_toast: ^2.0.0/flutter_styled_toast: 2.0.0/g" pubspec.yaml
-          gsed -i "s/filesystem_picker: ^3.0.0-beta.1/filesystem_picker: 2.0.0/g" pubspec.yaml
-          gsed -i "s/file_picker: 5.2.5/file_picker: 4.6.1/g" pubspec.yaml
-          gsed -i "s/multi_select_flutter: ^4.0.0/multi_select_flutter: 4.1.2/g" pubspec.yaml
-          gsed -i "s/modal_bottom_sheet: ^3.0.0-pre/modal_bottom_sheet: 2.0.1/g" pubspec.yaml
-          gsed -i "s/Icons.energy_savings_leaf/Icons.ad_units/g" lib/screens/SettingsScreen.dart
-          gsed -i "s/fontFamilyFallback/\/\/fontFamilyFallback/g" lib/basic/config/Themes.dart
-          gsed -i "s/easy_localization: ^3.0.7+1/easy_localization: ^3.0.0/g" pubspec.yaml
-          gsed -i "s/thumbVisibility: true/isAlwaysShown: true/g" lib/basic/config/ShadowCategories.dart
-          flutter pub get
-
-      - name: Build (windows)
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'windows'
-        run: |
-          hover build windows
-          curl -JOL https://github.com/ComicSparks/build-tools/releases/download/storage/Resource_Hacker_5.1.8.zip
-          Expand-Archive .\Resource_Hacker_5.1.8.zip
-          cmd /c "Resource_Hacker_5.1.8\ResourceHacker.exe" -open go\build\outputs\windows-release\pikapika.exe -save go\build\outputs\windows-release\pikapika.exe -action addskip -res go/assets/icon.ico -mask ICONGROUP,MAINICON,0
-          cd go\build\outputs\windows-release
-          DEL flutter_engine.pdb
-          DEL flutter_engine.exp
-          DEL flutter_engine.lib
-          Compress-Archive * ../../../../build/build.zip
-
-      - name: Build (macos)
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'macos'
-        run: |
-          hover build darwin-dmg
-          mv go/build/outputs/darwin-dmg-release/*.dmg build/build.dmg
-
-      - name: Build (linux)
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'linux'
-        run: |
-          curl -JOL https://github.com/junmer/source-han-serif-ttf/raw/master/SubsetTTF/CN/SourceHanSerifCN-Regular.ttf
-          mkdir -p fonts
-          mv SourceHanSerifCN-Regular.ttf fonts/Roboto.ttf
-          cat ci/linux_font.yaml >> pubspec.yaml
-          hover build linux-appimage
-          mv go/build/outputs/linux-appimage-release/*.AppImage build/build.AppImage
-
-      - name: Append application-identifier (ios)
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'ios'
-        run: |
-          /usr/libexec/PlistBuddy -c 'Add :application-identifier string opensource.pikapika' ios/Runner/Info.plist
-
-      - name: Build (ios)
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'ios'
-        run: |
-          sh scripts/build-ipa.sh
-
-      - name: Build (android-arm32)
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'android-arm32'
-        run: |
-          export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/${{ env.ANDROID_NDK_VERSION }}
-          sh scripts/build-apk-arm.sh
-
-      - name: Build (android-arm64)
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'android-arm64'
-        run: |
-          export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/${{ env.ANDROID_NDK_VERSION }}
-          sh scripts/build-apk-arm64.sh
-
-      - name: Build (android-x86_64)
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.config.target == 'android-x86_64'
-        run: |
-          export ANDROID_NDK_HOME=$ANDROID_HOME/ndk/${{ env.ANDROID_NDK_VERSION }}
-          sh scripts/build-apk-x64.sh
-
-      - name: Sign APK (Android)
-        if: steps.check_asset.outputs.skip_build != 'true' && ( matrix.config.target == 'android-arm32' || matrix.config.target == 'android-arm64' || matrix.config.target == 'android-x86_64' )
+      - name: Sign APK
+        if: steps.check_asset.outputs.skip_build != 'true' && matrix.target == 'android'
         env:
           KEY_FILE_BASE64: ${{ secrets.KEY_FILE_BASE64 }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-        run: |
-          sh scripts/sign-apk-github-actions.sh
+        run: bash scripts/sign-apk-github-actions.sh
 
-      - name: Upload Asset (All)
+      - name: Upload release asset
         if: steps.check_asset.outputs.skip_build != 'true'
-        run: |
-          cd ci
-          go run ./cmd/upload_asset
-
-
-  send_to_community:
-    if: github.event.inputs.skip_community_notification != 'true'
-    needs:
-      - check_release
-      - build_release_assets
-    name: Send message to community
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          repository: ${{ github.event.inputs.repo }}
-          ref: 'master'
-      - uses: actions/setup-go@v2
-        with:
-          go-version: ${{ env.go_version }}
-      - name: Cache go modules
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.cache/go-build
-            ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
-      - name: Send to community
         env:
-          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-          TG_CHAT_IDS: ${{ secrets.TG_CHAT_IDS }}
-          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
-          DISCORD_CHAT_IDS: ${{ secrets.DISCORD_CHAT_IDS }}
-        run: |
-          cd ci
-          go run ./cmd/send_to_community
-
-
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET: ${{ matrix.target }}
+        run: bash ci/upload_asset.sh
