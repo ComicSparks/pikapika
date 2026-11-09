@@ -70,6 +70,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Check core
+        if: steps.check_asset.outputs.skip_build != 'true'
+        uses: actions/checkout@v3
+        with:
+          repository: 'niuhuan/pikapika-go-core'
+          token: ${{ secrets.CORE_TOKEN }}
+          path: 'rust'
+
       - name: Check asset
         id: check_asset
         env:
