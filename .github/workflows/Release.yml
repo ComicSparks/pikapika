@@ -121,14 +121,6 @@ jobs:
           distribution: temurin
           java-version: "17"
 
-      - name: Setup Android SDK
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.target == 'android'
-        uses: android-actions/setup-android@v3
-
-      - name: Accept Android licenses
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.target == 'android'
-        run: yes | sdkmanager --licenses || true
-
       - name: Build
         if: steps.check_asset.outputs.skip_build != 'true'
         run: bash "scripts/${{ matrix.script }}"
