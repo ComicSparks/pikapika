@@ -11,6 +11,7 @@ import 'package:pikapika/basic/config/AutoFullScreen.dart';
 import 'package:pikapika/basic/config/FullScreenUI.dart';
 import 'package:pikapika/basic/config/ReaderDirection.dart';
 import 'package:pikapika/basic/config/ReaderType.dart';
+import 'package:pikapika/basic/Metrics.dart';
 import 'package:pikapika/basic/Method.dart';
 import '../basic/config/IconLoading.dart';
 import 'components/ContentError.dart';
@@ -25,6 +26,7 @@ class PkzReaderScreen extends StatefulWidget {
   late final List<PkzChapter> epList;
   final String currentEpId;
   final int? initPicturePosition;
+  final bool noteReadMetric;
   final ReaderType pagerType = currentReaderType();
   final ReaderDirection pagerDirection = gReaderDirection;
   late final bool autoFullScreen;
@@ -34,6 +36,7 @@ class PkzReaderScreen extends StatefulWidget {
     required this.comicInfo,
     required this.currentEpId,
     this.initPicturePosition,
+    this.noteReadMetric = true,
     bool? autoFullScreen,
     required this.pkzPath,
   }) : super(key: key) {
@@ -70,6 +73,9 @@ class _PkzReaderScreenState extends State<PkzReaderScreen> {
         pictures.addAll(ep.pictures);
         break;
       }
+    }
+    if (widget.noteReadMetric && widget.initPicturePosition == null) {
+      Metrics.note('read');
     }
     if (widget.autoFullScreen) {
       setState(() {
@@ -134,6 +140,7 @@ class _PkzReaderScreenState extends State<PkzReaderScreen> {
           comicInfo: widget.comicInfo,
           pkzPath: widget.pkzPath,
           currentEpId: ep.id,
+          noteReadMetric: false,
           autoFullScreen: _fullScreen,
         ),
       ),
@@ -148,6 +155,7 @@ class _PkzReaderScreenState extends State<PkzReaderScreen> {
           comicInfo: widget.comicInfo,
           currentEpId: widget.currentEpId,
           initPicturePosition: _lastChangeRank ?? widget.initPicturePosition,
+          noteReadMetric: false,
           // maybe null
           autoFullScreen: _fullScreen,
           pkzPath: widget.pkzPath,

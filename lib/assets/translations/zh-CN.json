@@ -274,6 +274,13 @@
       "input_hint": "输入要隐藏的关键词",
       "no_words": "暂无关键词"
     },
+    "hidden_comment_words": {
+      "title": "封印评论",
+      "clear_all": "确认清空",
+      "clear_all_desc": "确定要清空所有评论封印关键词吗？",
+      "input_hint": "输入要封印的评论关键词",
+      "no_words": "暂无关键词"
+    },
     "image_address": {
       "title": "图片分流",
       "pinging": "测速中",
@@ -437,7 +444,39 @@
       "choose_theme": "选择主题",
       "book": "书本",
       "enable_status_bar_color": "启用状态栏颜色",
-      "enable_status_restart_hint": "关闭时需要重新启动应用程序刷新状态栏颜色"
+      "enable_status_restart_hint": "关闭时需要重新启动应用程序刷新状态栏颜色",
+      "custom_manage": "管理自定义主题",
+      "custom_manage_hint": "复制、编辑、导入导出 .pkt",
+      "custom_edit": "编辑自定义主题",
+      "custom_name": "名称",
+      "custom_name_hint": "请输入主题名称",
+      "custom_name_required": "主题名称不能为空",
+      "custom_default_name": "自定义主题",
+      "custom_is_dark": "深色主题",
+      "custom_is_light": "浅色主题",
+      "custom_copy_from": "从现有主题复制",
+      "custom_copy_suffix": "副本",
+      "custom_import": "导入 .pkt",
+      "custom_export": "导出 .pkt",
+      "custom_delete": "删除",
+      "custom_delete_confirm": "确定删除这个自定义主题吗？",
+      "custom_delete_success": "已删除",
+      "custom_empty": "还没有自定义主题，可从现有主题复制或导入 .pkt",
+      "custom_import_success": "导入成功",
+      "custom_import_failed": "导入失败，文件无效",
+      "custom_export_success": "导出成功",
+      "custom_export_failed": "导出失败",
+      "custom_save_success": "已保存",
+      "custom_color_hex": "颜色值",
+      "custom_color_primary": "主色",
+      "custom_color_scaffold": "页面背景",
+      "custom_color_card": "卡片背景",
+      "custom_color_app_bar": "顶栏颜色",
+      "custom_color_app_bar_fg": "顶栏文字/图标",
+      "custom_color_bottom_bg": "底栏背景",
+      "custom_color_bottom_selected": "底栏选中",
+      "custom_color_bottom_unselected": "底栏未选中",
+      "custom_color_divider": "分割线"
     },
     "three_keep_right": {
       "title": "三区域模式翻页始终为右侧下一页"
@@ -834,7 +873,20 @@
       "bind_account_time": "绑定账号时间",
       "rebind_time": "可以换绑时间",
       "power_features": "发电小功能: 多线程下载 / 批量导入导出下载",
-      "power_guide": "去\"关于\"界面找到维护地址可获得发电指引\n\n  \"我曾经发过电\"可同步相应发电状态\n  \"我刚才发了电\"兑换神秘代码\n  \"PAT入会\"是独立的发电方式\n  更换\"发电方式\"可能解决FAIL问题"
+      "power_guide": "去\"关于\"界面找到维护地址可获得发电指引\n\n  \"我曾经发过电\"可同步相应发电状态\n  \"我刚才发了电\"兑换神秘代码\n  \"PAT入会\"是独立的发电方式\n  更换\"发电方式\"可能解决FAIL问题",
+      "error": {
+        "NETWORK_TIMEOUT": "网络超时，请检查网络或更换发电方式",
+        "NETWORK_UNREACHABLE": "连接不上服务器，请检查网络或更换发电方式",
+        "SERVER_FAILED": "服务器处理失败",
+        "SERVER_RESPONSE_INVALID": "服务器返回异常",
+        "REQUEST_INVALID": "请求无效",
+        "ORDER_NOT_SYNCED": "订单尚未同步，请稍后再试",
+        "ORDER_ALREADY_USED": "订单已被使用",
+        "ORDER_AMOUNT_INVALID": "订单金额无效",
+        "TICKET_NOT_FOUND": "兑换券不存在",
+        "TICKET_ALREADY_USED": "兑换券已被使用",
+        "TICKET_EVENT_USED": "活动兑换券已参与"
+      }
     },
     "rankings": {
       "title": "排行榜",
@@ -944,6 +996,9 @@
     },
     "comic_list": {
       "shadow": "被封印的本子"
+    },
+    "comment": {
+      "shadow": "被封印的评论"
     },
     "common": {
       "display_mode": "显示模式",

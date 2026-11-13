@@ -9,11 +9,19 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 import 'package:freezed_annotation/freezed_annotation.dart' hide protected;
 part 'events.freezed.dart';
 
-@freezed
-sealed class AppEvent with _$AppEvent {
-  const AppEvent._();
+            
 
-  const factory AppEvent.download({required DownloadComic comic}) =
-      AppEvent_Download;
-  const factory AppEvent.export_({required String message}) = AppEvent_Export;
-}
+            
+
+            @freezed
+                sealed class AppEvent with _$AppEvent  {
+                    const AppEvent._();
+
+                     const factory AppEvent.download({   required DownloadComic comic , }) = AppEvent_Download;
+ const factory AppEvent.export_({   required String message , }) = AppEvent_Export;
+
+                    
+
+                    
+                }
+            

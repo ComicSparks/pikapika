@@ -7,43 +7,20 @@ import '../frb_generated.dart';
 import '../pica/dto.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<CommentPage> comments({
-  required String comicId,
-  required PlatformInt64 page,
-}) =>
-    RustLib.instance.api.crateApiCommentComments(comicId: comicId, page: page);
 
-Future<CommentChildrenPage> commentChildren({
-  required String comicId,
-  required String commentId,
-  required PlatformInt64 page,
-}) => RustLib.instance.api.crateApiCommentCommentChildren(
-  comicId: comicId,
-  commentId: commentId,
-  page: page,
-);
+            
 
-Future<void> postComment({required String comicId, required String content}) =>
-    RustLib.instance.api.crateApiCommentPostComment(
-      comicId: comicId,
-      content: content,
-    );
+            Future<CommentPage>  comments({required String comicId , required PlatformInt64 page }) => RustLib.instance.api.crateApiCommentComments(comicId: comicId, page: page);
 
-Future<void> postChildComment({
-  required String commentId,
-  required String content,
-}) => RustLib.instance.api.crateApiCommentPostChildComment(
-  commentId: commentId,
-  content: content,
-);
+Future<CommentChildrenPage>  commentChildren({required String comicId , required String commentId , required PlatformInt64 page }) => RustLib.instance.api.crateApiCommentCommentChildren(comicId: comicId, commentId: commentId, page: page);
 
-Future<void> switchLikeComment({
-  required String commentId,
-  required String comicId,
-}) => RustLib.instance.api.crateApiCommentSwitchLikeComment(
-  commentId: commentId,
-  comicId: comicId,
-);
+Future<void>  postComment({required String comicId , required String content }) => RustLib.instance.api.crateApiCommentPostComment(comicId: comicId, content: content);
 
-Future<MyCommentsPage> myComments({required PlatformInt64 page}) =>
-    RustLib.instance.api.crateApiCommentMyComments(page: page);
+Future<void>  postChildComment({required String commentId , required String content }) => RustLib.instance.api.crateApiCommentPostChildComment(commentId: commentId, content: content);
+
+Future<void>  switchLikeComment({required String commentId , required String comicId }) => RustLib.instance.api.crateApiCommentSwitchLikeComment(commentId: commentId, comicId: comicId);
+
+Future<MyCommentsPage>  myComments({required PlatformInt64 page }) => RustLib.instance.api.crateApiCommentMyComments(page: page);
+
+            
+            

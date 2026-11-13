@@ -7,114 +7,58 @@ import '../frb_generated.dart';
 import '../pica/dto.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<String> loadProperty({
-  required String name,
-  required String defaultValue,
-}) => RustLib.instance.api.crateApiAuthLoadProperty(
-  name: name,
-  defaultValue: defaultValue,
-);
 
-Future<void> saveProperty({required String name, required String value}) =>
-    RustLib.instance.api.crateApiAuthSaveProperty(name: name, value: value);
+            
 
-Future<String> getSwitchAddress() =>
-    RustLib.instance.api.crateApiAuthGetSwitchAddress();
+            Future<String>  loadProperty({required String name , required String defaultValue }) => RustLib.instance.api.crateApiAuthLoadProperty(name: name, defaultValue: defaultValue);
 
-Future<void> setSwitchAddress({required String switchAddress}) => RustLib
-    .instance
-    .api
-    .crateApiAuthSetSwitchAddress(switchAddress: switchAddress);
+Future<void>  saveProperty({required String name , required String value }) => RustLib.instance.api.crateApiAuthSaveProperty(name: name, value: value);
 
-Future<String> getImageSwitchAddress() =>
-    RustLib.instance.api.crateApiAuthGetImageSwitchAddress();
+Future<String>  getSwitchAddress() => RustLib.instance.api.crateApiAuthGetSwitchAddress();
 
-Future<void> setImageSwitchAddress({required String switchAddress}) => RustLib
-    .instance
-    .api
-    .crateApiAuthSetImageSwitchAddress(switchAddress: switchAddress);
+Future<void>  setSwitchAddress({required String switchAddress }) => RustLib.instance.api.crateApiAuthSetSwitchAddress(switchAddress: switchAddress);
 
-Future<String> getUseApiClientLoadImage() =>
-    RustLib.instance.api.crateApiAuthGetUseApiClientLoadImage();
+Future<String>  getImageSwitchAddress() => RustLib.instance.api.crateApiAuthGetImageSwitchAddress();
 
-Future<void> setUseApiClientLoadImage({required String value}) =>
-    RustLib.instance.api.crateApiAuthSetUseApiClientLoadImage(value: value);
+Future<void>  setImageSwitchAddress({required String switchAddress }) => RustLib.instance.api.crateApiAuthSetImageSwitchAddress(switchAddress: switchAddress);
 
-Future<String> getProxy() => RustLib.instance.api.crateApiAuthGetProxy();
+Future<String>  getUseApiClientLoadImage() => RustLib.instance.api.crateApiAuthGetUseApiClientLoadImage();
 
-Future<void> setProxy({required String proxy}) =>
-    RustLib.instance.api.crateApiAuthSetProxy(proxy: proxy);
+Future<void>  setUseApiClientLoadImage({required String value }) => RustLib.instance.api.crateApiAuthSetUseApiClientLoadImage(value: value);
 
-Future<String> getUsername() => RustLib.instance.api.crateApiAuthGetUsername();
+Future<String>  getProxy() => RustLib.instance.api.crateApiAuthGetProxy();
 
-Future<void> setUsername({required String username}) =>
-    RustLib.instance.api.crateApiAuthSetUsername(username: username);
+Future<void>  setProxy({required String proxy }) => RustLib.instance.api.crateApiAuthSetProxy(proxy: proxy);
 
-Future<String> getPassword() => RustLib.instance.api.crateApiAuthGetPassword();
+Future<String>  getUsername() => RustLib.instance.api.crateApiAuthGetUsername();
 
-Future<void> setPassword({required String password}) =>
-    RustLib.instance.api.crateApiAuthSetPassword(password: password);
+Future<void>  setUsername({required String username }) => RustLib.instance.api.crateApiAuthSetUsername(username: username);
 
-Future<bool> preLogin() => RustLib.instance.api.crateApiAuthPreLogin();
+Future<String>  getPassword() => RustLib.instance.api.crateApiAuthGetPassword();
 
-Future<void> login() => RustLib.instance.api.crateApiAuthLogin();
+Future<void>  setPassword({required String password }) => RustLib.instance.api.crateApiAuthSetPassword(password: password);
 
-Future<void> register({
-  required String email,
-  required String name,
-  required String password,
-  required String gender,
-  required String birthday,
-  required String question1,
-  required String answer1,
-  required String question2,
-  required String answer2,
-  required String question3,
-  required String answer3,
-}) => RustLib.instance.api.crateApiAuthRegister(
-  email: email,
-  name: name,
-  password: password,
-  gender: gender,
-  birthday: birthday,
-  question1: question1,
-  answer1: answer1,
-  question2: question2,
-  answer2: answer2,
-  question3: question3,
-  answer3: answer3,
-);
+Future<bool>  preLogin() => RustLib.instance.api.crateApiAuthPreLogin();
 
-Future<void> clearToken() => RustLib.instance.api.crateApiAuthClearToken();
+Future<void>  login() => RustLib.instance.api.crateApiAuthLogin();
 
-Future<UserProfile> userProfile() =>
-    RustLib.instance.api.crateApiAuthUserProfile();
+Future<void>  register({required String email , required String name , required String password , required String gender , required String birthday , required String question1 , required String answer1 , required String question2 , required String answer2 , required String question3 , required String answer3 }) => RustLib.instance.api.crateApiAuthRegister(email: email, name: name, password: password, gender: gender, birthday: birthday, question1: question1, answer1: answer1, question2: question2, answer2: answer2, question3: question3, answer3: answer3);
 
-Future<void> punchIn() => RustLib.instance.api.crateApiAuthPunchIn();
+Future<void>  clearToken() => RustLib.instance.api.crateApiAuthClearToken();
 
-Future<void> updateSlogan({required String slogan}) =>
-    RustLib.instance.api.crateApiAuthUpdateSlogan(slogan: slogan);
+Future<UserProfile>  userProfile() => RustLib.instance.api.crateApiAuthUserProfile();
 
-Future<void> updateAvatar({required String path}) =>
-    RustLib.instance.api.crateApiAuthUpdateAvatar(path: path);
+Future<void>  punchIn() => RustLib.instance.api.crateApiAuthPunchIn();
 
-Future<void> updatePassword({
-  required String oldPassword,
-  required String newPassword,
-}) => RustLib.instance.api.crateApiAuthUpdatePassword(
-  oldPassword: oldPassword,
-  newPassword: newPassword,
-);
+Future<void>  updateSlogan({required String slogan }) => RustLib.instance.api.crateApiAuthUpdateSlogan(slogan: slogan);
 
-Future<ForgotPasswordResult> forgotPassword({required String email}) =>
-    RustLib.instance.api.crateApiAuthForgotPassword(email: email);
+Future<void>  updateAvatar({required String path }) => RustLib.instance.api.crateApiAuthUpdateAvatar(path: path);
 
-Future<ResetPasswordResult> resetPassword({
-  required String email,
-  required PlatformInt64 questionNo,
-  required String answer,
-}) => RustLib.instance.api.crateApiAuthResetPassword(
-  email: email,
-  questionNo: questionNo,
-  answer: answer,
-);
+Future<void>  updatePassword({required String oldPassword , required String newPassword }) => RustLib.instance.api.crateApiAuthUpdatePassword(oldPassword: oldPassword, newPassword: newPassword);
+
+Future<ForgotPasswordResult>  forgotPassword({required String email }) => RustLib.instance.api.crateApiAuthForgotPassword(email: email);
+
+Future<ResetPasswordResult>  resetPassword({required String email , required PlatformInt64 questionNo , required String answer }) => RustLib.instance.api.crateApiAuthResetPassword(email: email, questionNo: questionNo, answer: answer);
+
+            
+            

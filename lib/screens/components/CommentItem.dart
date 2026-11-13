@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/basic/Method.dart';
+import 'package:pikapika/basic/config/HiddenCommentWords.dart';
 
 import '../../basic/Cross.dart';
 import 'Avatar.dart';
@@ -41,6 +42,36 @@ class _ComicCommentItemState extends State<ComicCommentItem> {
   @override
   Widget build(BuildContext context) {
     var comment = widget.comment;
+    if (isCommentSealed(comment.content)) {
+      return Container(
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          border: Border(
+            top: BorderSide(
+              width: .25,
+              style: BorderStyle.solid,
+              color: Colors.grey.shade500.withOpacity(.5),
+            ),
+            bottom: BorderSide(
+              width: .25,
+              style: BorderStyle.solid,
+              color: Colors.grey.shade500.withOpacity(.5),
+            ),
+          ),
+        ),
+        child: Center(
+          child: Text(
+            tr('components.comment.shadow'),
+            style: TextStyle(
+              fontSize: 12,
+              color: (Theme.of(context).textTheme.bodyLarge?.color ??
+                      Colors.black)
+                  .withOpacity(.3),
+            ),
+          ),
+        ),
+      );
+    }
     var theme = Theme.of(context);
     var nameStyle = const TextStyle(fontWeight: FontWeight.bold);
     var levelStyle = TextStyle(

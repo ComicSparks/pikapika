@@ -6,28 +6,24 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<String> loadDownloadAndExportPath() =>
-    RustLib.instance.api.crateApiSettingsLoadDownloadAndExportPath();
 
-Future<void> saveDownloadAndExportPath({required String folder}) => RustLib
-    .instance
-    .api
-    .crateApiSettingsSaveDownloadAndExportPath(folder: folder);
+            
 
-Future<String> loadDownloadCachePath() =>
-    RustLib.instance.api.crateApiSettingsLoadDownloadCachePath();
+            Future<String>  loadDownloadAndExportPath() => RustLib.instance.api.crateApiSettingsLoadDownloadAndExportPath();
 
-Future<void> saveDownloadCachePath({required String folder}) =>
-    RustLib.instance.api.crateApiSettingsSaveDownloadCachePath(folder: folder);
+Future<void>  saveDownloadAndExportPath({required String folder }) => RustLib.instance.api.crateApiSettingsSaveDownloadAndExportPath(folder: folder);
 
-Future<PlatformInt64> loadDownloadThreadCount() =>
-    RustLib.instance.api.crateApiSettingsLoadDownloadThreadCount();
+Future<String>  loadDownloadCachePath() => RustLib.instance.api.crateApiSettingsLoadDownloadCachePath();
 
-Future<void> saveDownloadThreadCount({required PlatformInt64 value}) =>
-    RustLib.instance.api.crateApiSettingsSaveDownloadThreadCount(value: value);
+Future<void>  saveDownloadCachePath({required String folder }) => RustLib.instance.api.crateApiSettingsSaveDownloadCachePath(folder: folder);
 
-Future<void> reloadSwitchAddress() =>
-    RustLib.instance.api.crateApiSettingsReloadSwitchAddress();
+Future<PlatformInt64>  loadDownloadThreadCount() => RustLib.instance.api.crateApiSettingsLoadDownloadThreadCount();
 
-Future<void> resetSwitchAddress() =>
-    RustLib.instance.api.crateApiSettingsResetSwitchAddress();
+Future<void>  saveDownloadThreadCount({required PlatformInt64 value }) => RustLib.instance.api.crateApiSettingsSaveDownloadThreadCount(value: value);
+
+Future<void>  reloadSwitchAddress() => RustLib.instance.api.crateApiSettingsReloadSwitchAddress();
+
+Future<void>  resetSwitchAddress() => RustLib.instance.api.crateApiSettingsResetSwitchAddress();
+
+            
+            

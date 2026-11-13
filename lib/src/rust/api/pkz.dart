@@ -8,57 +8,22 @@ import '../frb_generated.dart';
 import '../pkz/dto.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<PkzArchive> pkzInfo({required String pkzPath}) =>
-    RustLib.instance.api.crateApiPkzPkzInfo(pkzPath: pkzPath);
 
-Future<Uint8List> loadPkzFile({
-  required String pkzPath,
-  required String path,
-}) => RustLib.instance.api.crateApiPkzLoadPkzFile(pkzPath: pkzPath, path: path);
+            
 
-Future<List<PkzComicViewLog>> pkzComicViewLogs({required String fileName}) =>
-    RustLib.instance.api.crateApiPkzPkzComicViewLogs(fileName: fileName);
+            Future<PkzArchive>  pkzInfo({required String pkzPath }) => RustLib.instance.api.crateApiPkzPkzInfo(pkzPath: pkzPath);
 
-Future<PkzComicViewLog?> pkzComicViewLogByPkzNameAndId({
-  required String fileName,
-  required String comicId,
-}) => RustLib.instance.api.crateApiPkzPkzComicViewLogByPkzNameAndId(
-  fileName: fileName,
-  comicId: comicId,
-);
+Future<Uint8List>  loadPkzFile({required String pkzPath , required String path }) => RustLib.instance.api.crateApiPkzLoadPkzFile(pkzPath: pkzPath, path: path);
 
-Future<void> viewPkz({required String fileName, required String filePath}) =>
-    RustLib.instance.api.crateApiPkzViewPkz(
-      fileName: fileName,
-      filePath: filePath,
-    );
+Future<List<PkzComicViewLog>>  pkzComicViewLogs({required String fileName }) => RustLib.instance.api.crateApiPkzPkzComicViewLogs(fileName: fileName);
 
-Future<void> viewPkzComic({
-  required String fileName,
-  required String filePath,
-  required String comicId,
-  required String comicTitle,
-}) => RustLib.instance.api.crateApiPkzViewPkzComic(
-  fileName: fileName,
-  filePath: filePath,
-  comicId: comicId,
-  comicTitle: comicTitle,
-);
+Future<PkzComicViewLog?>  pkzComicViewLogByPkzNameAndId({required String fileName , required String comicId }) => RustLib.instance.api.crateApiPkzPkzComicViewLogByPkzNameAndId(fileName: fileName, comicId: comicId);
 
-Future<void> viewPkzEpAndPicture({
-  required String fileName,
-  required String filePath,
-  required String comicId,
-  required String comicTitle,
-  required String epId,
-  required String epTitle,
-  required PlatformInt64 pictureRank,
-}) => RustLib.instance.api.crateApiPkzViewPkzEpAndPicture(
-  fileName: fileName,
-  filePath: filePath,
-  comicId: comicId,
-  comicTitle: comicTitle,
-  epId: epId,
-  epTitle: epTitle,
-  pictureRank: pictureRank,
-);
+Future<void>  viewPkz({required String fileName , required String filePath }) => RustLib.instance.api.crateApiPkzViewPkz(fileName: fileName, filePath: filePath);
+
+Future<void>  viewPkzComic({required String fileName , required String filePath , required String comicId , required String comicTitle }) => RustLib.instance.api.crateApiPkzViewPkzComic(fileName: fileName, filePath: filePath, comicId: comicId, comicTitle: comicTitle);
+
+Future<void>  viewPkzEpAndPicture({required String fileName , required String filePath , required String comicId , required String comicTitle , required String epId , required String epTitle , required PlatformInt64 pictureRank }) => RustLib.instance.api.crateApiPkzViewPkzEpAndPicture(fileName: fileName, filePath: filePath, comicId: comicId, comicTitle: comicTitle, epId: epId, epTitle: epTitle, pictureRank: pictureRank);
+
+            
+            

@@ -6,273 +6,167 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-class PkzArchive {
-  final String coverPath;
-  final String authorAvatarPath;
-  final List<PkzComic> comics;
-  final PlatformInt64 comicCount;
-  final PlatformInt64 volumesCount;
-  final PlatformInt64 chapterCount;
-  final PlatformInt64 pictureCount;
 
-  const PkzArchive({
-    required this.coverPath,
-    required this.authorAvatarPath,
-    required this.comics,
-    required this.comicCount,
-    required this.volumesCount,
-    required this.chapterCount,
-    required this.pictureCount,
-  });
+            
 
-  @override
-  int get hashCode =>
-      coverPath.hashCode ^
-      authorAvatarPath.hashCode ^
-      comics.hashCode ^
-      comicCount.hashCode ^
-      volumesCount.hashCode ^
-      chapterCount.hashCode ^
-      pictureCount.hashCode;
+            
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PkzArchive &&
-          runtimeType == other.runtimeType &&
-          coverPath == other.coverPath &&
-          authorAvatarPath == other.authorAvatarPath &&
-          comics == other.comics &&
-          comicCount == other.comicCount &&
-          volumesCount == other.volumesCount &&
-          chapterCount == other.chapterCount &&
-          pictureCount == other.pictureCount;
-}
+            class PkzArchive  {
+                final String coverPath;
+final String authorAvatarPath;
+final List<PkzComic> comics;
+final PlatformInt64 comicCount;
+final PlatformInt64 volumesCount;
+final PlatformInt64 chapterCount;
+final PlatformInt64 pictureCount;
 
-class PkzChapter {
-  final String id;
-  final String title;
-  final PlatformInt64 updatedAt;
-  final PlatformInt64 createdAt;
-  final String coverPath;
-  final List<PkzPicture> pictures;
-  final PlatformInt64 pictureCount;
-  final PlatformInt64 idx;
+                const PkzArchive({required this.coverPath ,required this.authorAvatarPath ,required this.comics ,required this.comicCount ,required this.volumesCount ,required this.chapterCount ,required this.pictureCount ,});
 
-  const PkzChapter({
-    required this.id,
-    required this.title,
-    required this.updatedAt,
-    required this.createdAt,
-    required this.coverPath,
-    required this.pictures,
-    required this.pictureCount,
-    required this.idx,
-  });
+                
+                
 
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      title.hashCode ^
-      updatedAt.hashCode ^
-      createdAt.hashCode ^
-      coverPath.hashCode ^
-      pictures.hashCode ^
-      pictureCount.hashCode ^
-      idx.hashCode;
+                
+        @override
+        int get hashCode => coverPath.hashCode^authorAvatarPath.hashCode^comics.hashCode^comicCount.hashCode^volumesCount.hashCode^chapterCount.hashCode^pictureCount.hashCode;
+        
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PkzChapter &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          title == other.title &&
-          updatedAt == other.updatedAt &&
-          createdAt == other.createdAt &&
-          coverPath == other.coverPath &&
-          pictures == other.pictures &&
-          pictureCount == other.pictureCount &&
-          idx == other.idx;
-}
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is PkzArchive &&
+                runtimeType == other.runtimeType
+                && coverPath == other.coverPath&& authorAvatarPath == other.authorAvatarPath&& comics == other.comics&& comicCount == other.comicCount&& volumesCount == other.volumesCount&& chapterCount == other.chapterCount&& pictureCount == other.pictureCount;
+        
+            }
 
-class PkzComic {
-  final String id;
-  final String title;
-  final List<String> categories;
-  final List<String> tags;
-  final PlatformInt64 updatedAt;
-  final PlatformInt64 createdAt;
-  final String description;
-  final String chineseTeam;
-  final bool finished;
-  final String coverPath;
-  final String authorAvatarPath;
-  final List<PkzVolume> volumes;
-  final PlatformInt64 volumesCount;
-  final PlatformInt64 chapterCount;
-  final PlatformInt64 pictureCount;
-  final PlatformInt64 idx;
-  final String author;
-  final String authorId;
+class PkzChapter  {
+                final String id;
+final String title;
+final PlatformInt64 updatedAt;
+final PlatformInt64 createdAt;
+final String coverPath;
+final List<PkzPicture> pictures;
+final PlatformInt64 pictureCount;
+final PlatformInt64 idx;
 
-  const PkzComic({
-    required this.id,
-    required this.title,
-    required this.categories,
-    required this.tags,
-    required this.updatedAt,
-    required this.createdAt,
-    required this.description,
-    required this.chineseTeam,
-    required this.finished,
-    required this.coverPath,
-    required this.authorAvatarPath,
-    required this.volumes,
-    required this.volumesCount,
-    required this.chapterCount,
-    required this.pictureCount,
-    required this.idx,
-    required this.author,
-    required this.authorId,
-  });
+                const PkzChapter({required this.id ,required this.title ,required this.updatedAt ,required this.createdAt ,required this.coverPath ,required this.pictures ,required this.pictureCount ,required this.idx ,});
 
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      title.hashCode ^
-      categories.hashCode ^
-      tags.hashCode ^
-      updatedAt.hashCode ^
-      createdAt.hashCode ^
-      description.hashCode ^
-      chineseTeam.hashCode ^
-      finished.hashCode ^
-      coverPath.hashCode ^
-      authorAvatarPath.hashCode ^
-      volumes.hashCode ^
-      volumesCount.hashCode ^
-      chapterCount.hashCode ^
-      pictureCount.hashCode ^
-      idx.hashCode ^
-      author.hashCode ^
-      authorId.hashCode;
+                
+                
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PkzComic &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          title == other.title &&
-          categories == other.categories &&
-          tags == other.tags &&
-          updatedAt == other.updatedAt &&
-          createdAt == other.createdAt &&
-          description == other.description &&
-          chineseTeam == other.chineseTeam &&
-          finished == other.finished &&
-          coverPath == other.coverPath &&
-          authorAvatarPath == other.authorAvatarPath &&
-          volumes == other.volumes &&
-          volumesCount == other.volumesCount &&
-          chapterCount == other.chapterCount &&
-          pictureCount == other.pictureCount &&
-          idx == other.idx &&
-          author == other.author &&
-          authorId == other.authorId;
-}
+                
+        @override
+        int get hashCode => id.hashCode^title.hashCode^updatedAt.hashCode^createdAt.hashCode^coverPath.hashCode^pictures.hashCode^pictureCount.hashCode^idx.hashCode;
+        
 
-class PkzPicture {
-  final String id;
-  final String title;
-  final PlatformInt64 width;
-  final PlatformInt64 height;
-  final String format;
-  final String picturePath;
-  final PlatformInt64 idx;
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is PkzChapter &&
+                runtimeType == other.runtimeType
+                && id == other.id&& title == other.title&& updatedAt == other.updatedAt&& createdAt == other.createdAt&& coverPath == other.coverPath&& pictures == other.pictures&& pictureCount == other.pictureCount&& idx == other.idx;
+        
+            }
 
-  const PkzPicture({
-    required this.id,
-    required this.title,
-    required this.width,
-    required this.height,
-    required this.format,
-    required this.picturePath,
-    required this.idx,
-  });
+class PkzComic  {
+                final String id;
+final String title;
+final List<String> categories;
+final List<String> tags;
+final PlatformInt64 updatedAt;
+final PlatformInt64 createdAt;
+final String description;
+final String chineseTeam;
+final bool finished;
+final String coverPath;
+final String authorAvatarPath;
+final List<PkzVolume> volumes;
+final PlatformInt64 volumesCount;
+final PlatformInt64 chapterCount;
+final PlatformInt64 pictureCount;
+final PlatformInt64 idx;
+final String author;
+final String authorId;
 
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      title.hashCode ^
-      width.hashCode ^
-      height.hashCode ^
-      format.hashCode ^
-      picturePath.hashCode ^
-      idx.hashCode;
+                const PkzComic({required this.id ,required this.title ,required this.categories ,required this.tags ,required this.updatedAt ,required this.createdAt ,required this.description ,required this.chineseTeam ,required this.finished ,required this.coverPath ,required this.authorAvatarPath ,required this.volumes ,required this.volumesCount ,required this.chapterCount ,required this.pictureCount ,required this.idx ,required this.author ,required this.authorId ,});
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PkzPicture &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          title == other.title &&
-          width == other.width &&
-          height == other.height &&
-          format == other.format &&
-          picturePath == other.picturePath &&
-          idx == other.idx;
-}
+                
+                
 
-class PkzVolume {
-  final String id;
-  final String title;
-  final PlatformInt64 updatedAt;
-  final PlatformInt64 createdAt;
-  final String coverPath;
-  final List<PkzChapter> chapters;
-  final PlatformInt64 chapterCount;
-  final PlatformInt64 pictureCount;
-  final PlatformInt64 idx;
+                
+        @override
+        int get hashCode => id.hashCode^title.hashCode^categories.hashCode^tags.hashCode^updatedAt.hashCode^createdAt.hashCode^description.hashCode^chineseTeam.hashCode^finished.hashCode^coverPath.hashCode^authorAvatarPath.hashCode^volumes.hashCode^volumesCount.hashCode^chapterCount.hashCode^pictureCount.hashCode^idx.hashCode^author.hashCode^authorId.hashCode;
+        
 
-  const PkzVolume({
-    required this.id,
-    required this.title,
-    required this.updatedAt,
-    required this.createdAt,
-    required this.coverPath,
-    required this.chapters,
-    required this.chapterCount,
-    required this.pictureCount,
-    required this.idx,
-  });
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is PkzComic &&
+                runtimeType == other.runtimeType
+                && id == other.id&& title == other.title&& categories == other.categories&& tags == other.tags&& updatedAt == other.updatedAt&& createdAt == other.createdAt&& description == other.description&& chineseTeam == other.chineseTeam&& finished == other.finished&& coverPath == other.coverPath&& authorAvatarPath == other.authorAvatarPath&& volumes == other.volumes&& volumesCount == other.volumesCount&& chapterCount == other.chapterCount&& pictureCount == other.pictureCount&& idx == other.idx&& author == other.author&& authorId == other.authorId;
+        
+            }
 
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      title.hashCode ^
-      updatedAt.hashCode ^
-      createdAt.hashCode ^
-      coverPath.hashCode ^
-      chapters.hashCode ^
-      chapterCount.hashCode ^
-      pictureCount.hashCode ^
-      idx.hashCode;
+class PkzPicture  {
+                final String id;
+final String title;
+final PlatformInt64 width;
+final PlatformInt64 height;
+final String format;
+final String picturePath;
+final PlatformInt64 idx;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PkzVolume &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          title == other.title &&
-          updatedAt == other.updatedAt &&
-          createdAt == other.createdAt &&
-          coverPath == other.coverPath &&
-          chapters == other.chapters &&
-          chapterCount == other.chapterCount &&
-          pictureCount == other.pictureCount &&
-          idx == other.idx;
-}
+                const PkzPicture({required this.id ,required this.title ,required this.width ,required this.height ,required this.format ,required this.picturePath ,required this.idx ,});
+
+                
+                
+
+                
+        @override
+        int get hashCode => id.hashCode^title.hashCode^width.hashCode^height.hashCode^format.hashCode^picturePath.hashCode^idx.hashCode;
+        
+
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is PkzPicture &&
+                runtimeType == other.runtimeType
+                && id == other.id&& title == other.title&& width == other.width&& height == other.height&& format == other.format&& picturePath == other.picturePath&& idx == other.idx;
+        
+            }
+
+class PkzVolume  {
+                final String id;
+final String title;
+final PlatformInt64 updatedAt;
+final PlatformInt64 createdAt;
+final String coverPath;
+final List<PkzChapter> chapters;
+final PlatformInt64 chapterCount;
+final PlatformInt64 pictureCount;
+final PlatformInt64 idx;
+
+                const PkzVolume({required this.id ,required this.title ,required this.updatedAt ,required this.createdAt ,required this.coverPath ,required this.chapters ,required this.chapterCount ,required this.pictureCount ,required this.idx ,});
+
+                
+                
+
+                
+        @override
+        int get hashCode => id.hashCode^title.hashCode^updatedAt.hashCode^createdAt.hashCode^coverPath.hashCode^chapters.hashCode^chapterCount.hashCode^pictureCount.hashCode^idx.hashCode;
+        
+
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is PkzVolume &&
+                runtimeType == other.runtimeType
+                && id == other.id&& title == other.title&& updatedAt == other.updatedAt&& createdAt == other.createdAt&& coverPath == other.coverPath&& chapters == other.chapters&& chapterCount == other.chapterCount&& pictureCount == other.pictureCount&& idx == other.idx;
+        
+            }
+            

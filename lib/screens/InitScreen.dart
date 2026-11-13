@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 import 'package:pikapika/basic/config/Address.dart';
@@ -47,6 +48,7 @@ import 'package:pikapika/basic/config/ShadowCategories.dart';
 import 'package:pikapika/basic/config/ShowCommentAtDownload.dart';
 import 'package:pikapika/basic/config/TagFavorite.dart';
 import 'package:pikapika/basic/config/Themes.dart';
+import 'package:pikapika/basic/Metrics.dart';
 import 'package:pikapika/basic/Method.dart';
 import 'package:pikapika/basic/config/ListLayout.dart';
 import 'package:pikapika/basic/config/TimeOffsetHour.dart';
@@ -75,6 +77,7 @@ import '../basic/config/ExportPath.dart';
 import '../basic/config/ExportRename.dart';
 import '../basic/config/HiddenFdIcon.dart';
 import '../basic/config/HiddenViewed.dart';
+import '../basic/config/HiddenCommentWords.dart';
 import '../basic/config/HiddenWords.dart';
 import '../basic/config/HideOnlineFavorite.dart';
 import '../basic/config/IconLoading.dart';
@@ -164,6 +167,14 @@ class _InitScreenState extends State<InitScreen> {
     await initGestureSpeed();
     await initExportRename();
     await initVersion();
+    await Metrics.syncVersion();
+    if (mounted) {
+      if (Platform.isAndroid || Platform.isIOS) {
+        Metrics.syncLocale(context.locale.languageCode);
+      } else {
+        Metrics.syncLocale('zh');
+      }
+    }
     await initUsingRightClickPop();
     await initAuthentication();
     await reloadIsPro();
@@ -192,6 +203,7 @@ class _InitScreenState extends State<InitScreen> {
     await initLockTimeOut();
     await initReaderTwoPageDirection();
     await initHiddenWords();
+    await initHiddenCommentWords();
     await initTagFavorite();
     await initReaderScrollByScreenPercentage();
     await initWebToonScrollMode();

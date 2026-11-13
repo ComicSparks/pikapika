@@ -7,53 +7,26 @@ import '../frb_generated.dart';
 import '../pica/dto.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<GamePage> games({required PlatformInt64 page}) =>
-    RustLib.instance.api.crateApiGameGames(page: page);
 
-Future<GameInfo> game({required String gameId}) =>
-    RustLib.instance.api.crateApiGameGame(gameId: gameId);
+            
 
-Future<GameCommentPage> gameComments({
-  required String gameId,
-  required PlatformInt64 page,
-}) => RustLib.instance.api.crateApiGameGameComments(gameId: gameId, page: page);
+            Future<GamePage>  games({required PlatformInt64 page }) => RustLib.instance.api.crateApiGameGames(page: page);
 
-Future<void> postGameComment({
-  required String gameId,
-  required String content,
-}) => RustLib.instance.api.crateApiGamePostGameComment(
-  gameId: gameId,
-  content: content,
-);
+Future<GameInfo>  game({required String gameId }) => RustLib.instance.api.crateApiGameGame(gameId: gameId);
 
-Future<GameCommentChildrenPage> gameCommentChildren({
-  required String gameId,
-  required String commentId,
-  required PlatformInt64 page,
-}) => RustLib.instance.api.crateApiGameGameCommentChildren(
-  gameId: gameId,
-  commentId: commentId,
-  page: page,
-);
+Future<GameCommentPage>  gameComments({required String gameId , required PlatformInt64 page }) => RustLib.instance.api.crateApiGameGameComments(gameId: gameId, page: page);
 
-Future<void> switchLikeGameComment({
-  required String commentId,
-  required String gameId,
-}) => RustLib.instance.api.crateApiGameSwitchLikeGameComment(
-  commentId: commentId,
-  gameId: gameId,
-);
+Future<void>  postGameComment({required String gameId , required String content }) => RustLib.instance.api.crateApiGamePostGameComment(gameId: gameId, content: content);
 
-Future<void> postGameChildComment({
-  required String commentId,
-  required String content,
-}) => RustLib.instance.api.crateApiGamePostGameChildComment(
-  commentId: commentId,
-  content: content,
-);
+Future<GameCommentChildrenPage>  gameCommentChildren({required String gameId , required String commentId , required PlatformInt64 page }) => RustLib.instance.api.crateApiGameGameCommentChildren(gameId: gameId, commentId: commentId, page: page);
 
-Future<List<Knight>> leaderboardOfKnight() =>
-    RustLib.instance.api.crateApiGameLeaderboardOfKnight();
+Future<void>  switchLikeGameComment({required String commentId , required String gameId }) => RustLib.instance.api.crateApiGameSwitchLikeGameComment(commentId: commentId, gameId: gameId);
 
-Future<List<String>> downloadGame({required String url}) =>
-    RustLib.instance.api.crateApiGameDownloadGame(url: url);
+Future<void>  postGameChildComment({required String commentId , required String content }) => RustLib.instance.api.crateApiGamePostGameChildComment(commentId: commentId, content: content);
+
+Future<List<Knight>>  leaderboardOfKnight() => RustLib.instance.api.crateApiGameLeaderboardOfKnight();
+
+Future<List<String>>  downloadGame({required String url }) => RustLib.instance.api.crateApiGameDownloadGame(url: url);
+
+            
+            

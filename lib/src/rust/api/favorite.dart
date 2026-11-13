@@ -7,138 +7,64 @@ import '../db/dto.dart';
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<List<ViewLog>> viewLogPage({
-  required PlatformInt64 offset,
-  required PlatformInt64 limit,
-}) => RustLib.instance.api.crateApiFavoriteViewLogPage(
-  offset: offset,
-  limit: limit,
-);
 
-Future<void> clearAllViewLog() =>
-    RustLib.instance.api.crateApiFavoriteClearAllViewLog();
+            
 
-Future<void> deleteViewLog({required String id}) =>
-    RustLib.instance.api.crateApiFavoriteDeleteViewLog(id: id);
+            Future<List<ViewLog>>  viewLogPage({required PlatformInt64 offset , required PlatformInt64 limit }) => RustLib.instance.api.crateApiFavoriteViewLogPage(offset: offset, limit: limit);
 
-Future<void> setViewLogPinned({
-  required String comicId,
-  required bool pinned,
-}) => RustLib.instance.api.crateApiFavoriteSetViewLogPinned(
-  comicId: comicId,
-  pinned: pinned,
-);
+Future<void>  clearAllViewLog() => RustLib.instance.api.crateApiFavoriteClearAllViewLog();
 
-Future<void> viewComic({required String id}) =>
-    RustLib.instance.api.crateApiFavoriteViewComic(id: id);
+Future<void>  deleteViewLog({required String id }) => RustLib.instance.api.crateApiFavoriteDeleteViewLog(id: id);
 
-Future<void> storeViewEp({
-  required String comicId,
-  required PlatformInt64 epOrder,
-  required String epTitle,
-  required PlatformInt64 pictureRank,
-}) => RustLib.instance.api.crateApiFavoriteStoreViewEp(
-  comicId: comicId,
-  epOrder: epOrder,
-  epTitle: epTitle,
-  pictureRank: pictureRank,
-);
+Future<void>  setViewLogPinned({required String comicId , required bool pinned }) => RustLib.instance.api.crateApiFavoriteSetViewLogPinned(comicId: comicId, pinned: pinned);
 
-Future<ViewLog?> loadView({required String comicId}) =>
-    RustLib.instance.api.crateApiFavoriteLoadView(comicId: comicId);
+Future<void>  viewComic({required String id }) => RustLib.instance.api.crateApiFavoriteViewComic(id: id);
 
-Future<List<String>> loadViewedList({required List<String> ids}) =>
-    RustLib.instance.api.crateApiFavoriteLoadViewedList(ids: ids);
+Future<void>  storeViewEp({required String comicId , required PlatformInt64 epOrder , required String epTitle , required PlatformInt64 pictureRank }) => RustLib.instance.api.crateApiFavoriteStoreViewEp(comicId: comicId, epOrder: epOrder, epTitle: epTitle, pictureRank: pictureRank);
 
-Future<ComicSubscribe?> loadSubscribed({required String comicId}) =>
-    RustLib.instance.api.crateApiFavoriteLoadSubscribed(comicId: comicId);
+Future<ViewLog?>  loadView({required String comicId }) => RustLib.instance.api.crateApiFavoriteLoadView(comicId: comicId);
 
-Future<void> addSubscribed({required String comicId}) =>
-    RustLib.instance.api.crateApiFavoriteAddSubscribed(comicId: comicId);
+Future<List<String>>  loadViewedList({required List<String> ids }) => RustLib.instance.api.crateApiFavoriteLoadViewedList(ids: ids);
 
-Future<void> removeSubscribed({required String comicId}) =>
-    RustLib.instance.api.crateApiFavoriteRemoveSubscribed(comicId: comicId);
+Future<ComicSubscribe?>  loadSubscribed({required String comicId }) => RustLib.instance.api.crateApiFavoriteLoadSubscribed(comicId: comicId);
 
-Future<void> removeAllSubscribed() =>
-    RustLib.instance.api.crateApiFavoriteRemoveAllSubscribed();
+Future<void>  addSubscribed({required String comicId }) => RustLib.instance.api.crateApiFavoriteAddSubscribed(comicId: comicId);
 
-Future<List<ComicSubscribe>> allSubscribed() =>
-    RustLib.instance.api.crateApiFavoriteAllSubscribed();
+Future<void>  removeSubscribed({required String comicId }) => RustLib.instance.api.crateApiFavoriteRemoveSubscribed(comicId: comicId);
 
-Future<void> updateSubscribed() =>
-    RustLib.instance.api.crateApiFavoriteUpdateSubscribed();
+Future<void>  removeAllSubscribed() => RustLib.instance.api.crateApiFavoriteRemoveAllSubscribed();
 
-Future<void> updateSubscribedForce() =>
-    RustLib.instance.api.crateApiFavoriteUpdateSubscribedForce();
+Future<List<ComicSubscribe>>  allSubscribed() => RustLib.instance.api.crateApiFavoriteAllSubscribed();
 
-Future<LocalFavoriteFolder> createLocalFavoriteFolder({required String name}) =>
-    RustLib.instance.api.crateApiFavoriteCreateLocalFavoriteFolder(name: name);
+Future<void>  updateSubscribed() => RustLib.instance.api.crateApiFavoriteUpdateSubscribed();
 
-Future<void> updateLocalFavoriteFolder({required LocalFavoriteFolder folder}) =>
-    RustLib.instance.api.crateApiFavoriteUpdateLocalFavoriteFolder(
-      folder: folder,
-    );
+Future<void>  updateSubscribedForce() => RustLib.instance.api.crateApiFavoriteUpdateSubscribedForce();
 
-Future<void> deleteLocalFavoriteFolder({required String folderId}) => RustLib
-    .instance
-    .api
-    .crateApiFavoriteDeleteLocalFavoriteFolder(folderId: folderId);
+Future<LocalFavoriteFolder>  createLocalFavoriteFolder({required String name }) => RustLib.instance.api.crateApiFavoriteCreateLocalFavoriteFolder(name: name);
 
-Future<LocalFavoriteFolder> getLocalFavoriteFolder({
-  required String folderId,
-}) => RustLib.instance.api.crateApiFavoriteGetLocalFavoriteFolder(
-  folderId: folderId,
-);
+Future<void>  updateLocalFavoriteFolder({required LocalFavoriteFolder folder }) => RustLib.instance.api.crateApiFavoriteUpdateLocalFavoriteFolder(folder: folder);
 
-Future<List<LocalFavoriteFolder>> listLocalFavoriteFolders() =>
-    RustLib.instance.api.crateApiFavoriteListLocalFavoriteFolders();
+Future<void>  deleteLocalFavoriteFolder({required String folderId }) => RustLib.instance.api.crateApiFavoriteDeleteLocalFavoriteFolder(folderId: folderId);
 
-Future<PlatformInt64> countLocalFavoriteFolders() =>
-    RustLib.instance.api.crateApiFavoriteCountLocalFavoriteFolders();
+Future<LocalFavoriteFolder>  getLocalFavoriteFolder({required String folderId }) => RustLib.instance.api.crateApiFavoriteGetLocalFavoriteFolder(folderId: folderId);
 
-Future<void> addLocalFavoriteComic({
-  required String comicId,
-  required String folderId,
-  required String info,
-}) => RustLib.instance.api.crateApiFavoriteAddLocalFavoriteComic(
-  comicId: comicId,
-  folderId: folderId,
-  info: info,
-);
+Future<List<LocalFavoriteFolder>>  listLocalFavoriteFolders() => RustLib.instance.api.crateApiFavoriteListLocalFavoriteFolders();
 
-Future<void> removeLocalFavoriteComic({required String comicId}) => RustLib
-    .instance
-    .api
-    .crateApiFavoriteRemoveLocalFavoriteComic(comicId: comicId);
+Future<PlatformInt64>  countLocalFavoriteFolders() => RustLib.instance.api.crateApiFavoriteCountLocalFavoriteFolders();
 
-Future<void> moveLocalFavoriteComics({
-  required List<String> comicIds,
-  required String folderId,
-}) => RustLib.instance.api.crateApiFavoriteMoveLocalFavoriteComics(
-  comicIds: comicIds,
-  folderId: folderId,
-);
+Future<void>  addLocalFavoriteComic({required String comicId , required String folderId , required String info }) => RustLib.instance.api.crateApiFavoriteAddLocalFavoriteComic(comicId: comicId, folderId: folderId, info: info);
 
-Future<LocalFavoriteComic?> getLocalFavoriteComic({required String comicId}) =>
-    RustLib.instance.api.crateApiFavoriteGetLocalFavoriteComic(
-      comicId: comicId,
-    );
+Future<void>  removeLocalFavoriteComic({required String comicId }) => RustLib.instance.api.crateApiFavoriteRemoveLocalFavoriteComic(comicId: comicId);
 
-Future<List<LocalFavoriteComic>> listLocalFavoriteComics({
-  required String folderId,
-}) => RustLib.instance.api.crateApiFavoriteListLocalFavoriteComics(
-  folderId: folderId,
-);
+Future<void>  moveLocalFavoriteComics({required List<String> comicIds , required String folderId }) => RustLib.instance.api.crateApiFavoriteMoveLocalFavoriteComics(comicIds: comicIds, folderId: folderId);
 
-Future<List<LocalFavoriteComic>> listAllLocalFavoriteComics() =>
-    RustLib.instance.api.crateApiFavoriteListAllLocalFavoriteComics();
+Future<LocalFavoriteComic?>  getLocalFavoriteComic({required String comicId }) => RustLib.instance.api.crateApiFavoriteGetLocalFavoriteComic(comicId: comicId);
 
-Future<void> mergeLocalFavoritesFromWebDav({
-  required String webdavRoot,
-  required String webdavUsername,
-  required String webdavPassword,
-}) => RustLib.instance.api.crateApiFavoriteMergeLocalFavoritesFromWebDav(
-  webdavRoot: webdavRoot,
-  webdavUsername: webdavUsername,
-  webdavPassword: webdavPassword,
-);
+Future<List<LocalFavoriteComic>>  listLocalFavoriteComics({required String folderId }) => RustLib.instance.api.crateApiFavoriteListLocalFavoriteComics(folderId: folderId);
+
+Future<List<LocalFavoriteComic>>  listAllLocalFavoriteComics() => RustLib.instance.api.crateApiFavoriteListAllLocalFavoriteComics();
+
+Future<void>  mergeLocalFavoritesFromWebDav({required String webdavRoot , required String webdavUsername , required String webdavPassword }) => RustLib.instance.api.crateApiFavoriteMergeLocalFavoritesFromWebDav(webdavRoot: webdavRoot, webdavUsername: webdavUsername, webdavPassword: webdavPassword);
+
+            
+            

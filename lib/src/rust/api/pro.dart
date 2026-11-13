@@ -7,26 +7,26 @@ import '../frb_generated.dart';
 import '../pro/dto.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<ProInfoAll> proInfoAll() => RustLib.instance.api.crateApiProProInfoAll();
 
-Future<void> reloadPro() => RustLib.instance.api.crateApiProReloadPro();
+            
 
-Future<String> getProServerName() =>
-    RustLib.instance.api.crateApiProGetProServerName();
+            Future<ProInfoAll>  proInfoAll() => RustLib.instance.api.crateApiProProInfoAll();
 
-Future<void> setProServerName({required String serverName}) =>
-    RustLib.instance.api.crateApiProSetProServerName(serverName: serverName);
+Future<void>  reloadPro() => RustLib.instance.api.crateApiProReloadPro();
 
-Future<void> inputCdKey({required String cdKey}) =>
-    RustLib.instance.api.crateApiProInputCdKey(cdKey: cdKey);
+Future<String>  getProServerName() => RustLib.instance.api.crateApiProGetProServerName();
 
-Future<void> setPatAccessKey({required String accessKey}) =>
-    RustLib.instance.api.crateApiProSetPatAccessKey(accessKey: accessKey);
+Future<void>  setProServerName({required String serverName }) => RustLib.instance.api.crateApiProSetProServerName(serverName: serverName);
 
-Future<void> reloadPatAccount() =>
-    RustLib.instance.api.crateApiProReloadPatAccount();
+Future<void>  inputCdKey({required String cdKey }) => RustLib.instance.api.crateApiProInputCdKey(cdKey: cdKey);
 
-Future<void> bindThisAccount() =>
-    RustLib.instance.api.crateApiProBindThisAccount();
+Future<void>  setPatAccessKey({required String accessKey }) => RustLib.instance.api.crateApiProSetPatAccessKey(accessKey: accessKey);
 
-Future<void> clearPat() => RustLib.instance.api.crateApiProClearPat();
+Future<void>  reloadPatAccount() => RustLib.instance.api.crateApiProReloadPatAccount();
+
+Future<void>  bindThisAccount() => RustLib.instance.api.crateApiProBindThisAccount();
+
+Future<void>  clearPat() => RustLib.instance.api.crateApiProClearPat();
+
+            
+            

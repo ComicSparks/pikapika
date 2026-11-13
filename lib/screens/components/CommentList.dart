@@ -6,6 +6,7 @@ import 'package:pikapika/screens/CommentScreen.dart';
 import 'package:pikapika/screens/components/BottomSheetInput.dart';
 import 'package:pikapika/screens/components/ItemBuilder.dart';
 import 'package:pikapika/basic/Method.dart';
+import '../../basic/config/HiddenCommentWords.dart';
 import '../../basic/config/IconLoading.dart';
 import 'CommentItem.dart';
 import 'CommentMainType.dart';
@@ -87,6 +88,9 @@ class _CommentListState extends State<CommentList> {
   }
 
   Widget _buildComment(CommentBase comment) {
+    if (isCommentSealed(comment.content)) {
+      return ComicCommentItem(widget.mainType, widget.mainId, comment);
+    }
     return InkWell(
       onTap: () {
         Navigator.of(context).push(

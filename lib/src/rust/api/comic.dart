@@ -7,103 +7,40 @@ import '../frb_generated.dart';
 import '../pica/dto.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<List<Category>> categories() =>
-    RustLib.instance.api.crateApiComicCategories();
 
-Future<ComicsPage> comics({
-  required String sort,
-  required PlatformInt64 page,
-  required String category,
-  required String tag,
-  required String author,
-  required String creatorId,
-  required String chineseTeam,
-}) => RustLib.instance.api.crateApiComicComics(
-  sort: sort,
-  page: page,
-  category: category,
-  tag: tag,
-  author: author,
-  creatorId: creatorId,
-  chineseTeam: chineseTeam,
-);
+            
 
-Future<ComicsPage> searchComics({
-  required String keyword,
-  required String sort,
-  required PlatformInt64 page,
-  required List<String> categories,
-}) => RustLib.instance.api.crateApiComicSearchComics(
-  keyword: keyword,
-  sort: sort,
-  page: page,
-  categories: categories,
-);
+            Future<List<Category>>  categories() => RustLib.instance.api.crateApiComicCategories();
 
-Future<List<ComicSimple>> randomComics() =>
-    RustLib.instance.api.crateApiComicRandomComics();
+Future<ComicsPage>  comics({required String sort , required PlatformInt64 page , required String category , required String tag , required String author , required String creatorId , required String chineseTeam }) => RustLib.instance.api.crateApiComicComics(sort: sort, page: page, category: category, tag: tag, author: author, creatorId: creatorId, chineseTeam: chineseTeam);
 
-Future<List<ComicSimple>> leaderboard({required String boardType}) =>
-    RustLib.instance.api.crateApiComicLeaderboard(boardType: boardType);
+Future<ComicsPage>  searchComics({required String keyword , required String sort , required PlatformInt64 page , required List<String> categories }) => RustLib.instance.api.crateApiComicSearchComics(keyword: keyword, sort: sort, page: page, categories: categories);
 
-Future<ComicInfo> comicInfo({
-  required String comicId,
-  required bool ignoreHistory,
-}) => RustLib.instance.api.crateApiComicComicInfo(
-  comicId: comicId,
-  ignoreHistory: ignoreHistory,
-);
+Future<List<ComicSimple>>  randomComics() => RustLib.instance.api.crateApiComicRandomComics();
 
-Future<EpPage> comicEpPage({
-  required String comicId,
-  required PlatformInt64 page,
-}) =>
-    RustLib.instance.api.crateApiComicComicEpPage(comicId: comicId, page: page);
+Future<List<ComicSimple>>  leaderboard({required String boardType }) => RustLib.instance.api.crateApiComicLeaderboard(boardType: boardType);
 
-Future<PicturePage> comicPicturePageWithQuality({
-  required String comicId,
-  required PlatformInt64 epOrder,
-  required PlatformInt64 page,
-  required String quality,
-}) => RustLib.instance.api.crateApiComicComicPicturePageWithQuality(
-  comicId: comicId,
-  epOrder: epOrder,
-  page: page,
-  quality: quality,
-);
+Future<ComicInfo>  comicInfo({required String comicId , required bool ignoreHistory }) => RustLib.instance.api.crateApiComicComicInfo(comicId: comicId, ignoreHistory: ignoreHistory);
 
-Future<String> switchLike({required String comicId}) =>
-    RustLib.instance.api.crateApiComicSwitchLike(comicId: comicId);
+Future<EpPage>  comicEpPage({required String comicId , required PlatformInt64 page }) => RustLib.instance.api.crateApiComicComicEpPage(comicId: comicId, page: page);
 
-Future<String> switchFavourite({required String comicId}) =>
-    RustLib.instance.api.crateApiComicSwitchFavourite(comicId: comicId);
+Future<PicturePage>  comicPicturePageWithQuality({required String comicId , required PlatformInt64 epOrder , required PlatformInt64 page , required String quality }) => RustLib.instance.api.crateApiComicComicPicturePageWithQuality(comicId: comicId, epOrder: epOrder, page: page, quality: quality);
 
-Future<ComicsPage> favouriteComics({
-  required String sort,
-  required PlatformInt64 page,
-}) => RustLib.instance.api.crateApiComicFavouriteComics(sort: sort, page: page);
+Future<String>  switchLike({required String comicId }) => RustLib.instance.api.crateApiComicSwitchLike(comicId: comicId);
 
-Future<List<ComicSimple>> recommendation({required String comicId}) =>
-    RustLib.instance.api.crateApiComicRecommendation(comicId: comicId);
+Future<String>  switchFavourite({required String comicId }) => RustLib.instance.api.crateApiComicSwitchFavourite(comicId: comicId);
 
-Future<List<Collection>> collections() =>
-    RustLib.instance.api.crateApiComicCollections();
+Future<ComicsPage>  favouriteComics({required String sort , required PlatformInt64 page }) => RustLib.instance.api.crateApiComicFavouriteComics(sort: sort, page: page);
 
-Future<RemoteImageData> remoteImageData({
-  required String fileServer,
-  required String path,
-}) => RustLib.instance.api.crateApiComicRemoteImageData(
-  fileServer: fileServer,
-  path: path,
-);
+Future<List<ComicSimple>>  recommendation({required String comicId }) => RustLib.instance.api.crateApiComicRecommendation(comicId: comicId);
 
-Future<void> remoteImagePreload({
-  required String fileServer,
-  required String path,
-}) => RustLib.instance.api.crateApiComicRemoteImagePreload(
-  fileServer: fileServer,
-  path: path,
-);
+Future<List<Collection>>  collections() => RustLib.instance.api.crateApiComicCollections();
 
-Future<String> downloadImagePath({required String path}) =>
-    RustLib.instance.api.crateApiComicDownloadImagePath(path: path);
+Future<RemoteImageData>  remoteImageData({required String fileServer , required String path }) => RustLib.instance.api.crateApiComicRemoteImageData(fileServer: fileServer, path: path);
+
+Future<void>  remoteImagePreload({required String fileServer , required String path }) => RustLib.instance.api.crateApiComicRemoteImagePreload(fileServer: fileServer, path: path);
+
+Future<String>  downloadImagePath({required String path }) => RustLib.instance.api.crateApiComicDownloadImagePath(path: path);
+
+            
+            

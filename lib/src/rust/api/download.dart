@@ -8,71 +8,37 @@ import '../frb_generated.dart';
 import '../pica/dto.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These functions are ignored because they are not marked as `pub`: `download_body`
 
-Future<bool> downloadRunning() =>
-    RustLib.instance.api.crateApiDownloadDownloadRunning();
+            // These functions are ignored because they are not marked as `pub`: `download_body`
 
-Future<void> setDownloadRunning({required bool running}) =>
-    RustLib.instance.api.crateApiDownloadSetDownloadRunning(running: running);
 
-Future<void> createDownload({
-  required ComicInfo comic,
-  required List<Ep> episodes,
-}) => RustLib.instance.api.crateApiDownloadCreateDownload(
-  comic: comic,
-  episodes: episodes,
-);
+            Future<bool>  downloadRunning() => RustLib.instance.api.crateApiDownloadDownloadRunning();
 
-Future<void> addDownload({
-  required ComicInfo comic,
-  required List<Ep> episodes,
-}) => RustLib.instance.api.crateApiDownloadAddDownload(
-  comic: comic,
-  episodes: episodes,
-);
+Future<void>  setDownloadRunning({required bool running }) => RustLib.instance.api.crateApiDownloadSetDownloadRunning(running: running);
 
-Future<DownloadComic?> loadDownloadComic({required String comicId}) =>
-    RustLib.instance.api.crateApiDownloadLoadDownloadComic(comicId: comicId);
+Future<void>  createDownload({required ComicInfo comic , required List<Ep> episodes }) => RustLib.instance.api.crateApiDownloadCreateDownload(comic: comic, episodes: episodes);
 
-Future<List<DownloadComic>> allDownloads({
-  required String search,
-  required String customFolder,
-}) => RustLib.instance.api.crateApiDownloadAllDownloads(
-  search: search,
-  customFolder: customFolder,
-);
+Future<void>  addDownload({required ComicInfo comic , required List<Ep> episodes }) => RustLib.instance.api.crateApiDownloadAddDownload(comic: comic, episodes: episodes);
 
-Future<List<String>> allCustomFolders() =>
-    RustLib.instance.api.crateApiDownloadAllCustomFolders();
+Future<DownloadComic?>  loadDownloadComic({required String comicId }) => RustLib.instance.api.crateApiDownloadLoadDownloadComic(comicId: comicId);
 
-Future<void> deleteDownloadComic({required String comicId}) =>
-    RustLib.instance.api.crateApiDownloadDeleteDownloadComic(comicId: comicId);
+Future<List<DownloadComic>>  allDownloads({required String search , required String customFolder }) => RustLib.instance.api.crateApiDownloadAllDownloads(search: search, customFolder: customFolder);
 
-Future<void> moveDownloadComic({
-  required List<String> comicIdList,
-  required String customFolder,
-}) => RustLib.instance.api.crateApiDownloadMoveDownloadComic(
-  comicIdList: comicIdList,
-  customFolder: customFolder,
-);
+Future<List<String>>  allCustomFolders() => RustLib.instance.api.crateApiDownloadAllCustomFolders();
 
-Future<List<DownloadEp>> downloadEpList({required String comicId}) =>
-    RustLib.instance.api.crateApiDownloadDownloadEpList(comicId: comicId);
+Future<void>  deleteDownloadComic({required String comicId }) => RustLib.instance.api.crateApiDownloadDeleteDownloadComic(comicId: comicId);
 
-Future<List<DownloadPicture>> downloadPicturesByEpId({required String epId}) =>
-    RustLib.instance.api.crateApiDownloadDownloadPicturesByEpId(epId: epId);
+Future<void>  moveDownloadComic({required List<String> comicIdList , required String customFolder }) => RustLib.instance.api.crateApiDownloadMoveDownloadComic(comicIdList: comicIdList, customFolder: customFolder);
 
-Future<void> resetAllDownloads() =>
-    RustLib.instance.api.crateApiDownloadResetAllDownloads();
+Future<List<DownloadEp>>  downloadEpList({required String comicId }) => RustLib.instance.api.crateApiDownloadDownloadEpList(comicId: comicId);
 
-Future<void> downloadAll({required List<String> comicIds}) =>
-    RustLib.instance.api.crateApiDownloadDownloadAll(comicIds: comicIds);
+Future<List<DownloadPicture>>  downloadPicturesByEpId({required String epId }) => RustLib.instance.api.crateApiDownloadDownloadPicturesByEpId(epId: epId);
 
-Future<void> convertImageToJpeg100({
-  required String path,
-  required String dir,
-}) => RustLib.instance.api.crateApiDownloadConvertImageToJpeg100(
-  path: path,
-  dir: dir,
-);
+Future<void>  resetAllDownloads() => RustLib.instance.api.crateApiDownloadResetAllDownloads();
+
+Future<void>  downloadAll({required List<String> comicIds }) => RustLib.instance.api.crateApiDownloadDownloadAll(comicIds: comicIds);
+
+Future<void>  convertImageToJpeg100({required String path , required String dir }) => RustLib.instance.api.crateApiDownloadConvertImageToJpeg100(path: path, dir: dir);
+
+            
+            

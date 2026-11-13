@@ -274,6 +274,13 @@
       "input_hint": "Enter the keyword to hide",
       "no_words": "No keywords"
     },
+    "hidden_comment_words": {
+      "title": "Seal comments",
+      "clear_all": "Confirm clear",
+      "clear_all_desc": "Clear all comment seal keywords?",
+      "input_hint": "Enter a keyword to seal comments",
+      "no_words": "No keywords"
+    },
     "image_address": {
       "title": "Image address",
       "pinging": "Pinging",
@@ -437,7 +444,39 @@
       "choose_theme": "Choose theme",
       "book": "Book",
       "enable_status_bar_color": "Enable status bar color",
-      "enable_status_restart_hint": "When disabled, you need to restart the application to refresh the status bar color"
+      "enable_status_restart_hint": "When disabled, you need to restart the application to refresh the status bar color",
+      "custom_manage": "Manage custom themes",
+      "custom_manage_hint": "Copy, edit, import/export .pkt",
+      "custom_edit": "Edit custom theme",
+      "custom_name": "Name",
+      "custom_name_hint": "Enter theme name",
+      "custom_name_required": "Theme name is required",
+      "custom_default_name": "Custom theme",
+      "custom_is_dark": "Dark theme",
+      "custom_is_light": "Light theme",
+      "custom_copy_from": "Copy from existing theme",
+      "custom_copy_suffix": "Copy",
+      "custom_import": "Import .pkt",
+      "custom_export": "Export .pkt",
+      "custom_delete": "Delete",
+      "custom_delete_confirm": "Delete this custom theme?",
+      "custom_delete_success": "Deleted",
+      "custom_empty": "No custom themes yet. Copy from an existing theme or import a .pkt file.",
+      "custom_import_success": "Imported",
+      "custom_import_failed": "Import failed, invalid file",
+      "custom_export_success": "Exported",
+      "custom_export_failed": "Export failed",
+      "custom_save_success": "Saved",
+      "custom_color_hex": "Color value",
+      "custom_color_primary": "Primary",
+      "custom_color_scaffold": "Background",
+      "custom_color_card": "Card",
+      "custom_color_app_bar": "App bar",
+      "custom_color_app_bar_fg": "App bar foreground",
+      "custom_color_bottom_bg": "Bottom bar background",
+      "custom_color_bottom_selected": "Bottom bar selected",
+      "custom_color_bottom_unselected": "Bottom bar unselected",
+      "custom_color_divider": "Divider"
     },
     "three_keep_right": {
       "title": "Three area mode page always to the right"
@@ -834,7 +873,20 @@
       "bind_account_time": "Bind account time",
       "rebind_time": "Rebind available time",
       "power_features": "Power features: Multi-thread download / Batch import/export download",
-      "power_guide": "Go to \"About\" page to find maintenance address for power guide\n\n  \"I have powered before\" can sync corresponding power status\n  \"I just powered\" exchange mysterious code\n  \"PAT membership\" is independent power method\n  Switching \"Power Method\" may fix FAIL"
+      "power_guide": "Go to \"About\" page to find maintenance address for power guide\n\n  \"I have powered before\" can sync corresponding power status\n  \"I just powered\" exchange mysterious code\n  \"PAT membership\" is independent power method\n  Switching \"Power Method\" may fix FAIL",
+      "error": {
+        "NETWORK_TIMEOUT": "Network timeout. Check your network or switch power method.",
+        "NETWORK_UNREACHABLE": "Cannot reach server. Check your network or switch power method.",
+        "SERVER_FAILED": "Server failed to process the request",
+        "SERVER_RESPONSE_INVALID": "Invalid server response",
+        "REQUEST_INVALID": "Invalid request",
+        "ORDER_NOT_SYNCED": "Order is not synced yet. Please try again later.",
+        "ORDER_ALREADY_USED": "Order already used",
+        "ORDER_AMOUNT_INVALID": "Invalid order amount",
+        "TICKET_NOT_FOUND": "Redeem code not found",
+        "TICKET_ALREADY_USED": "Redeem code already used",
+        "TICKET_EVENT_USED": "Event redeem code already used"
+      }
     },
     "rankings": {
       "title": "Rankings",
@@ -944,6 +996,9 @@
     },
     "comic_list": {
       "shadow": "Shadowed Comics"
+    },
+    "comment": {
+      "shadow": "Sealed comment"
     },
     "common": {
       "display_mode": "Display Mode",

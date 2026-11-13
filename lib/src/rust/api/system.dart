@@ -7,38 +7,34 @@ import '../frb_generated.dart';
 import '../pica/dto.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<void> cleanNetworkCache() =>
-    RustLib.instance.api.crateApiSystemCleanNetworkCache();
 
-Future<void> cleanImageCache() =>
-    RustLib.instance.api.crateApiSystemCleanImageCache();
+            
 
-Future<void> clean() => RustLib.instance.api.crateApiSystemClean();
+            Future<void>  cleanNetworkCache() => RustLib.instance.api.crateApiSystemCleanNetworkCache();
 
-Future<void> autoClean({required String expireSec}) =>
-    RustLib.instance.api.crateApiSystemAutoClean(expireSec: expireSec);
+Future<void>  cleanImageCache() => RustLib.instance.api.crateApiSystemCleanImageCache();
 
-Future<String> defaultHttpClientGet({required String url}) =>
-    RustLib.instance.api.crateApiSystemDefaultHttpClientGet(url: url);
+Future<void>  clean() => RustLib.instance.api.crateApiSystemClean();
 
-Future<Map<String, String>> configLinks() =>
-    RustLib.instance.api.crateApiSystemConfigLinks();
+Future<void>  autoClean({required String expireSec }) => RustLib.instance.api.crateApiSystemAutoClean(expireSec: expireSec);
 
-Future<AppConfig> appConfig() => RustLib.instance.api.crateApiSystemAppConfig();
+Future<String>  defaultHttpClientGet({required String url }) => RustLib.instance.api.crateApiSystemDefaultHttpClientGet(url: url);
 
-Future<PlatformInt64> ping({required String index}) =>
-    RustLib.instance.api.crateApiSystemPing(index: index);
+Future<Map<String, String>>  configLinks() => RustLib.instance.api.crateApiSystemConfigLinks();
 
-Future<PlatformInt64> pingImg({required String index}) =>
-    RustLib.instance.api.crateApiSystemPingImg(index: index);
+Future<AppConfig>  appConfig() => RustLib.instance.api.crateApiSystemAppConfig();
 
-Future<void> startWebServer() =>
-    RustLib.instance.api.crateApiSystemStartWebServer();
+Future<PlatformInt64>  ping({required String index }) => RustLib.instance.api.crateApiSystemPing(index: index);
 
-Future<void> stopWebServer() =>
-    RustLib.instance.api.crateApiSystemStopWebServer();
+Future<PlatformInt64>  pingImg({required String index }) => RustLib.instance.api.crateApiSystemPingImg(index: index);
 
-Future<String> getHomeDir() => RustLib.instance.api.crateApiSystemGetHomeDir();
+Future<void>  startWebServer() => RustLib.instance.api.crateApiSystemStartWebServer();
 
-Future<void> mkdirs({required String path}) =>
-    RustLib.instance.api.crateApiSystemMkdirs(path: path);
+Future<void>  stopWebServer() => RustLib.instance.api.crateApiSystemStopWebServer();
+
+Future<String>  getHomeDir() => RustLib.instance.api.crateApiSystemGetHomeDir();
+
+Future<void>  mkdirs({required String path }) => RustLib.instance.api.crateApiSystemMkdirs(path: path);
+
+            
+            

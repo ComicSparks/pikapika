@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pikapika/basic/Common.dart';
 import '../Method.dart';
+import 'CustomTheme.dart';
 import 'Platform.dart';
 
 // 字体相关
@@ -34,6 +35,16 @@ Future initFont() async {
       .toList();
 }
 
+const _pageTransitions = PageTransitionsTheme(
+  builders: {
+    TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
+    TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+    TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+    TargetPlatform.windows: FadeUpwardsPageTransitionsBuilder(),
+    TargetPlatform.linux: FadeUpwardsPageTransitionsBuilder(),
+  },
+);
+
 ThemeData _fontThemeData(bool dark) {
   return ThemeData(
     // 这些主题按 Material 2 配色。Material 3 会把分割线改成近黑的 outlineVariant，
@@ -41,6 +52,8 @@ ThemeData _fontThemeData(bool dark) {
     useMaterial3: false,
     brightness: dark ? Brightness.dark : Brightness.light,
     fontFamily: _fontFamily.isEmpty ? null : _fontFamily.first,
+    // Flutter 3.38 默认用缩放转场，中间会铺一层 colorScheme.surface。
+    pageTransitionsTheme: _pageTransitions,
     ////fontFamilyFallback: _fontFamily.length > 1 ? _fontFamily.sublist(1) : null,
   );
 }
@@ -160,6 +173,33 @@ abstract class _ThemePackage {
   ThemeData themeData(ThemeData rawData);
 
   bool isDark();
+
+  CustomThemeColors colors();
+}
+
+class BuiltinThemeRef {
+  final String code;
+  final String name;
+  final bool isDark;
+  final CustomThemeColors colors;
+
+  const BuiltinThemeRef({
+    required this.code,
+    required this.name,
+    required this.isDark,
+    required this.colors,
+  });
+}
+
+List<BuiltinThemeRef> builtinThemeRefs() {
+  return _themePackages
+      .map((e) => BuiltinThemeRef(
+            code: e.code(),
+            name: e.name(),
+            isDark: e.isDark(),
+            colors: e.colors(),
+          ))
+      .toList();
 }
 
 class _OriginTheme extends _ThemePackage {
@@ -174,6 +214,19 @@ class _OriginTheme extends _ThemePackage {
 
   @override
   bool isDark() => false;
+
+  @override
+  CustomThemeColors colors() => CustomThemeColors(
+        primary: Colors.blue,
+        scaffoldBackground: const Color(0xFFFAFAFA),
+        cardColor: Colors.white,
+        appBarColor: Colors.blue,
+        appBarForeground: Colors.white,
+        bottomNavBackground: Colors.white,
+        bottomNavSelected: Colors.blue,
+        bottomNavUnselected: Colors.grey.shade600,
+        dividerColor: Colors.grey.shade300,
+      );
 }
 
 class _BookTheme extends _ThemePackage {
@@ -206,6 +259,19 @@ class _BookTheme extends _ThemePackage {
 
   @override
   bool isDark() => false;
+
+  @override
+  CustomThemeColors colors() => CustomThemeColors(
+        primary: Colors.grey.shade700,
+        scaffoldBackground: const Color(0xFFFAFAFA),
+        cardColor: Colors.white,
+        appBarColor: Colors.transparent,
+        appBarForeground: Colors.grey.shade700,
+        bottomNavBackground: Colors.white,
+        bottomNavSelected: Colors.grey.shade800,
+        bottomNavUnselected: Colors.grey.shade500,
+        dividerColor: Colors.grey.shade500,
+      );
 }
 
 class _PinkTheme extends _ThemePackage {
@@ -221,6 +287,7 @@ class _PinkTheme extends _ThemePackage {
         colorScheme: ColorScheme.light(
           primary: Colors.pink.shade200,
           secondary: Colors.pink.shade200,
+          surface: const Color(0xFFFAFAFA),
           outline: Colors.grey.shade200,
           outlineVariant: Colors.grey.shade200,
         ),
@@ -256,6 +323,9 @@ class _PinkTheme extends _ThemePackage {
 
   @override
   bool isDark() => false;
+
+  @override
+  CustomThemeColors colors() => defaultLightCustomColors;
 }
 
 class _BlackTheme extends _ThemePackage {
@@ -271,6 +341,7 @@ class _BlackTheme extends _ThemePackage {
         colorScheme: ColorScheme.light(
           primary: Colors.pink.shade200,
           secondary: Colors.pink.shade200,
+          surface: const Color(0xFFFAFAFA),
           outline: Colors.grey.shade200,
           outlineVariant: Colors.grey.shade200,
         ),
@@ -307,6 +378,19 @@ class _BlackTheme extends _ThemePackage {
 
   @override
   bool isDark() => false;
+
+  @override
+  CustomThemeColors colors() => CustomThemeColors(
+        primary: Colors.pink.shade200,
+        scaffoldBackground: const Color(0xFFFAFAFA),
+        cardColor: Colors.white,
+        appBarColor: Colors.grey.shade800,
+        appBarForeground: Colors.white,
+        bottomNavBackground: Colors.grey.shade800,
+        bottomNavSelected: Colors.white,
+        bottomNavUnselected: Colors.grey.shade400,
+        dividerColor: Colors.grey.shade200,
+      );
 }
 
 class _DarkTheme extends _ThemePackage {
@@ -319,9 +403,11 @@ class _DarkTheme extends _ThemePackage {
   @override
   ThemeData themeData(ThemeData rawData) => rawData.copyWith(
         brightness: Brightness.dark,
-        colorScheme: ColorScheme.light(
+        scaffoldBackgroundColor: const Color(0xFF303030),
+        colorScheme: ColorScheme.dark(
           primary: Colors.pink.shade200,
           secondary: Colors.pink.shade200,
+          surface: const Color(0xFF303030),
           outline: Colors.grey.shade500.withAlpha(70),
           outlineVariant: Colors.grey.shade500.withAlpha(70),
         ),
@@ -367,6 +453,9 @@ class _DarkTheme extends _ThemePackage {
 
   @override
   bool isDark() => true;
+
+  @override
+  CustomThemeColors colors() => defaultDarkCustomColors;
 }
 
 class _DustyBlueTheme extends _ThemePackage {
@@ -387,9 +476,13 @@ class _DustyBlueTheme extends _ThemePackage {
           const Color(0x11AAAAAA),
           const Color(0xff20253b),
         ),
-        colorScheme: ColorScheme.light(
+        colorScheme: ColorScheme.dark(
           primary: Colors.blue.shade200,
           secondary: Colors.blue.shade200,
+          surface: Color.alphaBlend(
+            const Color(0x11999999),
+            const Color(0xff20253b),
+          ),
           outline: Colors.grey.shade800,
           outlineVariant: Colors.grey.shade800,
         ),
@@ -436,6 +529,25 @@ class _DustyBlueTheme extends _ThemePackage {
 
   @override
   bool isDark() => true;
+
+  @override
+  CustomThemeColors colors() => CustomThemeColors(
+        primary: Colors.blue.shade200,
+        scaffoldBackground: Color.alphaBlend(
+          const Color(0x11999999),
+          const Color(0xff20253b),
+        ),
+        cardColor: Color.alphaBlend(
+          const Color(0x11AAAAAA),
+          const Color(0xff20253b),
+        ),
+        appBarColor: const Color(0xff20253b),
+        appBarForeground: Colors.white,
+        bottomNavBackground: const Color(0xff191b26),
+        bottomNavSelected: Colors.blue.shade200,
+        bottomNavUnselected: Colors.grey.shade500,
+        dividerColor: Colors.grey.shade800,
+      );
 }
 
 class _DarkBlackTheme extends _ThemePackage {
@@ -448,11 +560,12 @@ class _DarkBlackTheme extends _ThemePackage {
   @override
   ThemeData themeData(ThemeData rawData) => rawData.copyWith(
         brightness: Brightness.dark,
-        colorScheme: ColorScheme.light(
-          primary: Colors.pink.shade200,
-          secondary: Colors.pink.shade200,
-          outline: const Color.fromARGB(0xff, 64, 64, 64),
-          outlineVariant: const Color.fromARGB(0xff, 64, 64, 64),
+        colorScheme: const ColorScheme.dark(
+          primary: Color(0xFFF48FB1),
+          secondary: Color(0xFFF48FB1),
+          surface: Colors.black,
+          outline: Color.fromARGB(0xff, 64, 64, 64),
+          outlineVariant: Color.fromARGB(0xff, 64, 64, 64),
         ),
         scaffoldBackgroundColor: Colors.black,
         appBarTheme: AppBarTheme(
@@ -491,8 +604,20 @@ class _DarkBlackTheme extends _ThemePackage {
 
   @override
   bool isDark() => true;
-}
 
+  @override
+  CustomThemeColors colors() => const CustomThemeColors(
+        primary: Color(0xFFF48FB1),
+        scaffoldBackground: Colors.black,
+        cardColor: Color(0xFF121212),
+        appBarColor: Color.fromARGB(0xff, 10, 10, 10),
+        appBarForeground: Colors.white,
+        bottomNavBackground: Color.fromARGB(0xff, 10, 10, 10),
+        bottomNavSelected: Colors.white,
+        bottomNavUnselected: Color(0xFFE0E0E0),
+        dividerColor: Color.fromARGB(0xff, 64, 64, 64),
+      );
+}
 final _themePackages = <_ThemePackage>[
   _OriginTheme(),
   _PinkTheme(),
@@ -522,6 +647,10 @@ ThemeData? _darkThemeData;
 // _changeThemeByCode
 
 String _codeToName(String? code) {
+  final custom = findCustomThemeByCode(code);
+  if (custom != null) {
+    return custom.name;
+  }
   for (var package in _themePackages) {
     if (code == package.code()) {
       return package.name();
@@ -546,9 +675,15 @@ ThemeData? currentDarkThemeData() {
   return _darkThemeData;
 }
 
+void reloadTheme() => _reloadTheme();
+
 // 根据Code选择主题, 并发送主题更换事件
 
 ThemeData? _themeByCode(String? themeCode) {
+  final custom = findCustomThemeByCode(themeCode);
+  if (custom != null) {
+    return buildCustomThemeData(custom, _fontThemeData(custom.isDark));
+  }
   for (var package in _themePackages) {
     if (themeCode == package.code()) {
       return package.themeData(_fontThemeData(package.isDark()));
@@ -558,9 +693,11 @@ ThemeData? _themeByCode(String? themeCode) {
 }
 
 void _reloadTheme() {
-  _lightThemeData = _themeByCode(_lightThemeCode);
+  _lightThemeData = _themeByCode(_lightThemeCode) ??
+      _themeByCode(_defaultLightThemeCode);
   if (androidNightMode) {
-    _darkThemeData = _themeByCode(_darkThemeCode);
+    _darkThemeData = _themeByCode(_darkThemeCode) ??
+        _themeByCode(_defaultDarkThemeCode);
   } else {
     _darkThemeData = _lightThemeData;
   }
@@ -577,6 +714,7 @@ Future<dynamic> initTheme() async {
       await method.loadProperty(_darkThemePropertyName, _defaultDarkThemeCode);
   _enableStatusBarColor =
       await method.loadProperty(_enableStatusBarColorProperty, "false") == "true";
+  await initCustomThemes();
   _reloadTheme();
 }
 
@@ -592,6 +730,12 @@ Future<String?> _chooseTheme(BuildContext buildContext) {
               child: Text(e.name()),
               onPressed: () {
                 Navigator.of(context).pop(e.code());
+              },
+            )));
+        list.addAll(customThemes.map((e) => SimpleDialogOption(
+              child: Text(e.name),
+              onPressed: () {
+                Navigator.of(context).pop(e.code);
               },
             )));
         return SimpleDialog(
@@ -626,3 +770,61 @@ Future setAndroidNightMode(bool value) async {
   androidNightMode = value;
   _reloadTheme();
 }
+
+Future<CustomTheme> createCustomThemeFromBuiltin(BuiltinThemeRef source) async {
+  final theme = await addCustomTheme(
+    CustomTheme(
+      id: "",
+      name: "${source.name} ${tr("settings.theme.custom_copy_suffix")}",
+      isDark: source.isDark,
+      colors: source.colors,
+    ),
+  );
+  _reloadTheme();
+  return theme;
+}
+
+Future<CustomTheme> createCustomThemeFromCustom(CustomTheme source) async {
+  final theme = await addCustomTheme(
+    CustomTheme(
+      id: "",
+      name: "${source.name} ${tr("settings.theme.custom_copy_suffix")}",
+      isDark: source.isDark,
+      colors: source.colors,
+    ),
+  );
+  _reloadTheme();
+  return theme;
+}
+
+Future<void> saveCustomThemeEdits(CustomTheme theme) async {
+  await updateCustomTheme(theme);
+  _reloadTheme();
+}
+
+Future<void> deleteCustomThemeById(String id) async {
+  final code = customThemeCode(id);
+  final removed = await removeCustomTheme(id);
+  if (!removed) {
+    return;
+  }
+  if (_lightThemeCode == code) {
+    _lightThemeCode = _defaultLightThemeCode;
+    await method.saveProperty(
+        _lightThemePropertyName, _defaultLightThemeCode);
+  }
+  if (_darkThemeCode == code) {
+    _darkThemeCode = _defaultDarkThemeCode;
+    await method.saveProperty(_darkThemePropertyName, _defaultDarkThemeCode);
+  }
+  _reloadTheme();
+}
+
+Future<CustomTheme?> importCustomThemeAndReload(BuildContext context) async {
+  final theme = await importCustomThemePkt(context);
+  if (theme != null) {
+    _reloadTheme();
+  }
+  return theme;
+}
+

@@ -6,510 +6,281 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-class ComicSubscribe {
-  final String id;
-  final String title;
-  final String author;
-  final PlatformInt64 pagesCount;
-  final PlatformInt64 epsCount;
-  final bool finished;
-  final String categories;
-  final String thumbOriginalName;
-  final String thumbFileServer;
-  final String thumbPath;
-  final String description;
-  final String chineseTeam;
-  final String tags;
-  final PlatformInt64 likesCount;
-  final String subscribeTime;
-  final String updateSubscribeTime;
-  final PlatformInt64 newEpCount;
 
-  const ComicSubscribe({
-    required this.id,
-    required this.title,
-    required this.author,
-    required this.pagesCount,
-    required this.epsCount,
-    required this.finished,
-    required this.categories,
-    required this.thumbOriginalName,
-    required this.thumbFileServer,
-    required this.thumbPath,
-    required this.description,
-    required this.chineseTeam,
-    required this.tags,
-    required this.likesCount,
-    required this.subscribeTime,
-    required this.updateSubscribeTime,
-    required this.newEpCount,
-  });
+            
 
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      title.hashCode ^
-      author.hashCode ^
-      pagesCount.hashCode ^
-      epsCount.hashCode ^
-      finished.hashCode ^
-      categories.hashCode ^
-      thumbOriginalName.hashCode ^
-      thumbFileServer.hashCode ^
-      thumbPath.hashCode ^
-      description.hashCode ^
-      chineseTeam.hashCode ^
-      tags.hashCode ^
-      likesCount.hashCode ^
-      subscribeTime.hashCode ^
-      updateSubscribeTime.hashCode ^
-      newEpCount.hashCode;
+            
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ComicSubscribe &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          title == other.title &&
-          author == other.author &&
-          pagesCount == other.pagesCount &&
-          epsCount == other.epsCount &&
-          finished == other.finished &&
-          categories == other.categories &&
-          thumbOriginalName == other.thumbOriginalName &&
-          thumbFileServer == other.thumbFileServer &&
-          thumbPath == other.thumbPath &&
-          description == other.description &&
-          chineseTeam == other.chineseTeam &&
-          tags == other.tags &&
-          likesCount == other.likesCount &&
-          subscribeTime == other.subscribeTime &&
-          updateSubscribeTime == other.updateSubscribeTime &&
-          newEpCount == other.newEpCount;
-}
+            class ComicSubscribe  {
+                final String id;
+final String title;
+final String author;
+final PlatformInt64 pagesCount;
+final PlatformInt64 epsCount;
+final bool finished;
+final String categories;
+final String thumbOriginalName;
+final String thumbFileServer;
+final String thumbPath;
+final String description;
+final String chineseTeam;
+final String tags;
+final PlatformInt64 likesCount;
+final String subscribeTime;
+final String updateSubscribeTime;
+final PlatformInt64 newEpCount;
 
-class DownloadComic {
-  final String id;
-  final String createdAt;
-  final String updatedAt;
-  final String title;
-  final String author;
-  final PlatformInt64 pagesCount;
-  final PlatformInt64 epsCount;
-  final bool finished;
-  final String categories;
-  final String thumbOriginalName;
-  final String thumbFileServer;
-  final String thumbPath;
-  final String thumbLocalPath;
-  final String description;
-  final String chineseTeam;
-  final String tags;
-  final PlatformInt64 selectedEpCount;
-  final PlatformInt64 selectedPictureCount;
-  final PlatformInt64 downloadEpCount;
-  final PlatformInt64 downloadPictureCount;
-  final bool downloadFinished;
-  final String downloadFinishedTime;
-  final bool downloadFailed;
-  final bool deleting;
+                const ComicSubscribe({required this.id ,required this.title ,required this.author ,required this.pagesCount ,required this.epsCount ,required this.finished ,required this.categories ,required this.thumbOriginalName ,required this.thumbFileServer ,required this.thumbPath ,required this.description ,required this.chineseTeam ,required this.tags ,required this.likesCount ,required this.subscribeTime ,required this.updateSubscribeTime ,required this.newEpCount ,});
 
-  const DownloadComic({
-    required this.id,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.title,
-    required this.author,
-    required this.pagesCount,
-    required this.epsCount,
-    required this.finished,
-    required this.categories,
-    required this.thumbOriginalName,
-    required this.thumbFileServer,
-    required this.thumbPath,
-    required this.thumbLocalPath,
-    required this.description,
-    required this.chineseTeam,
-    required this.tags,
-    required this.selectedEpCount,
-    required this.selectedPictureCount,
-    required this.downloadEpCount,
-    required this.downloadPictureCount,
-    required this.downloadFinished,
-    required this.downloadFinishedTime,
-    required this.downloadFailed,
-    required this.deleting,
-  });
+                
+                
 
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      createdAt.hashCode ^
-      updatedAt.hashCode ^
-      title.hashCode ^
-      author.hashCode ^
-      pagesCount.hashCode ^
-      epsCount.hashCode ^
-      finished.hashCode ^
-      categories.hashCode ^
-      thumbOriginalName.hashCode ^
-      thumbFileServer.hashCode ^
-      thumbPath.hashCode ^
-      thumbLocalPath.hashCode ^
-      description.hashCode ^
-      chineseTeam.hashCode ^
-      tags.hashCode ^
-      selectedEpCount.hashCode ^
-      selectedPictureCount.hashCode ^
-      downloadEpCount.hashCode ^
-      downloadPictureCount.hashCode ^
-      downloadFinished.hashCode ^
-      downloadFinishedTime.hashCode ^
-      downloadFailed.hashCode ^
-      deleting.hashCode;
+                
+        @override
+        int get hashCode => id.hashCode^title.hashCode^author.hashCode^pagesCount.hashCode^epsCount.hashCode^finished.hashCode^categories.hashCode^thumbOriginalName.hashCode^thumbFileServer.hashCode^thumbPath.hashCode^description.hashCode^chineseTeam.hashCode^tags.hashCode^likesCount.hashCode^subscribeTime.hashCode^updateSubscribeTime.hashCode^newEpCount.hashCode;
+        
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is DownloadComic &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          createdAt == other.createdAt &&
-          updatedAt == other.updatedAt &&
-          title == other.title &&
-          author == other.author &&
-          pagesCount == other.pagesCount &&
-          epsCount == other.epsCount &&
-          finished == other.finished &&
-          categories == other.categories &&
-          thumbOriginalName == other.thumbOriginalName &&
-          thumbFileServer == other.thumbFileServer &&
-          thumbPath == other.thumbPath &&
-          thumbLocalPath == other.thumbLocalPath &&
-          description == other.description &&
-          chineseTeam == other.chineseTeam &&
-          tags == other.tags &&
-          selectedEpCount == other.selectedEpCount &&
-          selectedPictureCount == other.selectedPictureCount &&
-          downloadEpCount == other.downloadEpCount &&
-          downloadPictureCount == other.downloadPictureCount &&
-          downloadFinished == other.downloadFinished &&
-          downloadFinishedTime == other.downloadFinishedTime &&
-          downloadFailed == other.downloadFailed &&
-          deleting == other.deleting;
-}
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is ComicSubscribe &&
+                runtimeType == other.runtimeType
+                && id == other.id&& title == other.title&& author == other.author&& pagesCount == other.pagesCount&& epsCount == other.epsCount&& finished == other.finished&& categories == other.categories&& thumbOriginalName == other.thumbOriginalName&& thumbFileServer == other.thumbFileServer&& thumbPath == other.thumbPath&& description == other.description&& chineseTeam == other.chineseTeam&& tags == other.tags&& likesCount == other.likesCount&& subscribeTime == other.subscribeTime&& updateSubscribeTime == other.updateSubscribeTime&& newEpCount == other.newEpCount;
+        
+            }
 
-class DownloadEp {
-  final String comicId;
-  final String id;
-  final String updatedAt;
-  final PlatformInt64 epOrder;
-  final String title;
-  final bool fetchedPictures;
-  final PlatformInt64 selectedPictureCount;
-  final PlatformInt64 downloadPictureCount;
-  final bool downloadFinish;
-  final String downloadFinishTime;
-  final bool downloadFailed;
+class DownloadComic  {
+                final String id;
+final String createdAt;
+final String updatedAt;
+final String title;
+final String author;
+final PlatformInt64 pagesCount;
+final PlatformInt64 epsCount;
+final bool finished;
+final String categories;
+final String thumbOriginalName;
+final String thumbFileServer;
+final String thumbPath;
+final String thumbLocalPath;
+final String description;
+final String chineseTeam;
+final String tags;
+final PlatformInt64 selectedEpCount;
+final PlatformInt64 selectedPictureCount;
+final PlatformInt64 downloadEpCount;
+final PlatformInt64 downloadPictureCount;
+final bool downloadFinished;
+final String downloadFinishedTime;
+final bool downloadFailed;
+final bool deleting;
 
-  const DownloadEp({
-    required this.comicId,
-    required this.id,
-    required this.updatedAt,
-    required this.epOrder,
-    required this.title,
-    required this.fetchedPictures,
-    required this.selectedPictureCount,
-    required this.downloadPictureCount,
-    required this.downloadFinish,
-    required this.downloadFinishTime,
-    required this.downloadFailed,
-  });
+                const DownloadComic({required this.id ,required this.createdAt ,required this.updatedAt ,required this.title ,required this.author ,required this.pagesCount ,required this.epsCount ,required this.finished ,required this.categories ,required this.thumbOriginalName ,required this.thumbFileServer ,required this.thumbPath ,required this.thumbLocalPath ,required this.description ,required this.chineseTeam ,required this.tags ,required this.selectedEpCount ,required this.selectedPictureCount ,required this.downloadEpCount ,required this.downloadPictureCount ,required this.downloadFinished ,required this.downloadFinishedTime ,required this.downloadFailed ,required this.deleting ,});
 
-  @override
-  int get hashCode =>
-      comicId.hashCode ^
-      id.hashCode ^
-      updatedAt.hashCode ^
-      epOrder.hashCode ^
-      title.hashCode ^
-      fetchedPictures.hashCode ^
-      selectedPictureCount.hashCode ^
-      downloadPictureCount.hashCode ^
-      downloadFinish.hashCode ^
-      downloadFinishTime.hashCode ^
-      downloadFailed.hashCode;
+                
+                
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is DownloadEp &&
-          runtimeType == other.runtimeType &&
-          comicId == other.comicId &&
-          id == other.id &&
-          updatedAt == other.updatedAt &&
-          epOrder == other.epOrder &&
-          title == other.title &&
-          fetchedPictures == other.fetchedPictures &&
-          selectedPictureCount == other.selectedPictureCount &&
-          downloadPictureCount == other.downloadPictureCount &&
-          downloadFinish == other.downloadFinish &&
-          downloadFinishTime == other.downloadFinishTime &&
-          downloadFailed == other.downloadFailed;
-}
+                
+        @override
+        int get hashCode => id.hashCode^createdAt.hashCode^updatedAt.hashCode^title.hashCode^author.hashCode^pagesCount.hashCode^epsCount.hashCode^finished.hashCode^categories.hashCode^thumbOriginalName.hashCode^thumbFileServer.hashCode^thumbPath.hashCode^thumbLocalPath.hashCode^description.hashCode^chineseTeam.hashCode^tags.hashCode^selectedEpCount.hashCode^selectedPictureCount.hashCode^downloadEpCount.hashCode^downloadPictureCount.hashCode^downloadFinished.hashCode^downloadFinishedTime.hashCode^downloadFailed.hashCode^deleting.hashCode;
+        
 
-class DownloadPicture {
-  final PlatformInt64 rankInEp;
-  final String fileServer;
-  final String path;
-  final String localPath;
-  final PlatformInt64 width;
-  final PlatformInt64 height;
-  final String format;
-  final PlatformInt64 fileSize;
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is DownloadComic &&
+                runtimeType == other.runtimeType
+                && id == other.id&& createdAt == other.createdAt&& updatedAt == other.updatedAt&& title == other.title&& author == other.author&& pagesCount == other.pagesCount&& epsCount == other.epsCount&& finished == other.finished&& categories == other.categories&& thumbOriginalName == other.thumbOriginalName&& thumbFileServer == other.thumbFileServer&& thumbPath == other.thumbPath&& thumbLocalPath == other.thumbLocalPath&& description == other.description&& chineseTeam == other.chineseTeam&& tags == other.tags&& selectedEpCount == other.selectedEpCount&& selectedPictureCount == other.selectedPictureCount&& downloadEpCount == other.downloadEpCount&& downloadPictureCount == other.downloadPictureCount&& downloadFinished == other.downloadFinished&& downloadFinishedTime == other.downloadFinishedTime&& downloadFailed == other.downloadFailed&& deleting == other.deleting;
+        
+            }
 
-  const DownloadPicture({
-    required this.rankInEp,
-    required this.fileServer,
-    required this.path,
-    required this.localPath,
-    required this.width,
-    required this.height,
-    required this.format,
-    required this.fileSize,
-  });
+class DownloadEp  {
+                final String comicId;
+final String id;
+final String updatedAt;
+final PlatformInt64 epOrder;
+final String title;
+final bool fetchedPictures;
+final PlatformInt64 selectedPictureCount;
+final PlatformInt64 downloadPictureCount;
+final bool downloadFinish;
+final String downloadFinishTime;
+final bool downloadFailed;
 
-  @override
-  int get hashCode =>
-      rankInEp.hashCode ^
-      fileServer.hashCode ^
-      path.hashCode ^
-      localPath.hashCode ^
-      width.hashCode ^
-      height.hashCode ^
-      format.hashCode ^
-      fileSize.hashCode;
+                const DownloadEp({required this.comicId ,required this.id ,required this.updatedAt ,required this.epOrder ,required this.title ,required this.fetchedPictures ,required this.selectedPictureCount ,required this.downloadPictureCount ,required this.downloadFinish ,required this.downloadFinishTime ,required this.downloadFailed ,});
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is DownloadPicture &&
-          runtimeType == other.runtimeType &&
-          rankInEp == other.rankInEp &&
-          fileServer == other.fileServer &&
-          path == other.path &&
-          localPath == other.localPath &&
-          width == other.width &&
-          height == other.height &&
-          format == other.format &&
-          fileSize == other.fileSize;
-}
+                
+                
 
-class LocalFavoriteComic {
-  final String comicId;
-  final String folderId;
-  final String? info;
-  final PlatformInt64 createdAt;
-  final PlatformInt64 updatedAt;
-  final PlatformInt64 deletedAt;
+                
+        @override
+        int get hashCode => comicId.hashCode^id.hashCode^updatedAt.hashCode^epOrder.hashCode^title.hashCode^fetchedPictures.hashCode^selectedPictureCount.hashCode^downloadPictureCount.hashCode^downloadFinish.hashCode^downloadFinishTime.hashCode^downloadFailed.hashCode;
+        
 
-  const LocalFavoriteComic({
-    required this.comicId,
-    required this.folderId,
-    this.info,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.deletedAt,
-  });
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is DownloadEp &&
+                runtimeType == other.runtimeType
+                && comicId == other.comicId&& id == other.id&& updatedAt == other.updatedAt&& epOrder == other.epOrder&& title == other.title&& fetchedPictures == other.fetchedPictures&& selectedPictureCount == other.selectedPictureCount&& downloadPictureCount == other.downloadPictureCount&& downloadFinish == other.downloadFinish&& downloadFinishTime == other.downloadFinishTime&& downloadFailed == other.downloadFailed;
+        
+            }
 
-  @override
-  int get hashCode =>
-      comicId.hashCode ^
-      folderId.hashCode ^
-      info.hashCode ^
-      createdAt.hashCode ^
-      updatedAt.hashCode ^
-      deletedAt.hashCode;
+class DownloadPicture  {
+                final PlatformInt64 rankInEp;
+final String fileServer;
+final String path;
+final String localPath;
+final PlatformInt64 width;
+final PlatformInt64 height;
+final String format;
+final PlatformInt64 fileSize;
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is LocalFavoriteComic &&
-          runtimeType == other.runtimeType &&
-          comicId == other.comicId &&
-          folderId == other.folderId &&
-          info == other.info &&
-          createdAt == other.createdAt &&
-          updatedAt == other.updatedAt &&
-          deletedAt == other.deletedAt;
-}
+                const DownloadPicture({required this.rankInEp ,required this.fileServer ,required this.path ,required this.localPath ,required this.width ,required this.height ,required this.format ,required this.fileSize ,});
 
-class LocalFavoriteFolder {
-  final String id;
-  final String name;
-  final PlatformInt64 createdAt;
-  final PlatformInt64 updatedAt;
-  final PlatformInt64 deletedAt;
+                
+                
 
-  const LocalFavoriteFolder({
-    required this.id,
-    required this.name,
-    required this.createdAt,
-    required this.updatedAt,
-    required this.deletedAt,
-  });
+                
+        @override
+        int get hashCode => rankInEp.hashCode^fileServer.hashCode^path.hashCode^localPath.hashCode^width.hashCode^height.hashCode^format.hashCode^fileSize.hashCode;
+        
 
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      name.hashCode ^
-      createdAt.hashCode ^
-      updatedAt.hashCode ^
-      deletedAt.hashCode;
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is DownloadPicture &&
+                runtimeType == other.runtimeType
+                && rankInEp == other.rankInEp&& fileServer == other.fileServer&& path == other.path&& localPath == other.localPath&& width == other.width&& height == other.height&& format == other.format&& fileSize == other.fileSize;
+        
+            }
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is LocalFavoriteFolder &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          name == other.name &&
-          createdAt == other.createdAt &&
-          updatedAt == other.updatedAt &&
-          deletedAt == other.deletedAt;
-}
+class LocalFavoriteComic  {
+                final String comicId;
+final String folderId;
+final String? info;
+final PlatformInt64 createdAt;
+final PlatformInt64 updatedAt;
+final PlatformInt64 deletedAt;
 
-class PkzComicViewLog {
-  final String fileName;
-  final String lastViewComicId;
-  final String filePath;
-  final String lastViewComicTitle;
-  final String lastViewEpId;
-  final String lastViewEpName;
-  final PlatformInt64 lastViewPictureRank;
-  final String lastViewTime;
+                const LocalFavoriteComic({required this.comicId ,required this.folderId ,this.info ,required this.createdAt ,required this.updatedAt ,required this.deletedAt ,});
 
-  const PkzComicViewLog({
-    required this.fileName,
-    required this.lastViewComicId,
-    required this.filePath,
-    required this.lastViewComicTitle,
-    required this.lastViewEpId,
-    required this.lastViewEpName,
-    required this.lastViewPictureRank,
-    required this.lastViewTime,
-  });
+                
+                
 
-  @override
-  int get hashCode =>
-      fileName.hashCode ^
-      lastViewComicId.hashCode ^
-      filePath.hashCode ^
-      lastViewComicTitle.hashCode ^
-      lastViewEpId.hashCode ^
-      lastViewEpName.hashCode ^
-      lastViewPictureRank.hashCode ^
-      lastViewTime.hashCode;
+                
+        @override
+        int get hashCode => comicId.hashCode^folderId.hashCode^info.hashCode^createdAt.hashCode^updatedAt.hashCode^deletedAt.hashCode;
+        
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is PkzComicViewLog &&
-          runtimeType == other.runtimeType &&
-          fileName == other.fileName &&
-          lastViewComicId == other.lastViewComicId &&
-          filePath == other.filePath &&
-          lastViewComicTitle == other.lastViewComicTitle &&
-          lastViewEpId == other.lastViewEpId &&
-          lastViewEpName == other.lastViewEpName &&
-          lastViewPictureRank == other.lastViewPictureRank &&
-          lastViewTime == other.lastViewTime;
-}
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is LocalFavoriteComic &&
+                runtimeType == other.runtimeType
+                && comicId == other.comicId&& folderId == other.folderId&& info == other.info&& createdAt == other.createdAt&& updatedAt == other.updatedAt&& deletedAt == other.deletedAt;
+        
+            }
 
-class ViewLog {
-  final String id;
-  final String title;
-  final String author;
-  final PlatformInt64 pagesCount;
-  final PlatformInt64 epsCount;
-  final bool finished;
-  final String categories;
-  final String thumbOriginalName;
-  final String thumbFileServer;
-  final String thumbPath;
-  final String description;
-  final String chineseTeam;
-  final String tags;
-  final String lastViewTime;
-  final PlatformInt64 lastViewEpOrder;
-  final String lastViewEpTitle;
-  final PlatformInt64 lastViewPictureRank;
-  final PlatformInt64 pinnedAt;
+class LocalFavoriteFolder  {
+                final String id;
+final String name;
+final PlatformInt64 createdAt;
+final PlatformInt64 updatedAt;
+final PlatformInt64 deletedAt;
 
-  const ViewLog({
-    required this.id,
-    required this.title,
-    required this.author,
-    required this.pagesCount,
-    required this.epsCount,
-    required this.finished,
-    required this.categories,
-    required this.thumbOriginalName,
-    required this.thumbFileServer,
-    required this.thumbPath,
-    required this.description,
-    required this.chineseTeam,
-    required this.tags,
-    required this.lastViewTime,
-    required this.lastViewEpOrder,
-    required this.lastViewEpTitle,
-    required this.lastViewPictureRank,
-    required this.pinnedAt,
-  });
+                const LocalFavoriteFolder({required this.id ,required this.name ,required this.createdAt ,required this.updatedAt ,required this.deletedAt ,});
 
-  @override
-  int get hashCode =>
-      id.hashCode ^
-      title.hashCode ^
-      author.hashCode ^
-      pagesCount.hashCode ^
-      epsCount.hashCode ^
-      finished.hashCode ^
-      categories.hashCode ^
-      thumbOriginalName.hashCode ^
-      thumbFileServer.hashCode ^
-      thumbPath.hashCode ^
-      description.hashCode ^
-      chineseTeam.hashCode ^
-      tags.hashCode ^
-      lastViewTime.hashCode ^
-      lastViewEpOrder.hashCode ^
-      lastViewEpTitle.hashCode ^
-      lastViewPictureRank.hashCode ^
-      pinnedAt.hashCode;
+                
+                
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ViewLog &&
-          runtimeType == other.runtimeType &&
-          id == other.id &&
-          title == other.title &&
-          author == other.author &&
-          pagesCount == other.pagesCount &&
-          epsCount == other.epsCount &&
-          finished == other.finished &&
-          categories == other.categories &&
-          thumbOriginalName == other.thumbOriginalName &&
-          thumbFileServer == other.thumbFileServer &&
-          thumbPath == other.thumbPath &&
-          description == other.description &&
-          chineseTeam == other.chineseTeam &&
-          tags == other.tags &&
-          lastViewTime == other.lastViewTime &&
-          lastViewEpOrder == other.lastViewEpOrder &&
-          lastViewEpTitle == other.lastViewEpTitle &&
-          lastViewPictureRank == other.lastViewPictureRank &&
-          pinnedAt == other.pinnedAt;
-}
+                
+        @override
+        int get hashCode => id.hashCode^name.hashCode^createdAt.hashCode^updatedAt.hashCode^deletedAt.hashCode;
+        
+
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is LocalFavoriteFolder &&
+                runtimeType == other.runtimeType
+                && id == other.id&& name == other.name&& createdAt == other.createdAt&& updatedAt == other.updatedAt&& deletedAt == other.deletedAt;
+        
+            }
+
+class PkzComicViewLog  {
+                final String fileName;
+final String lastViewComicId;
+final String filePath;
+final String lastViewComicTitle;
+final String lastViewEpId;
+final String lastViewEpName;
+final PlatformInt64 lastViewPictureRank;
+final String lastViewTime;
+
+                const PkzComicViewLog({required this.fileName ,required this.lastViewComicId ,required this.filePath ,required this.lastViewComicTitle ,required this.lastViewEpId ,required this.lastViewEpName ,required this.lastViewPictureRank ,required this.lastViewTime ,});
+
+                
+                
+
+                
+        @override
+        int get hashCode => fileName.hashCode^lastViewComicId.hashCode^filePath.hashCode^lastViewComicTitle.hashCode^lastViewEpId.hashCode^lastViewEpName.hashCode^lastViewPictureRank.hashCode^lastViewTime.hashCode;
+        
+
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is PkzComicViewLog &&
+                runtimeType == other.runtimeType
+                && fileName == other.fileName&& lastViewComicId == other.lastViewComicId&& filePath == other.filePath&& lastViewComicTitle == other.lastViewComicTitle&& lastViewEpId == other.lastViewEpId&& lastViewEpName == other.lastViewEpName&& lastViewPictureRank == other.lastViewPictureRank&& lastViewTime == other.lastViewTime;
+        
+            }
+
+class ViewLog  {
+                final String id;
+final String title;
+final String author;
+final PlatformInt64 pagesCount;
+final PlatformInt64 epsCount;
+final bool finished;
+final String categories;
+final String thumbOriginalName;
+final String thumbFileServer;
+final String thumbPath;
+final String description;
+final String chineseTeam;
+final String tags;
+final String lastViewTime;
+final PlatformInt64 lastViewEpOrder;
+final String lastViewEpTitle;
+final PlatformInt64 lastViewPictureRank;
+final PlatformInt64 pinnedAt;
+
+                const ViewLog({required this.id ,required this.title ,required this.author ,required this.pagesCount ,required this.epsCount ,required this.finished ,required this.categories ,required this.thumbOriginalName ,required this.thumbFileServer ,required this.thumbPath ,required this.description ,required this.chineseTeam ,required this.tags ,required this.lastViewTime ,required this.lastViewEpOrder ,required this.lastViewEpTitle ,required this.lastViewPictureRank ,required this.pinnedAt ,});
+
+                
+                
+
+                
+        @override
+        int get hashCode => id.hashCode^title.hashCode^author.hashCode^pagesCount.hashCode^epsCount.hashCode^finished.hashCode^categories.hashCode^thumbOriginalName.hashCode^thumbFileServer.hashCode^thumbPath.hashCode^description.hashCode^chineseTeam.hashCode^tags.hashCode^lastViewTime.hashCode^lastViewEpOrder.hashCode^lastViewEpTitle.hashCode^lastViewPictureRank.hashCode^pinnedAt.hashCode;
+        
+
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is ViewLog &&
+                runtimeType == other.runtimeType
+                && id == other.id&& title == other.title&& author == other.author&& pagesCount == other.pagesCount&& epsCount == other.epsCount&& finished == other.finished&& categories == other.categories&& thumbOriginalName == other.thumbOriginalName&& thumbFileServer == other.thumbFileServer&& thumbPath == other.thumbPath&& description == other.description&& chineseTeam == other.chineseTeam&& tags == other.tags&& lastViewTime == other.lastViewTime&& lastViewEpOrder == other.lastViewEpOrder&& lastViewEpTitle == other.lastViewEpTitle&& lastViewPictureRank == other.lastViewPictureRank&& pinnedAt == other.pinnedAt;
+        
+            }
+            

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pikapika/basic/config/Platform.dart';
 import 'package:pikapika/i18.dart';
 
 import '../basic/config/Themes.dart';
+import 'CustomThemeManageScreen.dart';
 import 'components/ListView.dart';
 import 'components/RightClickPop.dart';
 
@@ -67,6 +67,18 @@ List<Widget> themeWidgets(
             ),
           ]
         : [],
+    ListTile(
+      onTap: () async {
+        await Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const CustomThemeManageScreen(),
+          ),
+        );
+        setState(() {});
+      },
+      title: Text(tr('settings.theme.custom_manage')),
+      subtitle: Text(tr('settings.theme.custom_manage_hint')),
+    ),
     // ...androidVersion > 0 ? [enableStatusBarColorSetting()] : [],
   ];
 }

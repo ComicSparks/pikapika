@@ -98,6 +98,13 @@ class _WindowStore extends WindowListener {
   }
 }
 
+Widget _fillRouteBackground(BuildContext context, Widget? child) {
+  return ColoredBox(
+    color: Theme.of(context).scaffoldBackgroundColor,
+    child: child ?? const SizedBox.shrink(),
+  );
+}
+
 class PikapikaApp extends StatefulWidget {
   const PikapikaApp({super.key});
 
@@ -130,6 +137,7 @@ class _PikapikaAppState extends State<PikapikaApp> {
         theme: currentLightThemeData(),
         darkTheme: currentDarkThemeData(),
         navigatorObservers: [navigatorObserver, routeObserver],
+        builder: _fillRouteBackground,
         home: const InitScreen(),
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,
@@ -141,6 +149,7 @@ class _PikapikaAppState extends State<PikapikaApp> {
       theme: currentLightThemeData(),
       darkTheme: currentDarkThemeData(),
       navigatorObservers: [navigatorObserver, routeObserver],
+      builder: _fillRouteBackground,
       home: const InitScreen(),
     );
   }

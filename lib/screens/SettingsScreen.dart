@@ -58,6 +58,7 @@ import '../basic/config/EBookScrolling.dart';
 import '../basic/config/HiddenFdIcon.dart';
 import '../basic/config/HiddenSubIcon.dart';
 import '../basic/config/HiddenViewed.dart';
+import '../basic/config/HiddenCommentWords.dart';
 import '../basic/config/HiddenWords.dart';
 import '../basic/config/HideOnlineFavorite.dart';
 import '../basic/config/TagFavorite.dart';
@@ -157,6 +158,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 shadowCategoriesModeSetting(),
                 shadowCategoriesSetting(),
                 hiddenWordsSetting(),
+                hiddenCommentWordsSetting(),
                 hiddenViewedSetting(),
               ],
             ),

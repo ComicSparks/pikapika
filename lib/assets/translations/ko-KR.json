@@ -270,6 +270,13 @@
       "input_hint": "숨길 키워드를 입력하세요",
       "no_words": "키워드 없음"
     },
+    "hidden_comment_words": {
+      "title": "댓글 봉인",
+      "clear_all": "지우기 확인",
+      "clear_all_desc": "모든 댓글 봉인 키워드를 지우시겠습니까?",
+      "input_hint": "봉인할 댓글 키워드를 입력하세요",
+      "no_words": "키워드 없음"
+    },
     "image_address": {
       "title": "이미지 주소",
       "pinging": "핑 테스트 중",
@@ -437,7 +444,39 @@
       "choose_theme": "테마 선택",
       "book": "책",
       "enable_status_bar_color": "상태 표시줄 색상 활성화",
-      "enable_status_restart_hint": "비활성화된 경우 상태 표시줄 색상을 새로 고치려면 애플리케이션을 다시 시작해야 합니다"
+      "enable_status_restart_hint": "비활성화된 경우 상태 표시줄 색상을 새로 고치려면 애플리케이션을 다시 시작해야 합니다",
+      "custom_manage": "사용자 지정 테마 관리",
+      "custom_manage_hint": "복사, 편집, .pkt 가져오기/내보내기",
+      "custom_edit": "사용자 지정 테마 편집",
+      "custom_name": "이름",
+      "custom_name_hint": "테마 이름을 입력하세요",
+      "custom_name_required": "테마 이름은 필수입니다",
+      "custom_default_name": "사용자 지정 테마",
+      "custom_is_dark": "다크 테마",
+      "custom_is_light": "라이트 테마",
+      "custom_copy_from": "기존 테마에서 복사",
+      "custom_copy_suffix": "사본",
+      "custom_import": ".pkt 가져오기",
+      "custom_export": ".pkt 내보내기",
+      "custom_delete": "삭제",
+      "custom_delete_confirm": "이 사용자 지정 테마를 삭제할까요?",
+      "custom_delete_success": "삭제됨",
+      "custom_empty": "사용자 지정 테마가 없습니다. 기존 테마에서 복사하거나 .pkt를 가져오세요.",
+      "custom_import_success": "가져오기 완료",
+      "custom_import_failed": "가져오기 실패, 잘못된 파일",
+      "custom_export_success": "내보내기 완료",
+      "custom_export_failed": "내보내기 실패",
+      "custom_save_success": "저장됨",
+      "custom_color_hex": "색상 값",
+      "custom_color_primary": "기본 색상",
+      "custom_color_scaffold": "배경",
+      "custom_color_card": "카드 배경",
+      "custom_color_app_bar": "앱 바",
+      "custom_color_app_bar_fg": "앱 바 글자/아이콘",
+      "custom_color_bottom_bg": "하단 바 배경",
+      "custom_color_bottom_selected": "하단 바 선택",
+      "custom_color_bottom_unselected": "하단 바 미선택",
+      "custom_color_divider": "구분선"
     },
     "three_keep_right": {
       "title": "세 영역 모드 페이지를 항상 오른쪽으로"
@@ -834,7 +873,20 @@
       "bind_account_time": "계정 바인딩 시간",
       "rebind_time": "재바인딩 가능 시간",
       "power_features": "파워 기능: 다중 스레드 다운로드 / 일괄 가져오기/내보내기 다운로드",
-      "power_guide": "\"정보\" 페이지로 이동하여 파워 가이드를 위한 유지 관리 주소를 찾으십시오\n\n  \"이전에 전원을 켰습니다\"는 해당 파워 상태를 동기화할 수 있습니다\n  \"방금 전원을 켰습니다\"는 신비한 코드를 교환합니다\n  \"PAT 멤버십\"은 독립적인 전원 방식입니다\n  \"전원 방식\"을 변경하면 FAIL 문제가 해결될 수 있습니다"
+      "power_guide": "\"정보\" 페이지로 이동하여 파워 가이드를 위한 유지 관리 주소를 찾으십시오\n\n  \"이전에 전원을 켰습니다\"는 해당 파워 상태를 동기화할 수 있습니다\n  \"방금 전원을 켰습니다\"는 신비한 코드를 교환합니다\n  \"PAT 멤버십\"은 독립적인 전원 방식입니다\n  \"전원 방식\"을 변경하면 FAIL 문제가 해결될 수 있습니다",
+      "error": {
+        "NETWORK_TIMEOUT": "네트워크 시간 초과입니다. 네트워크를 확인하거나 전원 방식을 변경하세요",
+        "NETWORK_UNREACHABLE": "서버에 연결할 수 없습니다. 네트워크를 확인하거나 전원 방식을 변경하세요",
+        "SERVER_FAILED": "서버 처리에 실패했습니다",
+        "SERVER_RESPONSE_INVALID": "서버 응답이 올바르지 않습니다",
+        "REQUEST_INVALID": "요청이 유효하지 않습니다",
+        "ORDER_NOT_SYNCED": "주문이 아직 동기화되지 않았습니다. 잠시 후 다시 시도하세요",
+        "ORDER_ALREADY_USED": "이미 사용된 주문입니다",
+        "ORDER_AMOUNT_INVALID": "주문 금액이 유효하지 않습니다",
+        "TICKET_NOT_FOUND": "교환 코드를 찾을 수 없습니다",
+        "TICKET_ALREADY_USED": "이미 사용된 교환 코드입니다",
+        "TICKET_EVENT_USED": "이미 참여한 이벤트 교환 코드입니다"
+      }
     },
     "rankings": {
       "title": "순위",
@@ -944,6 +996,9 @@
     },
     "comic_list": {
       "shadow": "그림자 만화"
+    },
+    "comment": {
+      "shadow": "봉인된 댓글"
     },
     "common": {
       "display_mode": "표시 모드",

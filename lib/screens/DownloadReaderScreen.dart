@@ -9,6 +9,7 @@ import 'package:pikapika/basic/config/AutoFullScreen.dart';
 import 'package:pikapika/basic/config/FullScreenUI.dart';
 import 'package:pikapika/basic/config/ReaderDirection.dart';
 import 'package:pikapika/basic/config/ReaderType.dart';
+import 'package:pikapika/basic/Metrics.dart';
 import 'package:pikapika/basic/Method.dart';
 import '../basic/config/IconLoading.dart';
 import 'components/ContentError.dart';
@@ -22,6 +23,7 @@ class DownloadReaderScreen extends StatefulWidget {
   final List<DownloadEp> epList;
   final int currentEpOrder;
   final int? initPicturePosition;
+  final bool noteReadMetric;
   final ReaderType pagerType = currentReaderType();
   final ReaderDirection pagerDirection = gReaderDirection;
   late final bool autoFullScreen;
@@ -32,6 +34,7 @@ class DownloadReaderScreen extends StatefulWidget {
     required this.epList,
     required this.currentEpOrder,
     this.initPicturePosition,
+    this.noteReadMetric = true,
     bool? autoFullScreen,
   }) : super(key: key) {
     this.autoFullScreen = autoFullScreen ?? currentAutoFullScreen();
@@ -93,6 +96,7 @@ class _DownloadReaderScreenState extends State<DownloadReaderScreen> {
             comicInfo: widget.comicInfo,
             epList: widget.epList,
             currentEpOrder: epOrder,
+            noteReadMetric: false,
             autoFullScreen: _fullScreen,
           ),
         ),
@@ -109,6 +113,7 @@ class _DownloadReaderScreenState extends State<DownloadReaderScreen> {
           epList: widget.epList,
           currentEpOrder: widget.currentEpOrder,
           initPicturePosition: _lastChangeRank ?? widget.initPicturePosition,
+          noteReadMetric: false,
           // maybe null
           autoFullScreen: _fullScreen,
         ),
@@ -123,6 +128,9 @@ class _DownloadReaderScreenState extends State<DownloadReaderScreen> {
       if (element.epOrder == widget.currentEpOrder) {
         _ep = element;
       }
+    }
+    if (widget.noteReadMetric && widget.initPicturePosition == null) {
+      Metrics.note('read');
     }
     // INIT
     _future = _load();

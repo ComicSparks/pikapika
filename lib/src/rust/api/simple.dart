@@ -8,10 +8,14 @@ import '../events.dart';
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-Future<void> initApplication({required String dataDir}) =>
-    RustLib.instance.api.crateApiSimpleInitApplication(dataDir: dataDir);
 
-Future<String> applicationDir() =>
-    RustLib.instance.api.crateApiSimpleApplicationDir();
+            
 
-Stream<AppEvent> events() => RustLib.instance.api.crateApiSimpleEvents();
+            Future<void>  initApplication({required String dataDir }) => RustLib.instance.api.crateApiSimpleInitApplication(dataDir: dataDir);
+
+Future<String>  applicationDir() => RustLib.instance.api.crateApiSimpleApplicationDir();
+
+Stream<AppEvent>  events() => RustLib.instance.api.crateApiSimpleEvents();
+
+            
+            

@@ -6,169 +6,53 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-// These functions are ignored because they are not marked as `pub`: `located`
 
-Future<void> exportComicDownload({
-  required String comicId,
-  required String dir,
-  required String name,
-}) => RustLib.instance.api.crateApiTransferExportComicDownload(
-  comicId: comicId,
-  dir: dir,
-  name: name,
-);
+            // These functions are ignored because they are not marked as `pub`: `located`
 
-Future<void> exportComicDownloadToPki({
-  required String comicId,
-  required String dir,
-  required String name,
-}) => RustLib.instance.api.crateApiTransferExportComicDownloadToPki(
-  comicId: comicId,
-  dir: dir,
-  name: name,
-);
 
-Future<void> exportComicJpegsEvenNotFinish({
-  required String comicId,
-  required String dir,
-  required String name,
-}) => RustLib.instance.api.crateApiTransferExportComicJpegsEvenNotFinish(
-  comicId: comicId,
-  dir: dir,
-  name: name,
-);
+            Future<void>  exportComicDownload({required String comicId , required String dir , required String name }) => RustLib.instance.api.crateApiTransferExportComicDownload(comicId: comicId, dir: dir, name: name);
 
-Future<void> exportComicDownloadToJpg({
-  required String comicId,
-  required String dir,
-  required String name,
-}) => RustLib.instance.api.crateApiTransferExportComicDownloadToJpg(
-  comicId: comicId,
-  dir: dir,
-  name: name,
-);
+Future<void>  exportComicDownloadToPki({required String comicId , required String dir , required String name }) => RustLib.instance.api.crateApiTransferExportComicDownloadToPki(comicId: comicId, dir: dir, name: name);
 
-Future<void> exportComicDownloadToPdf({
-  required String comicId,
-  required String dir,
-  required String name,
-}) => RustLib.instance.api.crateApiTransferExportComicDownloadToPdf(
-  comicId: comicId,
-  dir: dir,
-  name: name,
-);
+Future<void>  exportComicJpegsEvenNotFinish({required String comicId , required String dir , required String name }) => RustLib.instance.api.crateApiTransferExportComicJpegsEvenNotFinish(comicId: comicId, dir: dir, name: name);
 
-Future<void> exportComicDownloadToEpub({
-  required String comicId,
-  required String dir,
-  required String name,
-}) => RustLib.instance.api.crateApiTransferExportComicDownloadToEpub(
-  comicId: comicId,
-  dir: dir,
-  name: name,
-);
+Future<void>  exportComicDownloadToJpg({required String comicId , required String dir , required String name }) => RustLib.instance.api.crateApiTransferExportComicDownloadToJpg(comicId: comicId, dir: dir, name: name);
 
-Future<void> exportComicDownloadToPdfFolder({
-  required String comicId,
-  required String dir,
-  required String name,
-}) => RustLib.instance.api.crateApiTransferExportComicDownloadToPdfFolder(
-  comicId: comicId,
-  dir: dir,
-  name: name,
-);
+Future<void>  exportComicDownloadToPdf({required String comicId , required String dir , required String name }) => RustLib.instance.api.crateApiTransferExportComicDownloadToPdf(comicId: comicId, dir: dir, name: name);
 
-Future<void> exportComicDownloadJpegZip({
-  required String comicId,
-  required String dir,
-  required String name,
-}) => RustLib.instance.api.crateApiTransferExportComicDownloadJpegZip(
-  comicId: comicId,
-  dir: dir,
-  name: name,
-);
+Future<void>  exportComicDownloadToEpub({required String comicId , required String dir , required String name }) => RustLib.instance.api.crateApiTransferExportComicDownloadToEpub(comicId: comicId, dir: dir, name: name);
 
-Future<void> exportComicDownloadToCbzsZip({
-  required String comicId,
-  required String dir,
-  required String name,
-}) => RustLib.instance.api.crateApiTransferExportComicDownloadToCbzsZip(
-  comicId: comicId,
-  dir: dir,
-  name: name,
-);
+Future<void>  exportComicDownloadToPdfFolder({required String comicId , required String dir , required String name }) => RustLib.instance.api.crateApiTransferExportComicDownloadToPdfFolder(comicId: comicId, dir: dir, name: name);
 
-Future<void> exportComicDownloadToPkz({
-  required List<String> comicIds,
-  required String dir,
-  required String name,
-}) => RustLib.instance.api.crateApiTransferExportComicDownloadToPkz(
-  comicIds: comicIds,
-  dir: dir,
-  name: name,
-);
+Future<void>  exportComicDownloadJpegZip({required String comicId , required String dir , required String name }) => RustLib.instance.api.crateApiTransferExportComicDownloadJpegZip(comicId: comicId, dir: dir, name: name);
 
-Future<void> exportAnyComicDownloadsToZip({
-  required List<String> comicIds,
-  required String dir,
-}) => RustLib.instance.api.crateApiTransferExportAnyComicDownloadsToZip(
-  comicIds: comicIds,
-  dir: dir,
-);
+Future<void>  exportComicDownloadToCbzsZip({required String comicId , required String dir , required String name }) => RustLib.instance.api.crateApiTransferExportComicDownloadToCbzsZip(comicId: comicId, dir: dir, name: name);
 
-Future<void> exportAnyComicDownloadsToPki({
-  required List<String> comicIds,
-  required String dir,
-}) => RustLib.instance.api.crateApiTransferExportAnyComicDownloadsToPki(
-  comicIds: comicIds,
-  dir: dir,
-);
+Future<void>  exportComicDownloadToPkz({required List<String> comicIds , required String dir , required String name }) => RustLib.instance.api.crateApiTransferExportComicDownloadToPkz(comicIds: comicIds, dir: dir, name: name);
 
-Future<void> importComicDownloadDir({required String dir}) =>
-    RustLib.instance.api.crateApiTransferImportComicDownloadDir(dir: dir);
+Future<void>  exportAnyComicDownloadsToZip({required List<String> comicIds , required String dir }) => RustLib.instance.api.crateApiTransferExportAnyComicDownloadsToZip(comicIds: comicIds, dir: dir);
 
-Future<PlatformInt64> exportComicUsingSocket({required String comicId}) =>
-    RustLib.instance.api.crateApiTransferExportComicUsingSocket(
-      comicId: comicId,
-    );
+Future<void>  exportAnyComicDownloadsToPki({required List<String> comicIds , required String dir }) => RustLib.instance.api.crateApiTransferExportAnyComicDownloadsToPki(comicIds: comicIds, dir: dir);
 
-Future<void> exportComicUsingSocketExit() =>
-    RustLib.instance.api.crateApiTransferExportComicUsingSocketExit();
+Future<void>  importComicDownloadDir({required String dir }) => RustLib.instance.api.crateApiTransferImportComicDownloadDir(dir: dir);
 
-Future<void> importComicDownload({required String zipPath}) =>
-    RustLib.instance.api.crateApiTransferImportComicDownload(zipPath: zipPath);
+Future<PlatformInt64>  exportComicUsingSocket({required String comicId }) => RustLib.instance.api.crateApiTransferExportComicUsingSocket(comicId: comicId);
 
-Future<void> importComicDownloadPki({required String zipPath}) => RustLib
-    .instance
-    .api
-    .crateApiTransferImportComicDownloadPki(zipPath: zipPath);
+Future<void>  exportComicUsingSocketExit() => RustLib.instance.api.crateApiTransferExportComicUsingSocketExit();
 
-Future<void> importComicDownloadUsingSocket({required String addr}) => RustLib
-    .instance
-    .api
-    .crateApiTransferImportComicDownloadUsingSocket(addr: addr);
+Future<void>  importComicDownload({required String zipPath }) => RustLib.instance.api.crateApiTransferImportComicDownload(zipPath: zipPath);
 
-Future<String> clientIpSet() =>
-    RustLib.instance.api.crateApiTransferClientIpSet();
+Future<void>  importComicDownloadPki({required String zipPath }) => RustLib.instance.api.crateApiTransferImportComicDownloadPki(zipPath: zipPath);
 
-Future<void> mergeHistoriesFromWebDav({
-  required String root,
-  required String username,
-  required String password,
-  required String file,
-  required String direction,
-}) => RustLib.instance.api.crateApiTransferMergeHistoriesFromWebDav(
-  root: root,
-  username: username,
-  password: password,
-  file: file,
-  direction: direction,
-);
+Future<void>  importComicDownloadUsingSocket({required String addr }) => RustLib.instance.api.crateApiTransferImportComicDownloadUsingSocket(addr: addr);
 
-Future<void> mergeHistoriesFromLocal({required String localPath}) => RustLib
-    .instance
-    .api
-    .crateApiTransferMergeHistoriesFromLocal(localPath: localPath);
+Future<String>  clientIpSet() => RustLib.instance.api.crateApiTransferClientIpSet();
 
-Future<void> importComicViewFormOff({required String dbPath}) =>
-    RustLib.instance.api.crateApiTransferImportComicViewFormOff(dbPath: dbPath);
+Future<void>  mergeHistoriesFromWebDav({required String root , required String username , required String password , required String file , required String direction }) => RustLib.instance.api.crateApiTransferMergeHistoriesFromWebDav(root: root, username: username, password: password, file: file, direction: direction);
+
+Future<void>  mergeHistoriesFromLocal({required String localPath }) => RustLib.instance.api.crateApiTransferMergeHistoriesFromLocal(localPath: localPath);
+
+Future<void>  importComicViewFormOff({required String dbPath }) => RustLib.instance.api.crateApiTransferImportComicViewFormOff(dbPath: dbPath);
+
+            
+            

@@ -5,6 +5,7 @@ import 'package:pikapika/i18.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pikapika/basic/Entities.dart';
+import 'package:pikapika/basic/Metrics.dart';
 import 'package:pikapika/basic/Method.dart';
 import 'package:pikapika/basic/config/AutoFullScreen.dart';
 import 'package:pikapika/basic/config/FullScreenUI.dart';
@@ -22,6 +23,7 @@ class ComicReaderScreen extends StatefulWidget {
   final List<Ep> epList;
   final int currentEpOrder;
   final int? initPicturePosition;
+  final bool noteReadMetric;
   late final bool autoFullScreen;
 
   ComicReaderScreen({
@@ -30,6 +32,7 @@ class ComicReaderScreen extends StatefulWidget {
     required this.epList,
     required this.currentEpOrder,
     this.initPicturePosition,
+    this.noteReadMetric = true,
     bool? autoFullScreen,
   }) : super(key: key) {
     this.autoFullScreen = autoFullScreen ?? currentAutoFullScreen();
@@ -93,6 +96,7 @@ class _ComicReaderScreenState extends State<ComicReaderScreen> {
             comicInfo: widget.comicInfo,
             epList: widget.epList,
             currentEpOrder: epOrder,
+            noteReadMetric: false,
             autoFullScreen: _fullScreen,
           ),
         ),
@@ -108,6 +112,7 @@ class _ComicReaderScreenState extends State<ComicReaderScreen> {
         epList: widget.epList,
         currentEpOrder: widget.currentEpOrder,
         initPicturePosition: _lastChangeRank ?? widget.initPicturePosition,
+        noteReadMetric: false,
         // maybe null
         autoFullScreen: _fullScreen,
       ),
@@ -133,6 +138,9 @@ class _ComicReaderScreenState extends State<ComicReaderScreen> {
       if (element.order == widget.currentEpOrder) {
         _ep = element;
       }
+    }
+    if (widget.noteReadMetric && widget.initPicturePosition == null) {
+      Metrics.note('read');
     }
     // INIT
     _future = _load();

@@ -104,7 +104,7 @@ class _ProScreenState extends State<ProScreen> {
                 await method.reloadPro();
                 defaultToast(context, "SUCCESS");
               } catch (e, s) {
-                defaultToast(context, "FAIL");
+                defaultToast(context, _proErrorMessage(e));
               }
               await reloadIsPro();
               setState(() {});
@@ -122,7 +122,7 @@ class _ProScreenState extends State<ProScreen> {
                     await method.inputCdKey(code);
                     defaultToast(context, "SUCCESS");
                   } catch (e, s) {
-                    defaultToast(context, "FAIL");
+                    defaultToast(context, _proErrorMessage(e));
                   }
                 }
               }
@@ -356,4 +356,25 @@ class _ProServerNameWidgetState extends State<ProServerNameWidget> {
     }
     return _defaultProServerId;
   }
+}
+
+String _proErrorMessage(Object e) {
+  var text = e.toString();
+  const prefixes = ['Bad state: ', 'Exception: ', 'Error: '];
+  for (final prefix in prefixes) {
+    if (text.startsWith(prefix)) {
+      text = text.substring(prefix.length);
+      break;
+    }
+  }
+  text = text.trim();
+  if (text.isEmpty) {
+    text = 'SERVER_FAILED';
+  }
+  final key = 'screen.pro.error.$text';
+  final translated = tr(key);
+  if (translated != key) {
+    return translated;
+  }
+  return text;
 }

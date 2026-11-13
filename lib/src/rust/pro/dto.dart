@@ -6,85 +6,86 @@
 import '../frb_generated.dart';
 import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 
-class ProInfoAf {
-  final bool isPro;
-  final PlatformInt64 expire;
 
-  const ProInfoAf({required this.isPro, required this.expire});
+            
 
-  @override
-  int get hashCode => isPro.hashCode ^ expire.hashCode;
+            
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProInfoAf &&
-          runtimeType == other.runtimeType &&
-          isPro == other.isPro &&
-          expire == other.expire;
-}
+            class ProInfoAf  {
+                final bool isPro;
+final PlatformInt64 expire;
 
-class ProInfoAll {
-  final ProInfoAf proInfoAf;
-  final ProInfoPat proInfoPat;
+                const ProInfoAf({required this.isPro ,required this.expire ,});
 
-  const ProInfoAll({required this.proInfoAf, required this.proInfoPat});
+                
+                
 
-  @override
-  int get hashCode => proInfoAf.hashCode ^ proInfoPat.hashCode;
+                
+        @override
+        int get hashCode => isPro.hashCode^expire.hashCode;
+        
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProInfoAll &&
-          runtimeType == other.runtimeType &&
-          proInfoAf == other.proInfoAf &&
-          proInfoPat == other.proInfoPat;
-}
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is ProInfoAf &&
+                runtimeType == other.runtimeType
+                && isPro == other.isPro&& expire == other.expire;
+        
+            }
 
-class ProInfoPat {
-  final bool isPro;
-  final String patId;
-  final String bindUid;
-  final PlatformInt64 requestDelete;
-  final PlatformInt64 reBind;
-  final PlatformInt64 errorType;
-  final String errorMsg;
-  final String accessKey;
+class ProInfoAll  {
+                final ProInfoAf proInfoAf;
+final ProInfoPat proInfoPat;
 
-  const ProInfoPat({
-    required this.isPro,
-    required this.patId,
-    required this.bindUid,
-    required this.requestDelete,
-    required this.reBind,
-    required this.errorType,
-    required this.errorMsg,
-    required this.accessKey,
-  });
+                const ProInfoAll({required this.proInfoAf ,required this.proInfoPat ,});
 
-  @override
-  int get hashCode =>
-      isPro.hashCode ^
-      patId.hashCode ^
-      bindUid.hashCode ^
-      requestDelete.hashCode ^
-      reBind.hashCode ^
-      errorType.hashCode ^
-      errorMsg.hashCode ^
-      accessKey.hashCode;
+                
+                
 
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ProInfoPat &&
-          runtimeType == other.runtimeType &&
-          isPro == other.isPro &&
-          patId == other.patId &&
-          bindUid == other.bindUid &&
-          requestDelete == other.requestDelete &&
-          reBind == other.reBind &&
-          errorType == other.errorType &&
-          errorMsg == other.errorMsg &&
-          accessKey == other.accessKey;
-}
+                
+        @override
+        int get hashCode => proInfoAf.hashCode^proInfoPat.hashCode;
+        
+
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is ProInfoAll &&
+                runtimeType == other.runtimeType
+                && proInfoAf == other.proInfoAf&& proInfoPat == other.proInfoPat;
+        
+            }
+
+class ProInfoPat  {
+                final bool isPro;
+final String patId;
+final String bindUid;
+final PlatformInt64 requestDelete;
+final PlatformInt64 reBind;
+final PlatformInt64 errorType;
+final String errorMsg;
+final String accessKey;
+
+                const ProInfoPat({required this.isPro ,required this.patId ,required this.bindUid ,required this.requestDelete ,required this.reBind ,required this.errorType ,required this.errorMsg ,required this.accessKey ,});
+
+                
+                
+
+                
+        @override
+        int get hashCode => isPro.hashCode^patId.hashCode^bindUid.hashCode^requestDelete.hashCode^reBind.hashCode^errorType.hashCode^errorMsg.hashCode^accessKey.hashCode;
+        
+
+                
+        @override
+        bool operator ==(Object other) =>
+            identical(this, other) ||
+            other is ProInfoPat &&
+                runtimeType == other.runtimeType
+                && isPro == other.isPro&& patId == other.patId&& bindUid == other.bindUid&& requestDelete == other.requestDelete&& reBind == other.reBind&& errorType == other.errorType&& errorMsg == other.errorMsg&& accessKey == other.accessKey;
+        
+            }
+            

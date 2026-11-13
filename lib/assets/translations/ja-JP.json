@@ -270,6 +270,13 @@
       "input_hint": "非表示にするキーワードを入力",
       "no_words": "キーワードなし"
     },
+    "hidden_comment_words": {
+      "title": "コメント封印",
+      "clear_all": "クリア確認",
+      "clear_all_desc": "すべてのコメント封印キーワードをクリアしますか？",
+      "input_hint": "封印するコメントキーワードを入力",
+      "no_words": "キーワードなし"
+    },
     "image_address": {
       "title": "画像アドレス",
       "pinging": "Ping中",
@@ -437,7 +444,39 @@
       "choose_theme": "テーマを選択",
       "book": "本",
       "enable_status_bar_color": "ステータスバーの色を有効にする",
-      "enable_status_restart_hint": "無効になった場合、ステータスバーの色を更新するにはアプリケーションを再起動する必要があります"
+      "enable_status_restart_hint": "無効になった場合、ステータスバーの色を更新するにはアプリケーションを再起動する必要があります",
+      "custom_manage": "カスタムテーマの管理",
+      "custom_manage_hint": "コピー、編集、.pkt のインポート/エクスポート",
+      "custom_edit": "カスタムテーマを編集",
+      "custom_name": "名前",
+      "custom_name_hint": "テーマ名を入力",
+      "custom_name_required": "テーマ名は必須です",
+      "custom_default_name": "カスタムテーマ",
+      "custom_is_dark": "ダークテーマ",
+      "custom_is_light": "ライトテーマ",
+      "custom_copy_from": "既存テーマからコピー",
+      "custom_copy_suffix": "コピー",
+      "custom_import": ".pkt をインポート",
+      "custom_export": ".pkt をエクスポート",
+      "custom_delete": "削除",
+      "custom_delete_confirm": "このカスタムテーマを削除しますか？",
+      "custom_delete_success": "削除しました",
+      "custom_empty": "カスタムテーマがありません。既存テーマからコピーするか .pkt をインポートしてください。",
+      "custom_import_success": "インポートしました",
+      "custom_import_failed": "インポート失敗、ファイルが無効です",
+      "custom_export_success": "エクスポートしました",
+      "custom_export_failed": "エクスポートに失敗しました",
+      "custom_save_success": "保存しました",
+      "custom_color_hex": "色コード",
+      "custom_color_primary": "メインカラー",
+      "custom_color_scaffold": "背景色",
+      "custom_color_card": "カード背景",
+      "custom_color_app_bar": "アプリバー",
+      "custom_color_app_bar_fg": "アプリバー文字/アイコン",
+      "custom_color_bottom_bg": "ボトムバー背景",
+      "custom_color_bottom_selected": "ボトムバー選択",
+      "custom_color_bottom_unselected": "ボトムバー未選択",
+      "custom_color_divider": "区切り線"
     },
     "three_keep_right": {
       "title": "3領域モードページを常に右に"
@@ -834,7 +873,20 @@
       "bind_account_time": "アカウントのバインド時間",
       "rebind_time": "再バインド可能時間",
       "power_features": "パワー機能：マルチスレッドダウンロード/一括インポート/エクスポートダウンロード",
-      "power_guide": "「バージョン情報」ページに移動して、パワーガイドのメンテナンスアドレスを見つけてください\n\n  「以前にパワーオンしました」は対応するパワーステータスを同期できます\n  「ちょうどパワーオンしました」は神秘的なコードを交換します\n  「PATメンバーシップ」は独立したパワー方法です\n  「パワー方法」を変更するとFAILが解決する場合があります"
+      "power_guide": "「バージョン情報」ページに移動して、パワーガイドのメンテナンスアドレスを見つけてください\n\n  「以前にパワーオンしました」は対応するパワーステータスを同期できます\n  「ちょうどパワーオンしました」は神秘的なコードを交換します\n  「PATメンバーシップ」は独立したパワー方法です\n  「パワー方法」を変更するとFAILが解決する場合があります",
+      "error": {
+        "NETWORK_TIMEOUT": "ネットワークタイムアウトです。通信状況を確認するか、パワー方法を切り替えてください",
+        "NETWORK_UNREACHABLE": "サーバーに接続できません。通信状況を確認するか、パワー方法を切り替えてください",
+        "SERVER_FAILED": "サーバー処理に失敗しました",
+        "SERVER_RESPONSE_INVALID": "サーバー応答が不正です",
+        "REQUEST_INVALID": "リクエストが無効です",
+        "ORDER_NOT_SYNCED": "注文はまだ同期されていません。しばらくしてから再試行してください",
+        "ORDER_ALREADY_USED": "この注文は既に使用されています",
+        "ORDER_AMOUNT_INVALID": "注文金額が無効です",
+        "TICKET_NOT_FOUND": "交換コードが見つかりません",
+        "TICKET_ALREADY_USED": "交換コードは既に使用されています",
+        "TICKET_EVENT_USED": "イベント交換コードは既に使用されています"
+      }
     },
     "rankings": {
       "title": "ランキング",
@@ -944,6 +996,9 @@
     },
     "comic_list": {
       "shadow": "シャドウコミック"
+    },
+    "comment": {
+      "shadow": "封印されたコメント"
     },
     "common": {
       "display_mode": "表示モード",
