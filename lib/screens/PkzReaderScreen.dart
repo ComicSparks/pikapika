@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:path/path.dart' as p;
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Entities.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/AutoFullScreen.dart';
 import 'package:pikapika/basic/config/FullScreenUI.dart';
 import 'package:pikapika/basic/config/ReaderDirection.dart';
@@ -186,7 +187,7 @@ class _PkzReaderScreenState extends State<PkzReaderScreen> {
             appBar: _fullScreen
                 ? null
                 : AppBar(
-                    title: Text("${_ep.title} - ${widget.comicInfo.title}"),
+                    title: CcText("${_ep.title} - ${widget.comicInfo.title}"),
                   ),
             body: ContentError(
               error: snapshot.error,
@@ -204,7 +205,7 @@ class _PkzReaderScreenState extends State<PkzReaderScreen> {
             appBar: _fullScreen
                 ? null
                 : AppBar(
-                    title: Text("${_ep.title} - ${widget.comicInfo.title}"),
+                    title: CcText("${_ep.title} - ${widget.comicInfo.title}"),
                   ),
             body: ContentLoading(label: tr('app.loading')),
           );

@@ -7,6 +7,7 @@ import 'package:pikapika/basic/Method.dart';
 import 'package:pikapika/screens/SearchScreen.dart';
 import 'package:pikapika/basic/Navigator.dart';
 
+import '../../basic/config/ContentConvert.dart';
 import '../../basic/config/CopyFullName.dart';
 import '../../basic/config/CopyFullNameTemplate.dart';
 import 'ComicInfoCard.dart';
@@ -80,9 +81,9 @@ class _ComicInfoCard extends State<PkzComicInfoCard> {
                                   confirmCopy(context, info.title);
                                 }
                               },
-                              child: Text(info.title, style: titleStyle),
+                              child: CcText(info.title, style: titleStyle),
                             )
-                          : Text(info.title, style: titleStyle),
+                          : CcText(info.title, style: titleStyle),
                       Container(height: 5),
                       widget.linkItem
                           ? InkWell(
@@ -92,11 +93,12 @@ class _ComicInfoCard extends State<PkzComicInfoCard> {
                               onLongPress: () {
                                 confirmCopy(context, info.author);
                               },
-                              child: Text(info.author, style: authorStyle),
+                              child: CcText(info.author, style: authorStyle),
                             )
-                          : Text(info.author, style: authorStyle),
+                          : CcText(info.author, style: authorStyle),
                       Container(height: 5),
-                      Text.rich(
+                      CcBuilder(
+                        (context) => Text.rich(
                         widget.linkItem
                             ? TextSpan(
                                 children: [
@@ -106,7 +108,7 @@ class _ComicInfoCard extends State<PkzComicInfoCard> {
                                       children: [
                                         const TextSpan(text: ' '),
                                         TextSpan(
-                                            text: e,
+                                            text: ccConvert(e),
                                             recognizer: TapGestureRecognizer()
                                               ..onTap = () {
                                                 // todo
@@ -117,7 +119,7 @@ class _ComicInfoCard extends State<PkzComicInfoCard> {
                                 ],
                               )
                             : TextSpan(
-                                text: "${tr('app.categories')} : ${info.categories.join(' ')}"),
+                                text: "${tr('app.categories')} : ${info.categories.map(ccConvert).join(' ')}"),
                         style: TextStyle(
                           fontSize: 13,
                           color: Theme.of(context)
@@ -127,16 +129,19 @@ class _ComicInfoCard extends State<PkzComicInfoCard> {
                               .withAlpha(0xCC),
                         ),
                       ),
+                      ),
                       Container(height: 5),
                       widget.displayViewLog != null &&
                               widget.displayViewLog!.lastViewEpId.isNotEmpty
                           ? Container(
                               padding: EdgeInsets.only(bottom: 5),
-                              child: Text(
-                                "${tr('app.last_viewed')} ${widget.displayViewLog!.lastViewEpName}",
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: authorStyleX,
+                              child: CcBuilder(
+                                (context) => Text(
+                                  "${tr('app.last_viewed')} ${ccConvert(widget.displayViewLog!.lastViewEpName)}",
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: authorStyleX,
+                                ),
                               ),
                             )
                           : Container(),

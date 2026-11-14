@@ -2,7 +2,7 @@ name: pikapika
 description: A cross platform comic client.
 publish_to: 'none'
 
-version: 1.8.23+47
+version: 1.8.24+48
 
 environment:
   sdk: ^3.10.3
@@ -42,6 +42,7 @@ dependencies:
   connectivity_plus: ^6.1.4
   freezed_annotation: ^2.4.4
   flutter_inappwebview: ^6.1.5
+  flutter_opencc_plus: ^0.1.4
 
 dev_dependencies:
   flutter_test:

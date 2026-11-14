@@ -1,6 +1,7 @@
 import 'package:pikapika/i18.dart';
 import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Entities.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 
 // 继续阅读按钮
 class ContinueReadButton extends StatefulWidget {
@@ -27,21 +28,21 @@ class _ContinueReadButtonState extends State<ContinueReadButton> {
           future: widget.viewFuture,
           builder: (BuildContext context, AsyncSnapshot<ViewLog?> snapshot) {
             late void Function() onPressed;
-            late String text;
+            late String Function() textOf;
             if (snapshot.connectionState != ConnectionState.done) {
               onPressed = () {};
-              text = tr('app.loading');
-            }
-            if (snapshot.data != null && snapshot.data!.lastViewEpOrder > 0) {
+              textOf = () => tr('app.loading');
+            } else if (snapshot.data != null &&
+                snapshot.data!.lastViewEpOrder > 0) {
               onPressed = () => widget.onChoose(
                     snapshot.data?.lastViewEpOrder,
                     snapshot.data?.lastViewPictureRank,
                   );
-              text =
-                  '${tr('app.continue_reading')} ${snapshot.data?.lastViewEpTitle} P. ${(snapshot.data?.lastViewPictureRank ?? 0) + 1}';
+              textOf = () =>
+                  '${tr('app.continue_reading')} ${ccConvert(snapshot.data?.lastViewEpTitle ?? '')} P. ${(snapshot.data?.lastViewPictureRank ?? 0) + 1}';
             } else {
               onPressed = () => widget.onChoose(null, null);
-              text = tr('app.start_reading');
+              textOf = () => tr('app.start_reading');
             }
             return Container(
               padding: const EdgeInsets.only(left: 10, right: 10),
@@ -59,9 +60,11 @@ class _ContinueReadButtonState extends State<ContinueReadButton> {
                             .color!
                             .withOpacity(.05),
                         padding: const EdgeInsets.all(10),
-                        child: Text(
-                          text,
-                          textAlign: TextAlign.center,
+                        child: CcBuilder(
+                          (context) => Text(
+                            textOf(),
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     )

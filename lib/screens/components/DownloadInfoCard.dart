@@ -6,6 +6,7 @@ import 'package:pikapika/basic/Cross.dart';
 import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/screens/components/Images.dart';
 
+import '../../basic/config/ContentConvert.dart';
 import '../../basic/config/CopyFullName.dart';
 import '../../basic/config/CopyFullNameTemplate.dart';
 import 'ComicInfoCard.dart';
@@ -47,7 +48,6 @@ class DownloadInfoCard extends StatelessWidget {
       color: iconColor,
     );
     List<dynamic> categories = json.decode(task.categories);
-    var categoriesString = categories.map((e) => "$e").join(" ");
     return Container(
       padding: const EdgeInsets.all(5),
       decoration: BoxDecoration(
@@ -98,22 +98,24 @@ class DownloadInfoCard extends StatelessWidget {
                                   confirmCopy(context, task.title);
                                 }
                               },
-                              child: Text(task.title, style: titleStyle),
+                              child: CcText(task.title, style: titleStyle),
                             )
-                          : Text(task.title, style: titleStyle),
+                          : CcText(task.title, style: titleStyle),
                       Container(height: 5),
                       linkItem
                           ? GestureDetector(
                               onLongPress: () {
                                 confirmCopy(context, task.author);
                               },
-                              child: Text(task.author, style: authorStyle),
+                              child: CcText(task.author, style: authorStyle),
                             )
-                          : Text(task.author, style: authorStyle),
+                          : CcText(task.author, style: authorStyle),
                       Container(height: 5),
-                      Text(
-                        "${tr('app.categories')}: $categoriesString",
-                        style: categoriesStyle,
+                      CcBuilder(
+                        (context) => Text(
+                          "${tr('app.categories')}: ${categories.map((e) => ccConvert("$e")).join(" ")}",
+                          style: categoriesStyle,
+                        ),
                       ),
                       Container(height: 5),
                       Row(

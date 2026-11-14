@@ -7,6 +7,7 @@ import 'package:pikapika/basic/Cross.dart';
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/basic/Method.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/AutoDeleteDownloadOnUnfavorite.dart';
 import 'package:pikapika/basic/config/AutoDownloadOnFavorite.dart';
 import 'package:pikapika/basic/config/CopyFullName.dart';
@@ -141,9 +142,9 @@ class _ComicInfoCard extends State<ComicInfoCard> {
                                   confirmCopy(context, info.title);
                                 }
                               },
-                              child: Text(info.title, style: titleStyle),
+                              child: CcText(info.title, style: titleStyle),
                             )
-                          : Text(info.title, style: titleStyle),
+                          : CcText(info.title, style: titleStyle),
                       Container(height: 5),
                       widget.linkItem
                           ? InkWell(
@@ -156,11 +157,12 @@ class _ComicInfoCard extends State<ComicInfoCard> {
                               onLongPress: () {
                                 confirmCopy(context, info.author);
                               },
-                              child: Text(info.author, style: authorStyle),
+                              child: CcText(info.author, style: authorStyle),
                             )
-                          : Text(info.author, style: authorStyle),
+                          : CcText(info.author, style: authorStyle),
                       Container(height: 5),
-                      Text.rich(
+                      CcBuilder(
+                        (context) => Text.rich(
                         widget.linkItem
                             ? TextSpan(
                                 children: [
@@ -172,7 +174,7 @@ class _ComicInfoCard extends State<ComicInfoCard> {
                                       children: [
                                         const TextSpan(text: ' '),
                                         TextSpan(
-                                          text: e,
+                                          text: ccConvert(e),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () => navPushOrReplace(
                                                   context,
@@ -188,7 +190,7 @@ class _ComicInfoCard extends State<ComicInfoCard> {
                               )
                             : TextSpan(
                                 text:
-                                    "${tr('components.comic_info_card.categories')} : ${info.categories.join(' ')}"),
+                                    "${tr('components.comic_info_card.categories')} : ${info.categories.map(ccConvert).join(' ')}"),
                         style: TextStyle(
                           fontSize: 13,
                           color: Theme.of(context)
@@ -197,6 +199,7 @@ class _ComicInfoCard extends State<ComicInfoCard> {
                               .color!
                               .withAlpha(0xCC),
                         ),
+                      ),
                       ),
                       Container(height: 5),
                       Wrap(
@@ -527,7 +530,7 @@ class _ComicInfoCard extends State<ComicInfoCard> {
                         final folder = folders[index];
                         return ListTile(
                           leading: const Icon(Icons.folder),
-                          title: Text(folder.name),
+                          title: CcText(folder.name),
                           onTap: () {
                             Navigator.of(context).pop(folder.id);
                           },

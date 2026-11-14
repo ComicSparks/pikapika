@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/basic/Metrics.dart';
 import 'package:pikapika/basic/Method.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/AutoFullScreen.dart';
 import 'package:pikapika/basic/config/FullScreenUI.dart';
 import 'package:pikapika/basic/config/Quality.dart';
@@ -178,7 +179,7 @@ class _ComicReaderScreenState extends State<ComicReaderScreen> {
             appBar: _fullScreen
                 ? null
                 : AppBar(
-                    title: Text("${_ep.title} - ${widget.comicInfo.title}"),
+                    title: CcText("${_ep.title} - ${widget.comicInfo.title}"),
                   ),
             body: ContentError(
               error: snapshot.error,
@@ -196,7 +197,7 @@ class _ComicReaderScreenState extends State<ComicReaderScreen> {
             appBar: _fullScreen
                 ? null
                 : AppBar(
-                    title: Text("${_ep.title} - ${widget.comicInfo.title}"),
+                    title: CcText("${_ep.title} - ${widget.comicInfo.title}"),
                   ),
             body: ContentLoading(label: tr('app.loading')),
           );

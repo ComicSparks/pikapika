@@ -8,6 +8,7 @@ import 'package:pikapika/screens/PkzReaderScreen.dart';
 
 import '../basic/Common.dart';
 import '../basic/Navigator.dart';
+import '../basic/config/ContentConvert.dart';
 import '../basic/config/IconLoading.dart';
 import 'components/ListView.dart';
 import 'components/PkzComicInfoCard.dart';
@@ -98,7 +99,7 @@ class _PkzComicInfoScreenState extends State<PkzComicInfoScreen>
             ));
           },
           color: Colors.white,
-          child: Text(
+          child: CcText(
             chapter.title,
             style: const TextStyle(color: Colors.black),
           ),
@@ -109,7 +110,7 @@ class _PkzComicInfoScreenState extends State<PkzComicInfoScreen>
     final theme = Theme.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: CcText(
           widget.pkzComic.title,
         ),
       ),
@@ -147,7 +148,7 @@ class _PkzComicInfoScreenState extends State<PkzComicInfoScreen>
                   ),
                   borderRadius: const BorderRadius.all(Radius.circular(30)),
                 ),
-                child: Text(
+                child: CcText(
                   e,
                   style: TextStyle(
                     color: Colors.pink.shade500,
@@ -236,11 +237,13 @@ class _PkzComicInfoScreenState extends State<PkzComicInfoScreen>
                             .color!
                             .withOpacity(.05),
                         padding: const EdgeInsets.all(10),
-                        child: Text(
+                        child: CcBuilder(
+                          (context) => Text(
                           chapters.containsKey(_log?.lastViewEpId)
-                              ? "继续阅读 ${chapters[_log?.lastViewEpId]!.title}"
+                              ? "继续阅读 ${ccConvert(chapters[_log?.lastViewEpId]!.title)}"
                               : "开始阅读",
                           textAlign: TextAlign.center,
+                        ),
                         ),
                       ),
                     )

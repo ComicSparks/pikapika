@@ -17,6 +17,7 @@ import 'package:pikapika/basic/config/AutoFullScreen.dart';
 import 'package:pikapika/basic/config/AutoFullScreenOnForward.dart';
 import 'package:pikapika/basic/config/CategoriesColumnCount.dart';
 import 'package:pikapika/basic/config/ChooserRoot.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/ContentFailedReloadAction.dart';
 import 'package:pikapika/basic/config/CopySkipConfirm.dart';
 import 'package:pikapika/basic/config/DragRegionLock.dart';
@@ -148,6 +149,7 @@ class _InitScreenState extends State<InitScreen> {
     await initAutoFullScreenOnForward();
     await initFullScreenAction();
     await initPagerAction();
+    await initContentConvert();
     await initShadowCategoriesMode();
     await initShadowCategories();
     await initIconLoading();

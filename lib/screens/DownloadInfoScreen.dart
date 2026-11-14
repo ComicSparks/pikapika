@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/basic/Navigator.dart';
 import 'package:pikapika/basic/Method.dart';
+import '../basic/config/ContentConvert.dart';
 import '../basic/config/IconLoading.dart';
 import '../basic/config/ShowCommentAtDownload.dart';
 import 'ComicInfoScreen.dart';
@@ -79,7 +80,7 @@ class _DownloadInfoScreenState extends State<DownloadInfoScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.comicTitle),
+        title: CcText(widget.comicTitle),
         actions: [
           IconButton(
             onPressed: () async {
@@ -216,7 +217,7 @@ class _DownloadInfoScreenState extends State<DownloadInfoScreen>
               _push(_task, _epList, e.epOrder, null);
             },
             color: Colors.white,
-            child: Text(e.title, style: const TextStyle(color: Colors.black)),
+            child: CcText(e.title, style: const TextStyle(color: Colors.black)),
           );
         }),
       ],

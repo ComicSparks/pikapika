@@ -326,6 +326,12 @@
     "no_animation": {
       "title": "取消翻頁動畫（點按屏幕、音量鍵、鍵盤）"
     },
+    "content_convert": {
+      "title": "內容繁簡體轉換",
+      "off": "關閉",
+      "s2t": "簡體 -> 繁體",
+      "t2s": "繁體 -> 簡體"
+    },
     "pager_action": {
       "title": "列表頁加載方式",
       "choose": "選擇列表頁加載方式",

@@ -2,6 +2,7 @@ import 'package:pikapika/i18.dart';
 import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Navigator.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/TagFavorite.dart';
 import 'ComicsScreen.dart';
 import 'components/RightClickPop.dart';
@@ -151,13 +152,13 @@ class _TagFavoriteScreenState extends State<TagFavoriteScreen> {
                 if (_selecting) {
                   return CheckboxListTile(
                     value: _selected.contains(e.tag),
-                    title: Text(e.tag),
+                    title: CcText(e.tag),
                     controlAffinity: ListTileControlAffinity.leading,
                     onChanged: (_) => _toggleSelect(e.tag),
                   );
                 }
                 return ListTile(
-                  title: Text(e.tag),
+                  title: CcText(e.tag),
                   onTap: () {
                     navPushOrReplace(
                       context,

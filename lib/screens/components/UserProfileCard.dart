@@ -14,6 +14,7 @@ import 'package:pikapika/screens/components/Avatar.dart';
 import 'package:pikapika/screens/components/Images.dart';
 import 'package:pikapika/screens/components/ItemBuilder.dart';
 
+import '../../basic/config/ContentConvert.dart';
 import '../../basic/config/IconLoading.dart';
 import 'DesktopCropper.dart';
 
@@ -133,7 +134,7 @@ class _UserProfileCardState extends State<UserProfileCard> {
                     child: Avatar(profile.avatar, size: 65),
                   ),
                   Container(height: 5),
-                  Text(
+                  CcText(
                     profile.name,
                     style: nameStyle,
                     strutStyle: nameStrutStyle,

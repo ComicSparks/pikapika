@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'SearchAuthorScreen.dart';
 import 'components/flutter_search_bar.dart' as fsb;
 import 'package:pikapika/basic/Entities.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/HiddenSubIcon.dart';
 import 'package:pikapika/basic/config/ShadowCategoriesEvent.dart';
 import 'package:pikapika/basic/config/ShadowCategoriesMode.dart';
@@ -205,7 +206,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   ) {
     List<Widget> list = [];
 
-    append(Widget widget, String title, Function() onTap) {
+    append(Widget widget, String title, Function() onTap, {bool convert = false}) {
       list.add(
         GestureDetector(
           onTap: onTap,
@@ -225,7 +226,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 ),
                 Container(height: 5),
                 Center(
-                  child: Text(title),
+                  child: convert ? CcText(title) : Text(title),
                 ),
               ],
             ),
@@ -235,7 +236,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     }
 
     for (var value in items) {
-      append(value.icon, value.title, value.onTap);
+      append(value.icon, value.title, value.onTap, convert: value.convert);
     }
 
     return list;
@@ -290,6 +291,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         ),
         c.title,
         () => _navigateToCategory(c.title),
+        convert: true,
       ));
     }
 
@@ -352,10 +354,12 @@ class CategoriesItem {
   final Widget icon;
   final String title;
   final Function() onTap;
+  final bool convert;
 
   const CategoriesItem(
     this.icon,
     this.title,
-    this.onTap,
-  );
+    this.onTap, {
+    this.convert = false,
+  });
 }

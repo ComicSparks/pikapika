@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/basic/entity_convert.dart';
 import 'package:pikapika/basic/Method.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/IsPro.dart';
 import 'package:pikapika/screens/ComicInfoScreen.dart';
 import 'package:pikapika/screens/components/ComicInfoCard.dart';
@@ -182,7 +183,7 @@ class _LocalFavoriteScreenState extends State<LocalFavoriteScreen>
                 ..._folders.map(
                   (f) => ListTile(
                     leading: const Icon(Icons.folder),
-                    title: Text(f.name),
+                    title: CcText(f.name),
                     onTap: () => Navigator.of(context).pop(f.id),
                   ),
                 ),
@@ -620,7 +621,7 @@ class _LocalFavoriteScreenState extends State<LocalFavoriteScreen>
                 final folder = targetFolders[index - 1];
                 return ListTile(
                   leading: const Icon(Icons.folder),
-                  title: Text(folder.name),
+                  title: CcText(folder.name),
                   onTap: () {
                     Navigator.of(context).pop(folder.id);
                   },

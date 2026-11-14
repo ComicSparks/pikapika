@@ -8,6 +8,7 @@ import 'package:pikapika/screens/components/ComicInfoCard.dart';
 import 'package:pikapika/screens/components/RightClickPop.dart';
 
 import '../basic/Entities.dart';
+import '../basic/config/ContentConvert.dart';
 import '../basic/config/IconLoading.dart';
 import 'ComicInfoScreen.dart';
 import 'components/Images.dart';
@@ -121,7 +122,7 @@ class _ViewLogsScreenState extends State<ViewLogsScreen> {
       context: context,
       builder: (context) {
         return SimpleDialog(
-          title: Text(item.title),
+          title: CcText(item.title),
           children: [
             if (item.pinnedAt > 0)
               SimpleDialogOption(
@@ -459,14 +460,15 @@ class ViewInfoCard extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(title, style: titleStyle),
+                      CcText(title, style: titleStyle),
                       Container(height: 5),
-                      Text(author, style: authorStyle),
+                      CcText(author, style: authorStyle),
                       Container(height: 5),
-                      Text.rich(
+                      CcBuilder(
+                        (context) => Text.rich(
                         TextSpan(
                             text:
-                                "${tr('screen.view_logs.categories')} : ${categories.join(' ')}"),
+                                "${tr('screen.view_logs.categories')} : ${categories.map(ccConvert).join(' ')}"),
                         style: TextStyle(
                           fontSize: 13,
                           color: Theme.of(context)
@@ -475,6 +477,7 @@ class ViewInfoCard extends StatelessWidget {
                               .color!
                               .withAlpha(0xCC),
                         ),
+                      ),
                       ),
                       Container(height: 5),
                     ],

@@ -12,6 +12,7 @@ import 'package:pikapika/basic/config/DisableAutoDownloadOnMobile.dart';
 import 'package:pikapika/basic/config/AutoFullScreen.dart';
 import 'package:pikapika/basic/config/AutoFullScreenOnForward.dart';
 import 'package:pikapika/basic/config/ChooserRoot.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/ContentFailedReloadAction.dart';
 import 'package:pikapika/basic/config/CopySkipConfirm.dart';
 import 'package:pikapika/basic/config/DownloadAndExportPath.dart';
@@ -134,6 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 languageListTile(),
                 timeZoneSetting(),
                 fontSetting(),
+                contentConvertSetting(),
                 fullScreenUISetting(),
                 usingRightClickPopSetting(),
                 hiddenFdIconSetting(),

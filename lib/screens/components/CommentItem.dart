@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/basic/Method.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/HiddenCommentWords.dart';
 
 import '../../basic/Cross.dart';
@@ -113,7 +114,7 @@ class _ComicCommentItemState extends State<ComicCommentItem> {
                         crossAxisAlignment: WrapCrossAlignment.center,
                         alignment: WrapAlignment.spaceBetween,
                         children: [
-                          Text(comment.user.name, style: nameStyle),
+                          CcText(comment.user.name, style: nameStyle),
                           Text(
                             formatTimeToDateTime(comment.createdAt),
                             style: datetimeStyle,
@@ -226,7 +227,7 @@ class _ComicCommentItemState extends State<ComicCommentItem> {
                   onLongPress: () {
                     confirmCopy(context, comment.content);
                   },
-                  child: Text(comment.content, style: connectStyle),
+                  child: CcText(comment.content, style: connectStyle),
                 ),
               ],
             ),

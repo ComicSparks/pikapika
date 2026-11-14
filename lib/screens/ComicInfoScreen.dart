@@ -9,6 +9,7 @@ import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/basic/entity_convert.dart';
 import 'package:pikapika/basic/Method.dart';
 import 'package:pikapika/basic/Navigator.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/IgnoreInfoHistory.dart';
 import 'package:pikapika/screens/ComicsScreen.dart';
 import 'package:pikapika/screens/components/CommentMainType.dart';
@@ -164,7 +165,7 @@ class _ComicInfoScreenState extends State<ComicInfoScreen> with RouteAware {
           length: _tabs.length,
           child: Scaffold(
             appBar: AppBar(
-              title: Text(_comicInfo.title),
+              title: CcText(_comicInfo.title),
               actions: [
                 _buildSubscribeAction(_subscribedFuture, _comicInfo),
                 _buildDownloadAction(_epListFuture, _comicInfo),
@@ -214,7 +215,7 @@ class _ComicInfoScreenState extends State<ComicInfoScreen> with RouteAware {
                                   _comicInfo.creator.name,
                                 );
                               },
-                              child: Text(
+                              child: CcText(
                                 _comicInfo.creator.name,
                                 style: const TextStyle(
                                   fontSize: 14,
@@ -254,7 +255,7 @@ class _ComicInfoScreenState extends State<ComicInfoScreen> with RouteAware {
                         onLongPress: () {
                           confirmCopy(context, _comicInfo.chineseTeam);
                         },
-                        child: Text(
+                        child: CcText(
                           _comicInfo.chineseTeam,
                           style: const TextStyle(
                             fontSize: 13,
@@ -410,7 +411,7 @@ class _ComicInfoScreenState extends State<ComicInfoScreen> with RouteAware {
                       _push(_comicInfo, _epList, e.order, null);
                     },
                     color: Colors.white,
-                    child: Text(
+                    child: CcText(
                       e.title,
                       style: const TextStyle(color: Colors.black),
                     ),

@@ -16,6 +16,7 @@ import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Cross.dart';
 import 'package:pikapika/basic/Entities.dart';
 import 'package:pikapika/basic/Method.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/Address.dart';
 import 'package:pikapika/basic/config/AutoFullScreen.dart';
 import 'package:pikapika/basic/config/AutoFullScreenOnForward.dart';
@@ -629,7 +630,7 @@ abstract class _ImageReaderContentState extends State<_ImageReaderContent> {
   Widget _buildAppBar() => widget.struct.fullScreen
       ? Container()
       : AppBar(
-          title: Text(
+          title: CcText(
               "${widget.struct.epNameMap[widget.struct.epOrder] ?? ""} - ${widget.struct.comicTitle}"),
           actions: [
             IconButton(

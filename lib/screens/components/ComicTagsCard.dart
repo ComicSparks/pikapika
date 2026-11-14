@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pikapika/screens/ComicsScreen.dart';
 import 'package:pikapika/basic/Navigator.dart';
 import 'package:pikapika/basic/Common.dart';
+import 'package:pikapika/basic/config/ContentConvert.dart';
 import 'package:pikapika/basic/config/TagFavorite.dart';
 
 // 漫画tag
@@ -81,7 +82,7 @@ class _ComicTagsCardState extends State<ComicTagsCard> {
                 ),
                 borderRadius: const BorderRadius.all(Radius.circular(30)),
               ),
-              child: Text(
+              child: CcText(
                 e,
                 style: TextStyle(
                   color: Colors.pink.shade500,

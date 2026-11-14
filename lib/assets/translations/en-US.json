@@ -326,6 +326,12 @@
     "no_animation": {
       "title": "Cancel page animation (tap screen, volume key, keyboard)"
     },
+    "content_convert": {
+      "title": "Content script conversion",
+      "off": "Off",
+      "s2t": "Simplified -> Traditional",
+      "t2s": "Traditional -> Simplified"
+    },
     "pager_action": {
       "title": "List page loading method",
       "choose": "Choose list page loading method",
