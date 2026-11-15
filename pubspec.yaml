@@ -42,7 +42,6 @@ dependencies:
   connectivity_plus: ^6.1.4
   freezed_annotation: ^2.4.4
   flutter_inappwebview: ^6.1.5
-  flutter_opencc_plus: ^0.1.4
 
 dev_dependencies:
   flutter_test:

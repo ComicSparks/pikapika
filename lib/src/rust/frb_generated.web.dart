@@ -10,6 +10,7 @@
 import 'api/auth.dart';
 import 'api/comic.dart';
 import 'api/comment.dart';
+import 'api/convert.dart';
 import 'api/download.dart';
 import 'api/favorite.dart';
 import 'api/game.dart';
