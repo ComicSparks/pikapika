@@ -497,11 +497,16 @@ class Method {
   }
 
   Future<void> iosSaveFileToImage(String path) async {
-    await Gal.putImage(path);
+    await _putGalleryImage(path);
   }
 
   Future<void> androidSaveFileToImage(String path) async {
-    await Gal.putImage(path);
+    await _putGalleryImage(path);
+  }
+
+  Future<void> _putGalleryImage(String path) async {
+    final bytes = await File(path).readAsBytes();
+    await Gal.putImageBytes(bytes);
   }
 
   Future<void> convertImageToJPEG100(String path, String dir) {

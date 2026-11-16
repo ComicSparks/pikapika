@@ -5,10 +5,9 @@ import 'package:flutter/services.dart';
 import 'package:pikapika/i18.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
+import 'package:gal/gal.dart';
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/config/CopySkipConfirm.dart';
-import 'package:pikapika/basic/config/Platform.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import 'Method.dart';
@@ -77,13 +76,7 @@ Future<dynamic> saveImageQuiet(String path, BuildContext context) async {
 }
 
 Future<dynamic> _saveImageAndroid(String path, BuildContext context) async {
-  late bool g;
-  if (androidVersion < 30) {
-    g = await Permission.storage.request().isGranted;
-  } else {
-    g = await Permission.manageExternalStorage.request().isGranted;
-  }
-  if (!g) {
+  if (!await Gal.requestAccess()) {
     return;
   }
   return method.androidSaveFileToImage(path);
