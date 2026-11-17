@@ -78,10 +78,24 @@ jobs:
           workspaces: rust
 
       - name: Setup Flutter
+        if: matrix.target != 'linux-arm64'
         uses: subosito/flutter-action@v2
         with:
           flutter-version: ${{ env.FLUTTER_VERSION }}
           cache: true
+
+      # The stable release manifest only lists an x64 SDK, so flutter-action
+      # cannot resolve 3.38.4 for arm64. The engine artifacts exist; install
+      # the tagged tree and let the tool fetch the arm64 SDK itself.
+      - name: Setup Flutter (linux-arm64)
+        if: matrix.target == 'linux-arm64'
+        run: |
+          git clone --depth 1 --branch "${FLUTTER_VERSION}" https://github.com/flutter/flutter.git "${HOME}/flutter"
+          git config --global --add safe.directory "${HOME}/flutter"
+          echo "${HOME}/flutter/bin" >> "${GITHUB_PATH}"
+          "${HOME}/flutter/bin/flutter" config --no-analytics --enable-linux-desktop
+          "${HOME}/flutter/bin/flutter" precache --linux
+          "${HOME}/flutter/bin/flutter" --version
 
       - name: Linux packages
         if: matrix.target == 'linux' || matrix.target == 'linux-arm64'
