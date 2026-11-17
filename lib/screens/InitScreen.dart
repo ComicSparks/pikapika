@@ -170,6 +170,7 @@ class _InitScreenState extends State<InitScreen> {
     await initExportRename();
     await initVersion();
     await Metrics.syncVersion();
+    Metrics.noteApp();
     if (mounted) {
       if (Platform.isAndroid || Platform.isIOS) {
         Metrics.syncLocale(context.locale.languageCode);

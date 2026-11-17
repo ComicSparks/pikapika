@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
+import '../../basic/Metrics.dart';
 import '../../basic/config/Authentication.dart';
 import '../../basic/config/TimeoutLock.dart';
 
@@ -33,6 +34,9 @@ class _TimeoutLockState extends State<TimeoutLock> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.hidden) {
+      Metrics.flush();
+    }
     if (!currentAuthentication() || timeoutLock == 0) return;
     print("_locked: $_locked");
     if (_locked) {
