@@ -11,11 +11,26 @@ iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAA
 EOF
 fi
 
+case "$(uname -m)" in
+  x86_64)
+    flutter_arch=x64
+    appimage_arch=x86_64
+    ;;
+  aarch64|arm64)
+    flutter_arch=arm64
+    appimage_arch=aarch64
+    ;;
+  *)
+    echo "unsupported linux architecture: $(uname -m)" >&2
+    exit 1
+    ;;
+esac
+
 flutter build linux --release
 
 rm -rf build/AppDir
 mkdir -p build/AppDir/usr/bin
-cp -a build/linux/x64/release/bundle/. build/AppDir/usr/bin/
+cp -a "build/linux/${flutter_arch}/release/bundle/." build/AppDir/usr/bin/
 cp linux/pikapika.desktop build/AppDir/pikapika.desktop
 cp linux/pikapika.png build/AppDir/pikapika.png
 cat >build/AppDir/AppRun <<'EOF'
@@ -29,7 +44,7 @@ chmod +x build/AppDir/AppRun
 if [[ ! -x "${GITHUB_WORKSPACE:-}/bin/appimagetool" && ! -x /usr/local/bin/appimagetool ]]; then
   mkdir -p "${HOME}/bin"
   curl -L -o "${HOME}/bin/appimagetool" \
-    https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage
+    "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-${appimage_arch}.AppImage"
   chmod +x "${HOME}/bin/appimagetool"
   export PATH="${HOME}/bin:${PATH}"
 fi

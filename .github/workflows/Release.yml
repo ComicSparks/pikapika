@@ -58,6 +58,10 @@ jobs:
             host: ubuntu-latest
             rust_targets: ""
             script: build-linux-appimage.sh
+          - target: linux-arm64
+            host: ubuntu-24.04-arm
+            rust_targets: ""
+            script: build-linux-appimage.sh
           - target: ios
             host: macos-latest
             rust_targets: aarch64-apple-ios
@@ -109,7 +113,7 @@ jobs:
           cache: true
 
       - name: Linux packages
-        if: steps.check_asset.outputs.skip_build != 'true' && matrix.target == 'linux'
+        if: steps.check_asset.outputs.skip_build != 'true' && (matrix.target == 'linux' || matrix.target == 'linux-arm64')
         run: |
           sudo apt-get update
           sudo apt-get install -y clang cmake ninja-build pkg-config libgtk-3-dev liblzma-dev libstdc++-12-dev libfuse2

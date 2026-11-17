@@ -42,6 +42,7 @@ asset_name() {
     ios) name="pikapika-${tag}-ios_nosign-flutter_${flutter}.ipa" ;;
     windows) name="pikapika-${tag}-windows-x86_64-flutter_${flutter}.zip" ;;
     linux) name="pikapika-${tag}-linux-x86_64-flutter_${flutter}.AppImage" ;;
+    linux-arm64) name="pikapika-${tag}-linux-arm64-flutter_${flutter}.AppImage" ;;
     android-arm32) name="pikapika-${tag}-android-arm32-flutter_${flutter}.apk" ;;
     android-arm64) name="pikapika-${tag}-android-arm64-flutter_${flutter}.apk" ;;
     android-x86_64) name="pikapika-${tag}-android-x86_64-flutter_${flutter}.apk" ;;

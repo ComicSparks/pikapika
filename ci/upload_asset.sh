@@ -31,8 +31,8 @@ case "$target" in
   windows)
     copy_named build/build.zip "$(asset_name windows)"
     ;;
-  linux)
-    copy_named build/build.AppImage "$(asset_name linux)"
+  linux|linux-arm64)
+    copy_named build/build.AppImage "$(asset_name "$target")"
     ;;
   android)
     copy_named build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk "$(asset_name android-arm32)"
