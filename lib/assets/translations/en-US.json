@@ -254,6 +254,9 @@
     "ignore_upgrade_confirm": {
       "title": "Close upgrade popup"
     },
+    "hide_announcement": {
+      "title": "Hide announcements"
+    },
     "hidden_fd_icon": {
       "title": "Hide personal space's power icon"
     },
@@ -864,6 +867,29 @@
       "pat_not_detected": "No membership detected, please go to download page to join",
       "i_have_powered": "I have powered before",
       "i_just_powered": "I just powered",
+      "my_referrer_name": "My username",
+      "register_referrer": "Registered",
+      "referrer": "Referrer",
+      "referrer_none": "Not bound",
+      "referrer_login": "Log in first",
+      "referrer_locked": "Unbind before changing",
+      "enter_referrer": "Enter referrer username",
+      "referrer_bound": "Bound",
+      "unbind_referrer": "Unbind referrer",
+      "unbind_confirm": "Unbind this referrer?",
+      "referrer_unbound": "Unbound",
+      "no_referrer": "No referrer",
+      "unbind_wait": "{days} days left",
+      "campaign_time": "Campaign time",
+      "campaign_none": "No campaign",
+      "announcement": "Announcement",
+      "announcement_close": "Close",
+      "announcement_dismiss": "Don't remind me",
+      "referrer_self": "You cannot refer yourself",
+      "referrer_not_found": "Referrer does not exist",
+      "referrer_already": "A referrer is already bound",
+      "referrer_mutual": "Mutual referral is not allowed",
+      "referrer_not_bound": "No referrer is bound",
       "enter_code": "Enter code",
       "power_method": "Power Method",
       "wind_power": "Wind Power",

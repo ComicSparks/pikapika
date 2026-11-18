@@ -137,6 +137,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.3.5+5"
+  crypto:
+    dependency: "direct main"
+    description:
+      name: crypto
+      sha256: e3626ae6270383c9e3a549f34c9e4cd26c09ae6a9adaab2bf4737a00340efdc4
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.8"
   cupertino_icons:
     dependency: "direct main"
     description:

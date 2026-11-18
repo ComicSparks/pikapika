@@ -135,7 +135,7 @@ class _ProScreenState extends State<ProScreen> {
           const Divider(),
           ...patPro(),
           const Divider(),
-          const Divider(),
+          const _ReferralTiles(),
         ],
       ),
     );
@@ -356,6 +356,137 @@ class _ProServerNameWidgetState extends State<ProServerNameWidget> {
     }
     return _defaultProServerId;
   }
+}
+
+class _ReferralTiles extends StatefulWidget {
+  const _ReferralTiles();
+
+  @override
+  State<_ReferralTiles> createState() => _ReferralTilesState();
+}
+
+class _ReferralTilesState extends State<_ReferralTiles> {
+  String _username = "";
+  String _referrer = "";
+  int _unbindWaitDays = 0;
+  int _campaignStart = 0;
+  int _campaignEnd = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    method.getUsername().then((value) {
+      if (!mounted) return;
+      setState(() {
+        _username = value;
+      });
+    });
+    _load();
+  }
+
+  Future<void> _load() async {
+    try {
+      final raw = await method.referralCall('{"action":"local"}');
+      if (!mounted || raw.isEmpty) return;
+      _apply(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {}
+  }
+
+  Future<void> _referral(String payload, String ok) async {
+    try {
+      final raw = await method.referralCall(payload);
+      if (!mounted) return;
+      if (raw.isNotEmpty) {
+        _apply(jsonDecode(raw) as Map<String, dynamic>);
+      }
+      defaultToast(context, ok);
+    } catch (e) {
+      if (mounted) defaultToast(context, _referralError(e));
+    }
+  }
+
+  void _apply(Map<String, dynamic> map) {
+    setState(() {
+      _referrer = (map["referrer"] ?? "").toString();
+      _unbindWaitDays = _asInt(map["unbind_wait_days"]);
+      _campaignStart = _asInt(map["campaign_start"]);
+      _campaignEnd = _asInt(map["campaign_end"]);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        ListTile(
+          title: Text(tr("screen.pro.referrer")),
+          subtitle: Text(_referrer),
+          onTap: () async {
+            if (_username.isEmpty) {
+              defaultToast(context, tr("screen.pro.referrer_login"));
+              return;
+            }
+            if (_referrer.isNotEmpty) return;
+            final name = await inputString(context, tr("screen.pro.enter_referrer"));
+            if (name == null || name.trim().isEmpty) return;
+            await _referral(
+              jsonEncode({"action": "bind", "referrer": name.trim()}),
+              tr("screen.pro.referrer_bound"),
+            );
+          },
+          onLongPress: () async {
+            if (_referrer.isEmpty) return;
+            if (_unbindWaitDays > 0) {
+              defaultToast(context, tr("screen.pro.unbind_wait").replaceAll("{days}", "$_unbindWaitDays"));
+              return;
+            }
+            final ok = await confirmDialog(
+              context,
+              tr("screen.pro.unbind_referrer"),
+              tr("screen.pro.unbind_confirm"),
+            );
+            if (!ok || !context.mounted) return;
+            await _referral('{"action":"unbind"}', tr("screen.pro.referrer_unbound"));
+          },
+        ),
+        ListTile(
+          title: Text(tr("screen.pro.campaign_time")),
+          subtitle: Text(_campaignLabel(_campaignStart, _campaignEnd)),
+        ),
+      ],
+    );
+  }
+}
+
+int _asInt(Object? value) {
+  if (value is int) return value;
+  if (value is num) return value.toInt();
+  return int.tryParse(value?.toString() ?? "") ?? 0;
+}
+
+String _campaignLabel(int start, int end) {
+  if (start <= 0 || end <= 0) return "";
+  String fmt(int seconds) {
+    final time = DateTime.fromMillisecondsSinceEpoch(seconds * 1000, isUtc: true).toLocal();
+    String two(int value) => value.toString().padLeft(2, "0");
+    return "${time.year}-${two(time.month)}-${two(time.day)} ${two(time.hour)}:${two(time.minute)}";
+  }
+
+  return "${fmt(start)} — ${fmt(end)}";
+}
+
+String _referralError(Object error) {
+  final text = error.toString();
+  final wait = RegExp(r"REFERRER_UNBIND_WAIT:(\d+)").firstMatch(text);
+  if (wait != null) {
+    return tr("screen.pro.unbind_wait").replaceAll("{days}", wait.group(1)!);
+  }
+  if (text.contains("REFERRER_SELF")) return tr("screen.pro.referrer_self");
+  if (text.contains("REFERRER_LOCKED")) return tr("screen.pro.referrer_already");
+  if (text.contains("REFERRER_MUTUAL")) return tr("screen.pro.referrer_mutual");
+  if (text.contains("REFERRER_NOT_BOUND")) return tr("screen.pro.referrer_not_bound");
+  return text;
 }
 
 String _proErrorMessage(Object e) {

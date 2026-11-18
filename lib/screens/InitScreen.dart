@@ -84,6 +84,7 @@ import '../basic/config/HiddenCommentWords.dart';
 import '../basic/config/HiddenWords.dart';
 import '../basic/config/HideOnlineFavorite.dart';
 import '../basic/config/IconLoading.dart';
+import '../basic/config/HideAnnouncement.dart';
 import '../basic/config/IgnoreUpgradeConfirm.dart';
 import '../basic/config/IsPro.dart';
 import '../basic/config/ReaderBackgroundColor.dart';
@@ -184,6 +185,7 @@ class _InitScreenState extends State<InitScreen> {
     await initAuthentication();
     await reloadIsPro();
     await initIgnoreUpgradeConfirm();
+    await initHideAnnouncement();
     await initWillPopNotice();
     await initHiddenFdIcon();
     await initShowCommentAtDownload();
@@ -234,6 +236,7 @@ class _InitScreenState extends State<InitScreen> {
       }
     }
     autoCheckNewVersion();
+    method.referralCall('{"action":"status"}').catchError((_) => "");
     String? initUrl;
     if (Platform.isAndroid || Platform.isIOS) {
       try {

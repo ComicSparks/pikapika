@@ -2,7 +2,7 @@ name: pikapika
 description: A cross platform comic client.
 publish_to: 'none'
 
-version: 1.8.26+49
+version: 1.8.27+50
 
 environment:
   sdk: ^3.10.3
@@ -14,6 +14,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
+  crypto: ^3.0.6
   rust_lib_pikapika:
     path: rust_builder
   flutter_rust_bridge: 2.12.0

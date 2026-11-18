@@ -199,6 +199,7 @@ class _AccountScreenState extends State<AccountScreen> {
     });
     try {
       await method.login();
+      method.referralCall('{"action":"status"}').catchError((_) => "");
       await reloadIsPro();
       Navigator.pushReplacement(
         context,

@@ -250,6 +250,9 @@
     "ignore_upgrade_confirm": {
       "title": "업그레이드 팝업 닫기"
     },
+    "hide_announcement": {
+      "title": "공지 숨기기"
+    },
     "hidden_fd_icon": {
       "title": "개인 공간의 전원 아이콘 숨기기"
     },
@@ -864,6 +867,29 @@
       "pat_not_detected": "멤버십이 감지되지 않았습니다. 다운로드 페이지로 이동하여 가입하세요",
       "i_have_powered": "이전에 전원을 켰습니다",
       "i_just_powered": "방금 전원을 켰습니다",
+      "my_referrer_name": "내 사용자 이름",
+      "register_referrer": "등록했습니다",
+      "referrer": "추천인",
+      "referrer_none": "없음",
+      "referrer_login": "먼저 로그인",
+      "referrer_locked": "바꾸려면 먼저 해제하세요",
+      "enter_referrer": "추천인 사용자 이름",
+      "referrer_bound": "연결했습니다",
+      "unbind_referrer": "추천인 해제",
+      "unbind_confirm": "추천인을 해제할까요?",
+      "referrer_unbound": "해제했습니다",
+      "no_referrer": "추천인이 없습니다",
+      "unbind_wait": "{days}일 남음",
+      "campaign_time": "행사 기간",
+      "campaign_none": "행사 없음",
+      "announcement": "공지",
+      "announcement_close": "닫기",
+      "announcement_dismiss": "다시 보지 않기",
+      "referrer_self": "자신을 추천할 수 없습니다",
+      "referrer_not_found": "추천인이 없습니다",
+      "referrer_already": "이미 추천인이 있습니다",
+      "referrer_mutual": "서로 추천할 수 없습니다",
+      "referrer_not_bound": "추천인이 연결되어 있지 않습니다",
       "enter_code": "코드 입력",
       "power_method": "전원 방식",
       "wind_power": "풍력 발전",

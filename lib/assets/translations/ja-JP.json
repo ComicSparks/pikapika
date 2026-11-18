@@ -250,6 +250,9 @@
     "ignore_upgrade_confirm": {
       "title": "アップグレードポップアップを閉じる"
     },
+    "hide_announcement": {
+      "title": "お知らせを表示しない"
+    },
     "hidden_fd_icon": {
       "title": "個人スペースの電源アイコンを非表示"
     },
@@ -864,6 +867,29 @@
       "pat_not_detected": "メンバーシップが検出されません、ダウンロードページに移動して参加してください",
       "i_have_powered": "以前にパワーオンしました",
       "i_just_powered": "ちょうどパワーオンしました",
+      "my_referrer_name": "自分のユーザー名",
+      "register_referrer": "登録しました",
+      "referrer": "紹介者",
+      "referrer_none": "未登録",
+      "referrer_login": "先にログイン",
+      "referrer_locked": "変更するには解除してください",
+      "enter_referrer": "紹介者のユーザー名",
+      "referrer_bound": "登録しました",
+      "unbind_referrer": "紹介者を解除",
+      "unbind_confirm": "紹介者を解除しますか？",
+      "referrer_unbound": "解除しました",
+      "no_referrer": "紹介者はいません",
+      "unbind_wait": "あと {days} 日",
+      "campaign_time": "活動期間",
+      "campaign_none": "活動はありません",
+      "announcement": "お知らせ",
+      "announcement_close": "閉じる",
+      "announcement_dismiss": "今後表示しない",
+      "referrer_self": "自分は指定できません",
+      "referrer_not_found": "紹介者が見つかりません",
+      "referrer_already": "すでに紹介者がいます",
+      "referrer_mutual": "相互紹介はできません",
+      "referrer_not_bound": "紹介者は未登録です",
       "enter_code": "コードを入力",
       "power_method": "パワー方法",
       "wind_power": "風力発電",

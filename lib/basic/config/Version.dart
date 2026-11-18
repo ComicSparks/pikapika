@@ -1,11 +1,16 @@
 import 'dart:async' show Future;
+import 'dart:convert';
+
+import 'package:crypto/crypto.dart';
 import 'package:event/event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:pikapika/basic/Common.dart';
 import 'package:pikapika/basic/Cross.dart';
+import 'package:pikapika/i18.dart';
 
 import '../Method.dart';
+import 'HideAnnouncement.dart';
 import 'IgnoreUpgradeConfirm.dart';
 
 const _versionAssets = 'lib/assets/version.txt';
@@ -14,6 +19,7 @@ late String _version;
 String? _latestVersion;
 String? _latestVersionInfo;
 String? _downloadUrl;
+String _announcement = "";
 
 Future initVersion() async {
   // 当前版本
@@ -67,6 +73,7 @@ bool dirtyVersion() {
 Future _versionCheck() async {
   if (!dirtyVersion()) {
     var config = await method.appConfig();
+    _announcement = config.announcement;
     if (config.latestVersion.isNotEmpty) {
       String latestVersion = config.latestVersion;
       if (latestVersion != _version && _isServerNewer(_version, latestVersion)) {
@@ -97,29 +104,78 @@ bool _isServerNewer(String current, String latest) {
 }
 
 var _display = true;
+var _versionGate = false;
+var _announcementBusy = false;
+var _announcementDone = false;
 
 void versionPop(BuildContext context) {
+  if (_versionGate) return;
   final latest = latestVersion();
-  if (latest == null || !_display) {
+  final force = latest != null && _isForceUpgrade(currentVersion(), latest);
+  final showForce = latest != null && _display && force && !ignoreUpgradeConfirm;
+  if (showForce) {
+    _display = false;
+    _versionGate = true;
+    _announcementPop(context).whenComplete(() {
+      if (!context.mounted) return;
+      TopConfirm.topConfirm(
+        context,
+        "发现新版本",
+        "发现新版本 $latest，请立即更新后继续使用",
+        force: true,
+        primaryText: "去下载",
+        onPrimary: () async {
+          _openRelease(context);
+        },
+      );
+    });
     return;
   }
+  _announcementPop(context);
+}
 
-  final force = _isForceUpgrade(currentVersion(), latest);
-  if (!force || ignoreUpgradeConfirm) {
-    return;
+Future<void> _announcementPop(BuildContext context) async {
+  if (hideAnnouncement || _announcementDone || _announcementBusy) return;
+  final text = _announcement.trim();
+  if (text.isEmpty) return;
+  _announcementBusy = true;
+  try {
+    final hash = sha256.convert(utf8.encode(text)).toString();
+    final saved = await method.loadProperty("announcement_read", "");
+    if (!context.mounted) return;
+    if (saved == hash) {
+      _announcementDone = true;
+      return;
+    }
+    _announcementDone = true;
+    final remember = await showDialog<bool>(
+      context: context,
+      barrierDismissible: false,
+      builder: (c) => AlertDialog(
+        title: Text(tr("screen.pro.announcement")),
+        content: ConstrainedBox(
+          constraints: const BoxConstraints(maxHeight: 360),
+          child: SingleChildScrollView(child: Text(text)),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(c, false),
+            child: Text(tr("screen.pro.announcement_close")),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(c, true),
+            child: Text(tr("screen.pro.announcement_dismiss")),
+          ),
+        ],
+      ),
+    );
+    if (remember == true) {
+      await method.saveProperty("announcement_read", hash);
+    }
+  } catch (_) {
+  } finally {
+    _announcementBusy = false;
   }
-
-  _display = false;
-  TopConfirm.topConfirm(
-    context,
-    "发现新版本",
-    force ? "发现新版本 $latest，请立即更新后继续使用" : "发现新版本 $latest，建议更新",
-    force: force,
-    primaryText: "去下载",
-    onPrimary: () async {
-      _openRelease(context);
-    },
-  );
 }
 
 class _SemVer {

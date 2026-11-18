@@ -16,15 +16,16 @@ import 'package:flutter_rust_bridge/flutter_rust_bridge_for_generated.dart';
 final String downloadUrl;
 final String changeLog;
 final String repo;
+final String announcement;
 
-                const AppConfig({required this.latestVersion ,required this.downloadUrl ,required this.changeLog ,required this.repo ,});
+                const AppConfig({required this.latestVersion ,required this.downloadUrl ,required this.changeLog ,required this.repo ,required this.announcement ,});
 
                 
                 
 
                 
         @override
-        int get hashCode => latestVersion.hashCode^downloadUrl.hashCode^changeLog.hashCode^repo.hashCode;
+        int get hashCode => latestVersion.hashCode^downloadUrl.hashCode^changeLog.hashCode^repo.hashCode^announcement.hashCode;
         
 
                 
@@ -33,7 +34,7 @@ final String repo;
             identical(this, other) ||
             other is AppConfig &&
                 runtimeType == other.runtimeType
-                && latestVersion == other.latestVersion&& downloadUrl == other.downloadUrl&& changeLog == other.changeLog&& repo == other.repo;
+                && latestVersion == other.latestVersion&& downloadUrl == other.downloadUrl&& changeLog == other.changeLog&& repo == other.repo&& announcement == other.announcement;
         
             }
 

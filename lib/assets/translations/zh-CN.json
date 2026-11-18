@@ -254,6 +254,9 @@
     "ignore_upgrade_confirm": {
       "title": "关闭升级弹窗"
     },
+    "hide_announcement": {
+      "title": "不展示公告"
+    },
     "hidden_fd_icon": {
       "title": "隐藏个人空间的发电图标"
     },
@@ -864,6 +867,29 @@
       "pat_not_detected": "未检测到入会, 请到下载页入会",
       "i_have_powered": "我曾经发过电",
       "i_just_powered": "我刚才发了电",
+      "my_referrer_name": "我的用户名",
+      "register_referrer": "已登记",
+      "referrer": "推荐人",
+      "referrer_none": "未绑定",
+      "referrer_login": "先登录",
+      "referrer_locked": "先解绑才能更换",
+      "enter_referrer": "填写推荐人用户名",
+      "referrer_bound": "已绑定",
+      "unbind_referrer": "解绑推荐人",
+      "unbind_confirm": "确定解绑推荐人？",
+      "referrer_unbound": "已解绑",
+      "no_referrer": "当前没有推荐人",
+      "unbind_wait": "还有 {days} 天",
+      "campaign_time": "活动时间",
+      "campaign_none": "当前没有活动",
+      "announcement": "公告",
+      "announcement_close": "关闭",
+      "announcement_dismiss": "不再提醒",
+      "referrer_self": "不能填写自己",
+      "referrer_not_found": "推荐人不存在，请对方先登记推荐名",
+      "referrer_already": "已经绑定了推荐人",
+      "referrer_mutual": "不能互相绑定",
+      "referrer_not_bound": "还没有推荐人",
       "enter_code": "输入代码",
       "power_method": "发电方式",
       "wind_power": "风力发电",

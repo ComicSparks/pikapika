@@ -690,6 +690,10 @@ class Method {
     return rust_pro.inputCdKey(cdKey: cdKey);
   }
 
+  Future<String> referralCall(String payload) {
+    return rust_pro.referralCall(payload: payload);
+  }
+
   Future<void> reloadSwitchAddress() {
     return rust_settings.reloadSwitchAddress();
   }

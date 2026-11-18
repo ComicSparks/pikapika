@@ -250,6 +250,9 @@
     "ignore_upgrade_confirm": {
       "title": "關閉升級彈窗"
     },
+    "hide_announcement": {
+      "title": "不展示公告"
+    },
     "hidden_fd_icon": {
       "title": "隱藏個人空間的發電圖標"
     },
@@ -864,6 +867,29 @@
       "pat_not_detected": "未檢測到入會, 請到下載頁入會",
       "i_have_powered": "我曾經發過電",
       "i_just_powered": "我剛才發了電",
+      "my_referrer_name": "我的用戶名",
+      "register_referrer": "已登記",
+      "referrer": "推薦人",
+      "referrer_none": "未綁定",
+      "referrer_login": "先登入",
+      "referrer_locked": "先解綁才能更換",
+      "enter_referrer": "填寫推薦人用戶名",
+      "referrer_bound": "已綁定",
+      "unbind_referrer": "解綁推薦人",
+      "unbind_confirm": "確定解綁推薦人？",
+      "referrer_unbound": "已解綁",
+      "no_referrer": "目前沒有推薦人",
+      "unbind_wait": "還有 {days} 天",
+      "campaign_time": "活動時間",
+      "campaign_none": "目前沒有活動",
+      "announcement": "公告",
+      "announcement_close": "關閉",
+      "announcement_dismiss": "不再提醒",
+      "referrer_self": "不能填寫自己",
+      "referrer_not_found": "推薦人不存在，請對方先登記推薦名",
+      "referrer_already": "已經綁定了推薦人",
+      "referrer_mutual": "不能互相綁定",
+      "referrer_not_bound": "還沒有推薦人",
       "enter_code": "輸入代碼",
       "power_method": "發電方式",
       "wind_power": "風力發電",

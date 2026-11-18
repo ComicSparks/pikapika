@@ -25,6 +25,7 @@ import 'package:pikapika/basic/config/FullScreenAction.dart';
 import 'package:pikapika/basic/config/FullScreenUI.dart';
 import 'package:pikapika/basic/config/HiddenSearchPersion.dart';
 import 'package:pikapika/basic/config/IconLoading.dart';
+import 'package:pikapika/basic/config/HideAnnouncement.dart';
 import 'package:pikapika/basic/config/IgnoreUpgradeConfirm.dart';
 import 'package:pikapika/basic/config/IsPro.dart';
 import 'package:pikapika/basic/config/KeyboardController.dart';
@@ -314,6 +315,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 importViewLogFromOff(),
                 const Divider(),
                 ignoreUpgradeConfirmSetting(),
+                hideAnnouncementSetting(),
               ],
             ),
             SafeArea(

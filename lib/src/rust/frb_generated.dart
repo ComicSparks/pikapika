@@ -258,6 +258,8 @@ Future<void> crateApiSimpleInitApplication({required String dataDir });
 
 Future<void> crateApiProInputCdKey({required String cdKey });
 
+Future<String> crateApiProReferralCall({required String payload });
+
 Future<List<ComicSimple>> crateApiComicLeaderboard({required String boardType });
 
 Future<List<Knight>> crateApiGameLeaderboardOfKnight();
@@ -2465,6 +2467,31 @@ sse_encode_i_64(page, serializer);
         TaskConstMeta get kCrateApiSimpleInitApplicationConstMeta => const TaskConstMeta(
             debugName: "init_application",
             argNames: ["dataDir"],
+        );
+        
+
+@override Future<String> crateApiProReferralCall({required String payload })  { return handler.executeNormal(NormalTask(
+            callFfi: (port_) {
+              
+            final serializer = SseSerializer(generalizedFrbRustBinding);sse_encode_String(payload, serializer);
+            pdeCallFfi(generalizedFrbRustBinding, serializer, funcId: 167, port: port_);
+            
+            },
+            codec: 
+        SseCodec(
+          decodeSuccessData: sse_decode_String,
+          decodeErrorData: sse_decode_String,
+        )
+        ,
+            constMeta: kCrateApiProReferralCallConstMeta,
+            argValues: [payload],
+            apiImpl: this,
+        )); }
+
+
+        TaskConstMeta get kCrateApiProReferralCallConstMeta => const TaskConstMeta(
+            debugName: "referral_call",
+            argNames: ["payload"],
         );
         
 
@@ -4710,11 +4737,12 @@ return raw as String; }
 
 @protected AppConfig dco_decode_app_config(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
 final arr = raw as List<dynamic>;
-                if (arr.length != 4) throw Exception('unexpected arr length: expect 4 but see ${arr.length}');
+                if (arr.length != 5) throw Exception('unexpected arr length: expect 5 but see ${arr.length}');
                 return AppConfig(latestVersion: dco_decode_String(arr[0]),
 downloadUrl: dco_decode_String(arr[1]),
 changeLog: dco_decode_String(arr[2]),
-repo: dco_decode_String(arr[3]),); }
+repo: dco_decode_String(arr[3]),
+announcement: dco_decode_String(arr[4]),); }
 
 @protected AppEvent dco_decode_app_event(dynamic raw){ // Codec=Dco (DartCObject based), see doc to use other codecs
 switch (raw[0]) {
@@ -5416,7 +5444,8 @@ var var_latestVersion = sse_decode_String(deserializer);
 var var_downloadUrl = sse_decode_String(deserializer);
 var var_changeLog = sse_decode_String(deserializer);
 var var_repo = sse_decode_String(deserializer);
-return AppConfig(latestVersion: var_latestVersion, downloadUrl: var_downloadUrl, changeLog: var_changeLog, repo: var_repo); }
+var var_announcement = sse_decode_String(deserializer);
+return AppConfig(latestVersion: var_latestVersion, downloadUrl: var_downloadUrl, changeLog: var_changeLog, repo: var_repo, announcement: var_announcement); }
 
 @protected AppEvent sse_decode_app_event(SseDeserializer deserializer){ // Codec=Sse (Serialization based), see doc to use other codecs
 
@@ -6233,6 +6262,7 @@ sse_encode_String(self.latestVersion, serializer);
 sse_encode_String(self.downloadUrl, serializer);
 sse_encode_String(self.changeLog, serializer);
 sse_encode_String(self.repo, serializer);
+sse_encode_String(self.announcement, serializer);
  }
 
 @protected void sse_encode_app_event(AppEvent self, SseSerializer serializer){ // Codec=Sse (Serialization based), see doc to use other codecs
