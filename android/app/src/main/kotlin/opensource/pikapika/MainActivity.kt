@@ -1,5 +1,6 @@
 package opensource.pikapika
 
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.provider.OpenableColumns
@@ -44,6 +45,17 @@ class MainActivity : FlutterFragmentActivity() {
                             androidSecureFlag(call.argument<Boolean>("flag") == true)
                             result.success("")
                         }
+                        "showDownloadNotice" -> {
+                            showDownloadNotice(
+                                call.argument<String>("title") ?: "",
+                                call.argument<String>("body") ?: "",
+                            )
+                            result.success("")
+                        }
+                        "cancelDownloadNotice" -> {
+                            cancelDownloadNotice()
+                            result.success("")
+                        }
                         "androidStorageRoot" -> result.success(Environment.getExternalStorageDirectory().absolutePath)
                         "androidDefaultExportsDir" -> result.success(File(File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "pic2acg"), "exports").absolutePath)
                         "androidMkdirs" -> {
@@ -80,6 +92,11 @@ class MainActivity : FlutterFragmentActivity() {
             })
     }
 
+    override fun onDestroy() {
+        cancelDownloadNotice()
+        super.onDestroy()
+    }
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         volumeEvents?.let {
             if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
@@ -112,6 +129,27 @@ class MainActivity : FlutterFragmentActivity() {
                 window.attributes = window.attributes.also { it.preferredDisplayModeId = mode.modeId }
             }
         }
+    }
+
+    private fun showDownloadNotice(title: String, body: String) {
+        if (DownloadForegroundService.running) {
+            DownloadForegroundService.update(this, title, body)
+            return
+        }
+        val intent = Intent(this, DownloadForegroundService::class.java).apply {
+            action = DownloadForegroundService.ACTION_SHOW
+            putExtra(DownloadForegroundService.EXTRA_TITLE, title)
+            putExtra(DownloadForegroundService.EXTRA_BODY, body)
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent)
+        } else {
+            startService(intent)
+        }
+    }
+
+    private fun cancelDownloadNotice() {
+        stopService(Intent(this, DownloadForegroundService::class.java))
     }
 
     private fun androidSecureFlag(flag: Boolean) {

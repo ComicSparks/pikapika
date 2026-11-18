@@ -96,6 +96,13 @@
     "auto_download_on_favorite": "Auto download on favorite",
     "disable_auto_download_on_mobile": "Disable auto download on mobile data",
     "auto_delete_download_on_unfavorite": "Auto delete download on unfavorite",
+    "download_persistent_notice": {
+      "title": "Persistent notification while downloading",
+      "subtitle": "Keep a notification while downloads are unfinished",
+      "notification_title": "Downloads unfinished",
+      "notification_body": "{count} unfinished downloads",
+      "notification_body_current": "{title} {done}/{total} · {count} unfinished"
+    },
     "web_server": "Web Server",
     "web_server_subtitle": "Let devices in the local network view the downloaded comics through the browser",
     "sync": "Sync",

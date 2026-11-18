@@ -564,6 +564,17 @@ class Method {
     return _platform.invokeMethod("androidSecureFlag", {"flag": flag});
   }
 
+  Future<void> showDownloadNotice(String title, String body) {
+    return _platform.invokeMethod("showDownloadNotice", {
+      "title": title,
+      "body": body,
+    });
+  }
+
+  Future<void> cancelDownloadNotice() {
+    return _platform.invokeMethod("cancelDownloadNotice");
+  }
+
   Future<int> loadDownloadThreadCount() {
     return rust_settings.loadDownloadThreadCount();
   }

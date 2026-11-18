@@ -96,6 +96,13 @@
     "auto_download_on_favorite": "즐겨찾기 시 자동 다운로드",
     "disable_auto_download_on_mobile": "모바일 데이터에서는 자동 다운로드 안 함",
     "auto_delete_download_on_unfavorite": "즐겨찾기 해제 시 자동 삭제",
+    "download_persistent_notice": {
+      "title": "다운로드 중 상주 알림 사용",
+      "subtitle": "완료되지 않은 다운로드가 있으면 알림을 유지합니다",
+      "notification_title": "다운로드 미완료",
+      "notification_body": "미완료 작업 {count}개",
+      "notification_body_current": "{title} {done}/{total} · 미완료 {count}개"
+    },
     "web_server": "웹 서버",
     "web_server_subtitle": "로컬 네트워크의 장치가 브라우저를 통해 다운로드한 만화를 볼 수 있게 합니다",
     "sync": "동기화",

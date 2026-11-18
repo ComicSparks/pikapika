@@ -96,6 +96,13 @@
     "auto_download_on_favorite": "お気に入り時に自動ダウンロード",
     "disable_auto_download_on_mobile": "モバイル通信時は自動ダウンロードしない",
     "auto_delete_download_on_unfavorite": "お気に入り解除で自動削除",
+    "download_persistent_notice": {
+      "title": "ダウンロード中は常駐通知を表示",
+      "subtitle": "未完了のダウンロードがある間、通知を表示し続けます",
+      "notification_title": "ダウンロード未完了",
+      "notification_body": "未完了のタスクが {count} 件あります",
+      "notification_body_current": "{title} {done}/{total} · 未完了 {count} 件"
+    },
     "web_server": "ウェブサーバー",
     "web_server_subtitle": "ローカルネットワーク内のデバイスがブラウザを通じてダウンロードした漫画を閲覧できるようにします",
     "sync": "同期",
