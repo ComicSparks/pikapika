@@ -43,6 +43,7 @@ import '../../basic/config/IconLoading.dart';
 import '../../basic/config/ReaderBackgroundColor.dart';
 import '../../basic/config/ReaderScrollByScreenPercentage.dart';
 import '../../basic/config/WebToonScrollMode.dart';
+import '../../basic/config/ReaderSideInset.dart';
 import '../../basic/config/ReaderZoomScale.dart';
 import '../../basic/config/UseApiLoadImage.dart';
 import '../../basic/config/VolumeNextChapter.dart';
@@ -389,11 +390,17 @@ abstract class _ImageReaderContentState extends State<_ImageReaderContent> {
     if (_listVolume) {
       addVolumeListen();
     }
+    readerSideInsetListenable.addListener(_onSideInsetChanged);
     super.initState();
+  }
+
+  void _onSideInsetChanged() {
+    if (mounted) setState(() {});
   }
 
   @override
   void dispose() {
+    readerSideInsetListenable.removeListener(_onSideInsetChanged);
     _readerControllerEvent.unsubscribe(_onPageControl);
     if (_listVolume) {
       delVolumeListen();
@@ -1149,6 +1156,53 @@ class _SettingPanelState extends State<_SettingPanel> {
           },
         ),
         const Divider(color: Colors.white24),
+        _chooseTile(
+          icon: Icons.space_bar,
+          title: tr("settings.reader_side_inset.mode_title"),
+          value: readerSideInsetModeName(),
+          onTap: () async {
+            await chooseReaderSideInsetMode(context);
+            setState(() {});
+          },
+        ),
+        _sliderTile(
+          icon: Icons.stay_current_portrait,
+          title: tr("settings.reader_side_inset.portrait"),
+          valueLabel: readerSideInsetValueLabel(readerSideInsetPortrait),
+          min: 0,
+          max: readerSideInsetMode == ReaderSideInsetMode.percent ? 30 : 160,
+          divisions:
+              readerSideInsetMode == ReaderSideInsetMode.percent ? 30 : 160,
+          value: readerSideInsetPortrait
+              .clamp(
+                0,
+                readerSideInsetMode == ReaderSideInsetMode.percent ? 30 : 160,
+              )
+              .toDouble(),
+          onChanged: (v) async {
+            await setReaderSideInsetPortrait(v.roundToDouble());
+            setState(() {});
+          },
+        ),
+        _sliderTile(
+          icon: Icons.stay_current_landscape,
+          title: tr("settings.reader_side_inset.landscape"),
+          valueLabel: readerSideInsetValueLabel(readerSideInsetLandscape),
+          min: 0,
+          max: readerSideInsetMode == ReaderSideInsetMode.percent ? 30 : 160,
+          divisions:
+              readerSideInsetMode == ReaderSideInsetMode.percent ? 30 : 160,
+          value: readerSideInsetLandscape
+              .clamp(
+                0,
+                readerSideInsetMode == ReaderSideInsetMode.percent ? 30 : 160,
+              )
+              .toDouble(),
+          onChanged: (v) async {
+            await setReaderSideInsetLandscape(v.roundToDouble());
+            setState(() {});
+          },
+        ),
         _sliderTile(
           icon: Icons.zoom_out_map,
           title: tr("settings.reader_zoom.out_title"),
@@ -1513,9 +1567,13 @@ class _WebToonReaderState extends _ImageReaderContentState {
           late Size renderSize;
           if (_trueSizes[index] != null) {
             if (widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM) {
+              final contentWidth = readerSideFrame(
+                verticalReader: true,
+                viewport: Size(constraints.maxWidth, constraints.maxHeight),
+              ).fit(constraints.maxWidth);
               renderSize = Size(
-                constraints.maxWidth,
-                constraints.maxWidth *
+                contentWidth,
+                contentWidth *
                     _trueSizes[index]!.height /
                     _trueSizes[index]!.width,
               );
@@ -1524,6 +1582,10 @@ class _WebToonReaderState extends _ImageReaderContentState {
                   super._topBarHeight() -
                   super._bottomBarHeight() -
                   MediaQuery.of(context).padding.bottom;
+              maxHeight = readerSideFrame(
+                verticalReader: false,
+                viewport: Size(constraints.maxWidth, constraints.maxHeight),
+              ).fit(maxHeight);
               renderSize = Size(
                 maxHeight *
                     _trueSizes[index]!.width /
@@ -1533,12 +1595,22 @@ class _WebToonReaderState extends _ImageReaderContentState {
             }
           } else {
             if (widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM) {
-              renderSize = Size(constraints.maxWidth, constraints.maxWidth / 2);
+              final contentWidth = readerSideFrame(
+                verticalReader: true,
+                viewport: Size(constraints.maxWidth, constraints.maxHeight),
+              ).fit(constraints.maxWidth);
+              renderSize = Size(contentWidth, contentWidth / 2);
             } else {
               // ReaderDirection.LEFT_TO_RIGHT
               // ReaderDirection.RIGHT_TO_LEFT
               renderSize =
-                  Size(constraints.maxWidth / 2, constraints.maxHeight);
+                  Size(
+                constraints.maxWidth / 2,
+                readerSideFrame(
+                  verticalReader: false,
+                  viewport: Size(constraints.maxWidth, constraints.maxHeight),
+                ).fit(constraints.maxHeight),
+              );
             }
           }
           var currentIndex = index;
@@ -1606,7 +1678,11 @@ class _WebToonReaderState extends _ImageReaderContentState {
             if (index >= widget.struct.images.length) {
               return _buildNextEp();
             }
-            return _images[index];
+            return readerSideFrame(
+              verticalReader:
+                  widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM,
+              viewport: Size(constraints.maxWidth, constraints.maxHeight),
+            ).place(_images[index]);
           },
         );
       },
@@ -1935,9 +2011,13 @@ class _WebToonZoomReaderState extends _ImageReaderContentState {
           late Size renderSize;
           if (_trueSizes[index] != null) {
             if (widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM) {
+              final contentWidth = readerSideFrame(
+                verticalReader: true,
+                viewport: Size(constraints.maxWidth, constraints.maxHeight),
+              ).fit(constraints.maxWidth);
               renderSize = Size(
-                constraints.maxWidth,
-                constraints.maxWidth *
+                contentWidth,
+                contentWidth *
                     _trueSizes[index]!.height /
                     _trueSizes[index]!.width,
               );
@@ -1946,6 +2026,10 @@ class _WebToonZoomReaderState extends _ImageReaderContentState {
                   super._topBarHeight() -
                   super._bottomBarHeight() -
                   MediaQuery.of(context).padding.bottom;
+              maxHeight = readerSideFrame(
+                verticalReader: false,
+                viewport: Size(constraints.maxWidth, constraints.maxHeight),
+              ).fit(maxHeight);
               renderSize = Size(
                 maxHeight *
                     _trueSizes[index]!.width /
@@ -1955,10 +2039,20 @@ class _WebToonZoomReaderState extends _ImageReaderContentState {
             }
           } else {
             if (widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM) {
-              renderSize = Size(constraints.maxWidth, constraints.maxWidth / 2);
+              final contentWidth = readerSideFrame(
+                verticalReader: true,
+                viewport: Size(constraints.maxWidth, constraints.maxHeight),
+              ).fit(constraints.maxWidth);
+              renderSize = Size(contentWidth, contentWidth / 2);
             } else {
               renderSize =
-                  Size(constraints.maxWidth / 2, constraints.maxHeight);
+                  Size(
+                constraints.maxWidth / 2,
+                readerSideFrame(
+                  verticalReader: false,
+                  viewport: Size(constraints.maxWidth, constraints.maxHeight),
+                ).fit(constraints.maxHeight),
+              );
             }
           }
           var currentIndex = index;
@@ -2033,7 +2127,11 @@ class _WebToonZoomReaderState extends _ImageReaderContentState {
             if (index >= widget.struct.images.length) {
               return _buildNextEp();
             }
-            return _images[index];
+            return readerSideFrame(
+              verticalReader:
+                  widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM,
+              viewport: Size(constraints.maxWidth, constraints.maxHeight),
+            ).place(_images[index]);
           },
         );
       },
@@ -2185,9 +2283,13 @@ class _ListViewReaderState extends _ImageReaderContentState
           late Size renderSize;
           if (_trueSizes[index] != null) {
             if (widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM) {
+              final contentWidth = readerSideFrame(
+                verticalReader: true,
+                viewport: Size(constraints.maxWidth, constraints.maxHeight),
+              ).fit(constraints.maxWidth);
               renderSize = Size(
-                constraints.maxWidth,
-                constraints.maxWidth *
+                contentWidth,
+                contentWidth *
                     _trueSizes[index]!.height /
                     _trueSizes[index]!.width,
               );
@@ -2196,6 +2298,10 @@ class _ListViewReaderState extends _ImageReaderContentState
                   super._topBarHeight() -
                   super._bottomBarHeight() -
                   MediaQuery.of(context).padding.bottom;
+              maxHeight = readerSideFrame(
+                verticalReader: false,
+                viewport: Size(constraints.maxWidth, constraints.maxHeight),
+              ).fit(maxHeight);
               renderSize = Size(
                 maxHeight *
                     _trueSizes[index]!.width /
@@ -2205,12 +2311,22 @@ class _ListViewReaderState extends _ImageReaderContentState
             }
           } else {
             if (widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM) {
-              renderSize = Size(constraints.maxWidth, constraints.maxWidth / 2);
+              final contentWidth = readerSideFrame(
+                verticalReader: true,
+                viewport: Size(constraints.maxWidth, constraints.maxHeight),
+              ).fit(constraints.maxWidth);
+              renderSize = Size(contentWidth, contentWidth / 2);
             } else {
               // ReaderDirection.LEFT_TO_RIGHT
               // ReaderDirection.RIGHT_TO_LEFT
               renderSize =
-                  Size(constraints.maxWidth / 2, constraints.maxHeight);
+                  Size(
+                constraints.maxWidth / 2,
+                readerSideFrame(
+                  verticalReader: false,
+                  viewport: Size(constraints.maxWidth, constraints.maxHeight),
+                ).fit(constraints.maxHeight),
+              );
             }
           }
           var currentIndex = index;
@@ -2273,7 +2389,11 @@ class _ListViewReaderState extends _ImageReaderContentState
             if (widget.struct.images.length == index) {
               return _buildNextEp();
             }
-            return _images[index];
+            return readerSideFrame(
+              verticalReader:
+                  widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM,
+              viewport: Size(constraints.maxWidth, constraints.maxHeight),
+            ).place(_images[index]);
           },
         );
         var viewer = InteractiveViewer(
@@ -2479,6 +2599,48 @@ class _GalleryReaderState extends _ImageReaderContentState {
     }
   }
 
+  PhotoViewGalleryPageOptions _galleryPage(BuildContext context, int index) {
+    final screen = MediaQuery.sizeOf(context);
+    final vertical = widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM;
+    final frame = readerSideFrame(verticalReader: vertical, viewport: screen);
+    if (frame.inset <= 0) {
+      return options[index];
+    }
+    return PhotoViewGalleryPageOptions.customChild(
+      disableGestures:
+          FullScreenAction.TOUCH_DOUBLE == currentFullScreenAction() ||
+              FullScreenAction.TOUCH_DOUBLE_ONCE_NEXT ==
+                  currentFullScreenAction(),
+      initialScale: PhotoViewComputedScale.contained,
+      minScale: PhotoViewComputedScale.contained * readerZoomMinScale,
+      maxScale: PhotoViewComputedScale.contained * readerZoomMaxScale,
+      tightMode: dragRegionLock(),
+      child: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          return Padding(
+            padding: readerSidePaddingOf(
+              context,
+              constraints,
+              verticalReader: vertical,
+            ),
+            child: Image(
+              image: ips[index],
+              fit: BoxFit.contain,
+              filterQuality: FilterQuality.high,
+              errorBuilder: (b, e, s) {
+                print("$e,$s");
+                return buildError(
+                  constraints.maxWidth,
+                  constraints.maxHeight,
+                );
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   void _onGalleryPageChange(int to) {
     if (to > super._current &&
         currentAutoFullScreenOnForward() &&
@@ -2512,7 +2674,7 @@ class _GalleryReaderState extends _ImageReaderContentState {
       onPageChanged: _onGalleryPageChange,
       itemCount: widget.struct.images.length,
       builder: (BuildContext context, int index) {
-        return options[index];
+        return _galleryPage(context, index);
       },
       allowImplicitScrolling: true,
     );
@@ -2661,7 +2823,14 @@ class _TwoPageGalleryReaderState extends _ImageReaderContentState {
           tightMode: dragRegionLock(),
           child: LayoutBuilder(
             builder: (BuildContext context, BoxConstraints constraints) {
-              return Row(
+              return Padding(
+                padding: readerSidePaddingOf(
+                  context,
+                  constraints,
+                  verticalReader: widget.pagerDirection ==
+                      ReaderDirection.TOP_TO_BOTTOM,
+                ),
+                child: Row(
                 children: [
                   Expanded(
                     child: Align(
@@ -2698,6 +2867,7 @@ class _TwoPageGalleryReaderState extends _ImageReaderContentState {
                     ),
                   ),
                 ],
+                ),
               );
             },
           ),
@@ -2767,6 +2937,16 @@ class _TwoPageGalleryReaderState extends _ImageReaderContentState {
 
   @override
   Widget _buildViewer() {
+    _view = PhotoViewGallery(
+      pageController: _pageController,
+      pageOptions: options,
+      scrollDirection: widget.pagerDirection == ReaderDirection.TOP_TO_BOTTOM
+          ? Axis.vertical
+          : Axis.horizontal,
+      reverse: widget.pagerDirection == ReaderDirection.RIGHT_TO_LEFT,
+      onPageChanged: _onGalleryPageChange,
+      backgroundDecoration: BoxDecoration(color: readerBackgroundColorObj),
+    );
     return Stack(
       children: [
         GestureDetector(

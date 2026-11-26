@@ -386,6 +386,16 @@
       "image": "圖片",
       "screen": "距離"
     },
+    "reader_side_inset": {
+      "mode_title": "兩側留白方式",
+      "mode_choose": "選擇兩側留白方式",
+      "percent": "百分比",
+      "size": "固定尺寸",
+      "portrait": "直向留白",
+      "landscape": "橫向留白",
+      "percent_each": "每側",
+      "size_each": "每側"
+    },
     "reader_zoom": {
       "out_title": "縮小倍數（最小縮放）",
       "in_title": "放大倍數（最大縮放）",

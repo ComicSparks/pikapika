@@ -386,6 +386,16 @@
       "image": "이미지",
       "screen": "거리"
     },
+    "reader_side_inset": {
+      "mode_title": "양쪽 여백 방식",
+      "mode_choose": "양쪽 여백 방식 선택",
+      "percent": "백분율",
+      "size": "고정 크기",
+      "portrait": "세로 여백",
+      "landscape": "가로 여백",
+      "percent_each": "한쪽",
+      "size_each": "한쪽"
+    },
     "reader_zoom": {
       "out_title": "축소 배율 (최소 확대)",
       "in_title": "확대 배율 (최대 확대)",

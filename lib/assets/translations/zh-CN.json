@@ -391,6 +391,16 @@
       "in_title": "放大倍数（最大缩放）",
       "double_tap_title": "双击缩放倍数"
     },
+    "reader_side_inset": {
+      "mode_title": "两侧留白方式",
+      "mode_choose": "选择两侧留白方式",
+      "percent": "百分比",
+      "size": "固定尺寸",
+      "portrait": "竖屏留白",
+      "landscape": "横屏留白",
+      "percent_each": "每侧",
+      "size_each": "每侧"
+    },
     "drag_region_lock": {
       "title": "锁定拖动边界"
     },

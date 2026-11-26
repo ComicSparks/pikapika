@@ -386,6 +386,16 @@
       "image": "Image",
       "screen": "Distance"
     },
+    "reader_side_inset": {
+      "mode_title": "Side margin mode",
+      "mode_choose": "Choose side margin mode",
+      "percent": "Percentage",
+      "size": "Fixed size",
+      "portrait": "Portrait margin",
+      "landscape": "Landscape margin",
+      "percent_each": "Each side",
+      "size_each": "Each side"
+    },
     "reader_zoom": {
       "out_title": "Zoom out multiplier (min scale)",
       "in_title": "Zoom in multiplier (max scale)",
