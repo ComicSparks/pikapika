@@ -386,6 +386,15 @@
       "image": "图片",
       "screen": "距离"
     },
+    "reader_wheel": {
+      "mode_title": "滚轮翻页方式",
+      "mode_choose": "选择滚轮翻页方式",
+      "page": "按页",
+      "distance": "按距离",
+      "events_title": "滚轮翻一页所需次数",
+      "step_title": "滚轮每次滚动距离",
+      "no_animation": "取消滚轮翻页动画"
+    },
     "reader_zoom": {
       "out_title": "缩小倍数（最小缩放）",
       "in_title": "放大倍数（最大缩放）",

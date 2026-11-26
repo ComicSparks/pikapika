@@ -386,6 +386,15 @@
       "image": "画像",
       "screen": "距離"
     },
+    "reader_wheel": {
+      "mode_title": "ホイールのページ送り",
+      "mode_choose": "ホイールのページ送りを選択",
+      "page": "ページ単位",
+      "distance": "距離単位",
+      "events_title": "1ページに必要なホイール回数",
+      "step_title": "ホイール1回の移動量",
+      "no_animation": "ホイールのページアニメーションをキャンセル"
+    },
     "reader_side_inset": {
       "mode_title": "両側の余白",
       "mode_choose": "両側の余白の方式",

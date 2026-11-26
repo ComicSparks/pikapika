@@ -386,6 +386,15 @@
       "image": "Image",
       "screen": "Distance"
     },
+    "reader_wheel": {
+      "mode_title": "Mouse wheel paging",
+      "mode_choose": "Choose mouse wheel paging",
+      "page": "By page",
+      "distance": "By distance",
+      "events_title": "Wheel events per page",
+      "step_title": "Wheel step size",
+      "no_animation": "Cancel mouse wheel animation"
+    },
     "reader_side_inset": {
       "mode_title": "Side margin mode",
       "mode_choose": "Choose side margin mode",

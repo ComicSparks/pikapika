@@ -386,6 +386,15 @@
       "image": "圖片",
       "screen": "距離"
     },
+    "reader_wheel": {
+      "mode_title": "滾輪翻頁方式",
+      "mode_choose": "選擇滾輪翻頁方式",
+      "page": "按頁",
+      "distance": "按距離",
+      "events_title": "滾輪翻一頁所需次數",
+      "step_title": "滾輪每次滾動距離",
+      "no_animation": "取消滾輪翻頁動畫"
+    },
     "reader_side_inset": {
       "mode_title": "兩側留白方式",
       "mode_choose": "選擇兩側留白方式",

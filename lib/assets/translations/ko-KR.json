@@ -386,6 +386,15 @@
       "image": "이미지",
       "screen": "거리"
     },
+    "reader_wheel": {
+      "mode_title": "휠 넘김 방식",
+      "mode_choose": "휠 넘김 방식 선택",
+      "page": "페이지",
+      "distance": "거리",
+      "events_title": "한 페이지에 필요한 휠 횟수",
+      "step_title": "휠 한 번의 이동 거리",
+      "no_animation": "휠 페이지 애니메이션 취소"
+    },
     "reader_side_inset": {
       "mode_title": "양쪽 여백 방식",
       "mode_choose": "양쪽 여백 방식 선택",

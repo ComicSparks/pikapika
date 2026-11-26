@@ -38,6 +38,7 @@ import 'package:pikapika/basic/config/ReaderBackgroundColor.dart';
 import 'package:pikapika/basic/config/ReaderDirection.dart';
 import 'package:pikapika/basic/config/ReaderSliderPosition.dart';
 import 'package:pikapika/basic/config/ReaderSideInset.dart';
+import 'package:pikapika/basic/config/ReaderWheel.dart';
 import 'package:pikapika/basic/config/ReaderType.dart';
 import 'package:pikapika/basic/config/ShadowCategories.dart';
 import 'package:pikapika/basic/config/ShadowCategoriesMode.dart';
@@ -193,6 +194,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 fullScreenActionSetting(),
                 webToonScrollModeSetting(),
                 readerScrollByScreenPercentageSetting(),
+                const ReaderWheelSettings(),
                 const ReaderSideInsetSettings(),
                 readerZoomMinScaleSetting(),
                 readerZoomMaxScaleSetting(),

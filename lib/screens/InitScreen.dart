@@ -46,6 +46,7 @@ import 'package:pikapika/basic/config/Quality.dart';
 import 'package:pikapika/basic/config/ReaderDirection.dart';
 import 'package:pikapika/basic/config/ReaderSliderPosition.dart';
 import 'package:pikapika/basic/config/ReaderSideInset.dart';
+import 'package:pikapika/basic/config/ReaderWheel.dart';
 import 'package:pikapika/basic/config/ReaderType.dart';
 import 'package:pikapika/basic/config/RecommendLinks.dart';
 import 'package:pikapika/basic/config/ShadowCategories.dart';
@@ -215,6 +216,7 @@ class _InitScreenState extends State<InitScreen> {
     await initTagFavorite();
     await initReaderScrollByScreenPercentage();
     await initWebToonScrollMode();
+    await initReaderWheel();
     await initReaderZoomScale();
     await initReaderSideInset();
     await initIgnoreInfoHistory();
