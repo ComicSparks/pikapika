@@ -1147,10 +1147,11 @@ packages:
   zoomable_positioned_list:
     dependency: "direct main"
     description:
-      path: "../zoomable_positioned_list"
-      relative: true
-    source: path
-    version: "1.1.0"
+      name: zoomable_positioned_list
+      sha256: f52d49a8fff21cf972c8344fade8b3ab875c9311ed4df24368f4fd9455c1f6b9
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.1"
 sdks:
   dart: ">=3.10.3 <4.0.0"
   flutter: ">=3.38.0"

@@ -35,8 +35,7 @@ dependencies:
   image: ^4.5.4
   path: ^1.9.1
   easy_localization: ^3.0.7+1
-  zoomable_positioned_list:
-    path: ../zoomable_positioned_list
+  zoomable_positioned_list: ^1.1.1
   app_links: ^6.4.1
   window_manager: ^0.4.3
   local_auth: ^2.3.0
